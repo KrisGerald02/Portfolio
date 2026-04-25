@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Language, translations } from './translations';
 
 interface LanguageContextType {
@@ -9,21 +9,27 @@ interface LanguageContextType {
   t: (key: string, defaultValue?: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>('en');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Obtener idioma del localStorage
-    const savedLanguage = localStorage.getItem('language') as Language | null;
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
-      setLanguage(savedLanguage);
-    } else {
-      // Usar navegador como fallback, por defecto inglés
-      const browserLang = navigator.language.startsWith('es') ? 'es' : 'en';
-      setLanguage('en'); // Por defecto inglés como solicitaste
+    try {
+      const savedLanguage = localStorage.getItem('language') as Language | null;
+      if (savedLanguage === 'en' || savedLanguage === 'es') {
+        setLanguage(savedLanguage);
+      } else {
+        setLanguage('en'); // Por defecto inglés
+      }
+    } catch (e) {
+      setLanguage('en');
     }
     setMounted(true);
   }, []);
@@ -31,7 +37,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const toggleLanguage = () => {
     setLanguage((prev) => {
       const newLang = prev === 'en' ? 'es' : 'en';
-      localStorage.setItem('language', newLang);
+      try {
+        localStorage.setItem('language', newLang);
+      } catch (e) {
+        console.error('Failed to save language preference', e);
+      }
       return newLang;
     });
   };
@@ -42,18 +52,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       let value: any = translations[language];
       
       for (const k of keys) {
-        value = value[k];
+        if (value && typeof value === 'object') {
+          value = value[k];
+        } else {
+          return defaultValue;
+        }
       }
       
-      return value || defaultValue;
+      return typeof value === 'string' ? value : defaultValue;
     } catch {
       return defaultValue;
     }
   };
-
-  if (!mounted) {
-    return children;
-  }
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
@@ -64,7 +74,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage debe ser usado dentro de LanguageProvider');
   }
   return context;
