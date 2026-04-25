@@ -3,6 +3,7 @@
 import { Navbar } from '@/components/navbar';
 import { SkillBadge } from '@/components/skill-badge';
 import { useLanguage } from '@/lib/language-context';
+import { translations } from '@/lib/translations';
 import { useEffect, useState } from 'react';
 
 interface Skill {
@@ -13,7 +14,7 @@ interface Skill {
 }
 
 export default function SkillsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [skills, setSkills] = useState<Skill[]>([]);
 
   const skillsData = [
@@ -51,13 +52,16 @@ export default function SkillsPage() {
   ];
 
   useEffect(() => {
-    // Map proficiency values to translated ones
-    const translatedSkills = skillsData.map((skill) => ({
-      ...skill,
-      proficiency: t(`skills.proficiency.${skill.proficiency}` as any),
-    }));
+    // Map proficiency values to translated ones using current language
+    const translatedSkills = skillsData.map((skill) => {
+      const proficiencyText = (translations[language] as any).skills.proficiency[skill.proficiency];
+      return {
+        ...skill,
+        proficiency: proficiencyText,
+      };
+    });
     setSkills(translatedSkills);
-  }, [t]);
+  }, [language]);
 
   const categoryKeys = ['languages', 'frontend', 'backend', 'databases', 'tools'] as const;
 
@@ -79,7 +83,7 @@ export default function SkillsPage() {
         <div className="max-w-6xl mx-auto px-4 py-12">
           {categoryKeys.map((categoryKey) => (
             <div key={categoryKey} className="mb-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">{t(`skills.categories.${categoryKey}` as any)}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">{(translations[language] as any).skills.categories[categoryKey]}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {skills
                   .filter((skill) => skill.category === categoryKey)
