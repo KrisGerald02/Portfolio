@@ -20,13 +20,12 @@ export async function GET() {
     // Return default profile if not found
     if (!data) {
       return NextResponse.json({
-        name: 'Tu Nombre',
-        bio: 'Estudiante de Ingeniería en Sistemas | Desarrollador Web | Apasionado por la tecnología',
-        email: 'tu.email@example.com',
-        location: 'Tu Ciudad, País',
-        github_url: 'https://github.com',
-        linkedin_url: 'https://linkedin.com',
-        twitter_url: 'https://twitter.com',
+        name: 'Kristel Villalta',
+        bio: 'Estudiante de Ingeniería en Sistemas | Desarrollador Movil | Analista de Datos',
+        email: 'krisvilalta02@gmail.com',
+        location: 'Managua, Nicaragua',
+        github_url: 'https://github.com/KrisGerald02',
+        linkedin_url: 'https://www.linkedin.com/in/kristel-villalta/',
         profile_image_url: '/profile.jpg',
       })
     }

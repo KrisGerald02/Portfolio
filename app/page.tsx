@@ -23,21 +23,21 @@ export default function Home() {
     setPosts([
       {
         id: '1',
-        author: 'Mi Nombre',
+        author: 'Kristel Villalta',
         content: t('home.feed.post1'),
         timestamp: t('home.feed.ago2Days'),
         likes: 24,
       },
       {
         id: '2',
-        author: 'Mi Nombre',
+        author: 'Kristel Villalta',
         content: t('home.feed.post2'),
         timestamp: t('home.feed.ago5Days'),
         likes: 18,
       },
       {
         id: '3',
-        author: 'Mi Nombre',
+        author: 'Kristel Villalta',
         content: t('home.feed.post3'),
         timestamp: t('home.feed.ago1Week'),
         likes: 42,
@@ -83,41 +83,12 @@ export default function Home() {
                     <p className="text-3xl font-bold text-primary">8</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground text-sm">{t('home.stats.skills')}</p>
-                    <p className="text-3xl font-bold text-primary">15+</p>
-                  </div>
-                  <div>
                     <p className="text-muted-foreground text-sm">{t('home.stats.semester')}</p>
                     <p className="text-3xl font-bold text-primary">5°</p>
                   </div>
                 </div>
               </div>
-
-              {/* Links */}
-              <div className="bg-card rounded-lg shadow-md border border-accent p-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">{t('home.links.title')}</h3>
-                <div className="space-y-3">
-                  <a
-                    href="#"
-                    className="block text-primary hover:text-accent font-medium transition-colors"
-                  >
-                    → {t('home.links.github')}
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-primary hover:text-accent font-medium transition-colors"
-                  >
-                    → {t('home.links.linkedin')}
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-primary hover:text-accent font-medium transition-colors"
-                  >
-                    → {t('home.links.twitter')}
-                  </a>
-                </div>
-              </div>
-            </div>
+             </div>
           </div>
         </div>
       </main>

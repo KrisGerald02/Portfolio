@@ -19,36 +19,27 @@ export default function SkillsPage() {
 
   const skillsData = [
     // Languages
-    { id: '1', name: 'JavaScript', category: 'languages', proficiency: 'advanced' },
-    { id: '2', name: 'TypeScript', category: 'languages', proficiency: 'advanced' },
-    { id: '3', name: 'Python', category: 'languages', proficiency: 'intermediate' },
+    { id: '1', name: 'Python', category: 'languages', proficiency: 'advanced' },
+    { id: '2', name: 'Swift', category: 'languages', proficiency: 'advanced' },
+    { id: '3', name: 'Kotlin', category: 'languages', proficiency: 'intermediate' },
     { id: '4', name: 'SQL', category: 'languages', proficiency: 'advanced' },
-    { id: '5', name: 'HTML/CSS', category: 'languages', proficiency: 'expert' },
-    { id: '6', name: 'Java', category: 'languages', proficiency: 'intermediate' },
-
-    // Frontend
-    { id: '7', name: 'React', category: 'frontend', proficiency: 'advanced' },
-    { id: '8', name: 'Next.js', category: 'frontend', proficiency: 'advanced' },
-    { id: '9', name: 'Tailwind CSS', category: 'frontend', proficiency: 'expert' },
-    { id: '10', name: 'Vue.js', category: 'frontend', proficiency: 'intermediate' },
-    { id: '11', name: 'Responsive Design', category: 'frontend', proficiency: 'advanced' },
-
-    // Backend
-    { id: '12', name: 'Node.js', category: 'backend', proficiency: 'advanced' },
-    { id: '13', name: 'Express.js', category: 'backend', proficiency: 'advanced' },
-    { id: '14', name: 'REST APIs', category: 'backend', proficiency: 'advanced' },
-    { id: '15', name: 'GraphQL', category: 'backend', proficiency: 'intermediate' },
 
     // Databases
-    { id: '16', name: 'PostgreSQL', category: 'databases', proficiency: 'advanced' },
-    { id: '17', name: 'MongoDB', category: 'databases', proficiency: 'intermediate' },
-    { id: '18', name: 'Supabase', category: 'databases', proficiency: 'advanced' },
+    { id: '5', name: 'PostgreSQL', category: 'databases', proficiency: 'advanced' },
+    { id: '6', name: 'SQL Server', category: 'databases', proficiency: 'intermediate' },
+    { id: '7', name: 'Supabase', category: 'databases', proficiency: 'advanced' },
 
     // Tools
-    { id: '19', name: 'Git/GitHub', category: 'tools', proficiency: 'advanced' },
-    { id: '20', name: 'Docker', category: 'tools', proficiency: 'intermediate' },
-    { id: '21', name: 'VS Code', category: 'tools', proficiency: 'expert' },
-    { id: '22', name: 'Vercel', category: 'tools', proficiency: 'advanced' },
+    { id: '8', name: 'Git/GitHub', category: 'tools', proficiency: 'advanced' },
+    { id: '9', name: 'Architect Enterprise', category: 'tools', proficiency: 'intermediate' },
+    { id: '10', name: 'VS Code', category: 'tools', proficiency: 'expert' },
+    { id: '11', name: 'XCode', category: 'tools', proficiency: 'expert' },
+    { id: '12', name: 'Vercel', category: 'tools', proficiency: 'advanced' },
+    { id: '13', name: 'Figma', category: 'tools', proficiency: 'advanced' },
+    { id: '14', name: 'Adobe', category: 'tools', proficiency: 'advanced' },
+    { id: '15', name: 'Power BI', category: 'tools', proficiency: 'advanced' },
+    { id: '16', name: 'Excel', category: 'tools', proficiency: 'advanced' },
+    { id: '17', name: 'Arduino', category: 'tools', proficiency: 'advanced' },
   ];
 
   useEffect(() => {
@@ -63,7 +54,7 @@ export default function SkillsPage() {
     setSkills(translatedSkills);
   }, [language]);
 
-  const categoryKeys = ['languages', 'frontend', 'backend', 'databases', 'tools'] as const;
+  const categoryKeys = ['languages', 'databases', 'tools'] as const;
 
   return (
     <>

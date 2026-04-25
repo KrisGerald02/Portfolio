@@ -19,10 +19,10 @@ interface ProfileData {
 export function ProfileHeader() {
   const { t } = useLanguage();
   const [profile, setProfile] = useState<ProfileData>({
-    name: 'Tu Nombre',
+    name: 'Kristel Villalta',
     bio: 'Estudiante de Ingeniería en Sistemas',
-    email: 'tu.email@example.com',
-    location: 'Tu Ciudad, País',
+    email: 'krisvilalta02@gmail.com',
+    location: 'Managua, Nicaragua',
     profile_image_url: '/profile.jpg',
   });
   const [loading, setLoading] = useState(true);

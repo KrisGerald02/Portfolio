@@ -74,18 +74,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-lg font-bold text-foreground">Email</h3>
                   </div>
-                  <p className="text-muted-foreground">tu.email@example.com</p>
-                </div>
-
-                {/* Phone */}
-                <div className="bg-card rounded-lg shadow-md border border-accent p-6">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center">
-                      <Phone size={20} />
-                    </div>
-                    <h3 className="text-lg font-bold text-foreground">Phone</h3>
-                  </div>
-                  <p className="text-muted-foreground">+1 (234) 567-8900</p>
+                  <p className="text-muted-foreground">krisvilalta02@gmail.com</p>
                 </div>
 
                 {/* Location */}
@@ -96,7 +85,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-lg font-bold text-foreground">Location</h3>
                   </div>
-                  <p className="text-muted-foreground">Your City, Country</p>
+                  <p className="text-muted-foreground">Managua, Nicaragua</p>
                 </div>
 
                 {/* Social Links */}
@@ -104,22 +93,16 @@ export default function ContactPage() {
                   <h3 className="text-lg font-bold text-foreground mb-4">{t('contact.socialLinks')}</h3>
                   <div className="space-y-2">
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/in/kristel-villalta/"
                       className="block text-primary hover:text-accent font-medium transition-colors"
                     >
                       → LinkedIn
                     </a>
                     <a
-                      href="#"
+                      href="https://github.com/KrisGerald02"
                       className="block text-primary hover:text-accent font-medium transition-colors"
                     >
                       → GitHub
-                    </a>
-                    <a
-                      href="#"
-                      className="block text-primary hover:text-accent font-medium transition-colors"
-                    >
-                      → Twitter
                     </a>
                   </div>
                 </div>
