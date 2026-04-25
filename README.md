@@ -1,18 +1,6 @@
 # 🌸 Portafolio Red Social - Ingeniería en Sistemas
 
-Un portafolio personal de estilo red social diseñado especialmente para estudiantes de Ingeniería en Sistemas. Construido con **Next.js 16**, **React 19**, **Tailwind CSS** y **Supabase**.
-
-## ✨ Características
-
-- 📱 **Diseño Responsive**: Hermoso en desktop, tablet y móvil
-- 🎨 **Tema Rosa Pastel Personalizable**: Colores suaves y profesionales
-- 👤 **Perfil de Usuario**: Exhibe tu información personal
-- 📝 **Feed de Posts**: Comparte tus reflexiones y logros
-- 🖼️ **Galería de Proyectos**: Muestra tus mejores trabajos
-- 💪 **Sección de Habilidades**: Exhibe tus tecnologías
-- 📧 **Formulario de Contacto**: Recibe mensajes de visitantes
-- 🗄️ **Base de Datos Supabase**: Almacenamiento dinámico
-- ⚡ **Performance Optimizado**: Con Turbopack y SSR
+Un portafolio personal de estilo red social. Construido con **Next.js 16**, **React 19**, **Tailwind CSS** y **Supabase**.
 
 ## 🚀 Inicio Rápido
 
@@ -198,22 +186,6 @@ pnpm lint       # Ejecuta linter
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 
-## 📄 Licencia
-
-MIT - Siéntete libre de usar este proyecto como base para tu portafolio
-
-## 💡 Consejos
-
-- Actualiza regularmente tu información y proyectos
-- Usa imágenes de buena calidad en tus proyectos
-- Mantén la descripción de tu bio concisa y atractiva
-- Agrega links reales a GitHub y LinkedIn
-- Considera agregar un blog con más posts
-
-## 🤝 Contribuciones
-
-Las sugerencias y mejoras son bienvenidas. Siéntete libre de forking y customizar según tus necesidades.
-
 ---
 
-**Hecho con ❤️ para estudiantes de Ingeniería en Sistemas**
+**Hecho con ❤️ **
