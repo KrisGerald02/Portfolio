@@ -3,6 +3,7 @@
 import { Navbar } from '@/components/navbar';
 import { PostCard } from '@/components/post-card';
 import { ProfileHeader } from '@/components/profile-header';
+import { useLanguage } from '@/lib/language-context';
 import { useEffect, useState } from 'react';
 
 interface Post {
@@ -14,6 +15,7 @@ interface Post {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -22,26 +24,26 @@ export default function Home() {
       {
         id: '1',
         author: 'Mi Nombre',
-        content: 'Acabo de completar un proyecto en React y Next.js. Aprendí mucho sobre optimización de rendimiento y SSR. ¡Muy emocionado con los resultados!',
-        timestamp: 'Hace 2 días',
+        content: t('home.feed.post1'),
+        timestamp: t('home.feed.ago2Days'),
         likes: 24,
       },
       {
         id: '2',
         author: 'Mi Nombre',
-        content: 'Trabajando en un sistema de gestión de base de datos con PostgreSQL. Los índices y la optimización de queries son fascinantes.',
-        timestamp: 'Hace 5 días',
+        content: t('home.feed.post2'),
+        timestamp: t('home.feed.ago5Days'),
         likes: 18,
       },
       {
         id: '3',
         author: 'Mi Nombre',
-        content: 'Comenzó el nuevo semestre. Emocionado por aprender sobre arquitectura de sistemas y diseño de software.',
-        timestamp: 'Hace 1 semana',
+        content: t('home.feed.post3'),
+        timestamp: t('home.feed.ago1Week'),
         likes: 42,
       },
     ]);
-  }, []);
+  }, [t]);
 
   return (
     <>
@@ -55,7 +57,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Feed */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Mi Feed</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">{t('home.recentPosts')}</h2>
               <div className="space-y-6">
                 {posts.map((post) => (
                   <PostCard
@@ -74,18 +76,18 @@ export default function Home() {
             <div className="lg:col-span-1">
               {/* Quick Stats */}
               <div className="bg-card rounded-lg shadow-md border border-accent p-6 mb-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">Estadísticas</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">{t('home.stats.title')}</h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-muted-foreground text-sm">Proyectos</p>
+                    <p className="text-muted-foreground text-sm">{t('home.stats.projects')}</p>
                     <p className="text-3xl font-bold text-primary">8</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground text-sm">Habilidades</p>
+                    <p className="text-muted-foreground text-sm">{t('home.stats.skills')}</p>
                     <p className="text-3xl font-bold text-primary">15+</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground text-sm">Semestre Actual</p>
+                    <p className="text-muted-foreground text-sm">{t('home.stats.semester')}</p>
                     <p className="text-3xl font-bold text-primary">5°</p>
                   </div>
                 </div>
@@ -93,25 +95,25 @@ export default function Home() {
 
               {/* Links */}
               <div className="bg-card rounded-lg shadow-md border border-accent p-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">Enlaces</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">{t('home.links.title')}</h3>
                 <div className="space-y-3">
                   <a
                     href="#"
                     className="block text-primary hover:text-accent font-medium transition-colors"
                   >
-                    → GitHub
+                    → {t('home.links.github')}
                   </a>
                   <a
                     href="#"
                     className="block text-primary hover:text-accent font-medium transition-colors"
                   >
-                    → LinkedIn
+                    → {t('home.links.linkedin')}
                   </a>
                   <a
                     href="#"
                     className="block text-primary hover:text-accent font-medium transition-colors"
                   >
-                    → Twitter
+                    → {t('home.links.twitter')}
                   </a>
                 </div>
               </div>
