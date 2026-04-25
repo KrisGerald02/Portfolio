@@ -3,15 +3,18 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLanguage } from '@/lib/language-context';
+import { LanguageToggle } from './language-toggle';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   const links = [
-    { href: '/', label: 'Inicio' },
-    { href: '/projects', label: 'Proyectos' },
-    { href: '/skills', label: 'Habilidades' },
-    { href: '/contact', label: 'Contacto' },
+    { href: '/', label: t('nav.home') },
+    { href: '/projects', label: t('nav.projects') },
+    { href: '/skills', label: t('nav.skills') },
+    { href: '/contact', label: t('nav.contact') },
   ];
 
   return (
@@ -20,7 +23,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="font-bold text-xl text-primary hover:text-accent transition-colors">
-            Mi Portafolio
+            {t('nav.portfolio')}
           </Link>
 
           {/* Desktop Links */}
@@ -34,6 +37,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <LanguageToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -58,6 +62,9 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="py-2">
+              <LanguageToggle />
+            </div>
           </div>
         )}
       </div>

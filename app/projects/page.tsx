@@ -2,6 +2,7 @@
 
 import { Navbar } from '@/components/navbar';
 import { ProjectCard } from '@/components/project-card';
+import { useLanguage } from '@/lib/language-context';
 import { useEffect, useState } from 'react';
 
 interface Project {
@@ -15,6 +16,7 @@ interface Project {
 }
 
 export default function ProjectsPage() {
+  const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -92,10 +94,9 @@ export default function ProjectsPage() {
         {/* Header */}
         <div className="bg-gradient-to-r from-accent to-secondary py-12">
           <div className="max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Mis Proyectos</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t('projects.title')}</h1>
             <p className="text-lg text-primary max-w-2xl">
-              Una colección de proyectos académicos y personales que demuestran mis
-              habilidades en desarrollo web, bases de datos y arquitectura de software.
+              {t('projects.subtitle')}
             </p>
           </div>
         </div>

@@ -3,8 +3,10 @@
 import { Navbar } from '@/components/navbar';
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useLanguage } from '@/lib/language-context';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,10 +53,9 @@ export default function ContactPage() {
         {/* Header */}
         <div className="bg-gradient-to-r from-accent to-secondary py-12">
           <div className="max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Contacto</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t('contact.title')}</h1>
             <p className="text-lg text-primary max-w-2xl">
-              ¿Tienes una pregunta o proposición? Me encantaría saber de ti.
-              Contáctame a través del formulario o utiliza mis redes sociales.
+              {t('contact.subtitle')}
             </p>
           </div>
         </div>
@@ -82,7 +83,7 @@ export default function ContactPage() {
                     <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center">
                       <Phone size={20} />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground">Teléfono</h3>
+                    <h3 className="text-lg font-bold text-foreground">Phone</h3>
                   </div>
                   <p className="text-muted-foreground">+1 (234) 567-8900</p>
                 </div>
@@ -93,14 +94,14 @@ export default function ContactPage() {
                     <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center">
                       <MapPin size={20} />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground">Ubicación</h3>
+                    <h3 className="text-lg font-bold text-foreground">Location</h3>
                   </div>
-                  <p className="text-muted-foreground">Tu Ciudad, País</p>
+                  <p className="text-muted-foreground">Your City, Country</p>
                 </div>
 
                 {/* Social Links */}
                 <div className="bg-card rounded-lg shadow-md border border-accent p-6">
-                  <h3 className="text-lg font-bold text-foreground mb-4">Sígueme</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-4">{t('contact.socialLinks')}</h3>
                   <div className="space-y-2">
                     <a
                       href="#"
@@ -132,7 +133,7 @@ export default function ContactPage() {
                   {/* Name Field */}
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                      Nombre
+                      {t('contact.name')}
                     </label>
                     <input
                       type="text"
@@ -141,7 +142,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Tu nombre completo"
+                      placeholder={t('contact.name')}
                       className="w-full px-4 py-3 rounded-lg border border-accent bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
                     />
                   </div>
@@ -149,7 +150,7 @@ export default function ContactPage() {
                   {/* Email Field */}
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                      Email
+                      {t('contact.email')}
                     </label>
                     <input
                       type="email"
@@ -158,7 +159,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="tu.email@example.com"
+                      placeholder={t('contact.email')}
                       className="w-full px-4 py-3 rounded-lg border border-accent bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
                     />
                   </div>
@@ -166,7 +167,7 @@ export default function ContactPage() {
                   {/* Message Field */}
                   <div>
                     <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                      Mensaje
+                      {t('contact.message')}
                     </label>
                     <textarea
                       id="message"
@@ -175,7 +176,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      placeholder="Cuéntame sobre tu propuesta o pregunta..."
+                      placeholder={t('contact.message')}
                       className="w-full px-4 py-3 rounded-lg border border-accent bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-none"
                     />
                   </div>
@@ -183,12 +184,12 @@ export default function ContactPage() {
                   {/* Status Messages */}
                   {submitStatus === 'success' && (
                     <div className="p-4 rounded-lg bg-green-100 border border-green-300 text-green-800 font-medium">
-                      ¡Mensaje enviado exitosamente! Pronto te responderé.
+                      {t('contact.success')}
                     </div>
                   )}
                   {submitStatus === 'error' && (
                     <div className="p-4 rounded-lg bg-red-100 border border-red-300 text-red-800 font-medium">
-                      Hubo un error al enviar el mensaje. Por favor intenta de nuevo.
+                      {t('contact.error')}
                     </div>
                   )}
 
@@ -199,7 +200,7 @@ export default function ContactPage() {
                     className="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     <Send size={20} />
-                    {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                    {isSubmitting ? t('contact.sending') : t('contact.send')}
                   </button>
                 </form>
               </div>

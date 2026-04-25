@@ -3,6 +3,7 @@
 import { Mail, MapPin, Globe, Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/language-context';
 
 interface ProfileData {
   name: string;
@@ -16,6 +17,7 @@ interface ProfileData {
 }
 
 export function ProfileHeader() {
+  const { t } = useLanguage();
   const [profile, setProfile] = useState<ProfileData>({
     name: 'Tu Nombre',
     bio: 'Estudiante de Ingeniería en Sistemas',
@@ -68,7 +70,7 @@ export function ProfileHeader() {
               {profile.name}
             </h1>
             <p className="text-lg text-primary font-semibold mb-4">
-              Estudiante de Ingeniería en Sistemas
+              {t('home.subtitle')}
             </p>
             <p className="text-foreground mb-6 max-w-2xl leading-relaxed">
               {profile.bio}
