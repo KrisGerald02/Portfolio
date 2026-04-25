@@ -3,6 +3,7 @@
 import { Navbar } from '@/components/navbar';
 import { ProjectCard } from '@/components/project-card';
 import { useLanguage } from '@/lib/language-context';
+import { translations } from '@/lib/translations';
 import { useEffect, useState } from 'react';
 
 interface Project {
@@ -16,7 +17,7 @@ interface Project {
 }
 
 export default function ProjectsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -31,9 +32,9 @@ export default function ProjectsPage() {
       ['React', 'qrcode.react', 'Tailwind CSS'],
     ];
 
-    // Get projects from translations
-    const projectsList = t('projects.list') as any[];
-    const projects = projectsList.map((project, index) => ({
+    // Get projects from translations using the current language
+    const projectsList = (translations[language] as any).projects.list;
+    const projects = projectsList.map((project: any, index: number) => ({
       id: String(index + 1),
       title: project.title,
       description: project.description,
@@ -43,7 +44,7 @@ export default function ProjectsPage() {
     }));
 
     setProjects(projects);
-  }, [t]);
+  }, [language]);
 
   return (
     <>
