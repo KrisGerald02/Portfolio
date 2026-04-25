@@ -3,11 +3,11 @@
 import { LanguageProvider } from '@/lib/language-context';
 import type { ReactNode } from 'react';
 
-interface ProvidersProps {
+interface ClientLayoutProps {
   children: ReactNode;
 }
 
-export function Providers({ children }: ProvidersProps) {
+export function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <LanguageProvider>
       {children}
