@@ -20,72 +20,30 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    // Mock data for demonstration
-    setProjects([
-      {
-        id: '1',
-        title: 'Sistema de Gestión de Tareas',
-        description: 'Aplicación web para gestionar tareas personales con interfaz moderna y base de datos integrada.',
-        technologies: ['React', 'Next.js', 'Supabase', 'Tailwind CSS'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-      {
-        id: '2',
-        title: 'E-commerce Platform',
-        description: 'Plataforma de comercio electrónico con carrito de compras, pagos y gestión de inventario.',
-        technologies: ['Next.js', 'PostgreSQL', 'Stripe', 'TypeScript'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-      {
-        id: '3',
-        title: 'Blog Personal',
-        description: 'Blog dinámico con funcionalidad de comentarios, categorías y búsqueda avanzada.',
-        technologies: ['Next.js', 'Markdown', 'Supabase', 'Tailwind CSS'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-      {
-        id: '4',
-        title: 'API REST de Usuarios',
-        description: 'API RESTful con autenticación JWT, validación de datos y documentación completa.',
-        technologies: ['Node.js', 'Express', 'PostgreSQL', 'JWT'],
-        githubUrl: 'https://github.com',
-      },
-      {
-        id: '5',
-        title: 'Dashboard Analítico',
-        description: 'Dashboard interactivo con gráficos en tiempo real y análisis de datos.',
-        technologies: ['React', 'Recharts', 'TypeScript', 'CSS Modules'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-      {
-        id: '6',
-        title: 'Chat en Tiempo Real',
-        description: 'Aplicación de chat con WebSockets, notificaciones en tiempo real y persistencia de datos.',
-        technologies: ['Next.js', 'Socket.io', 'MongoDB', 'React'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-      {
-        id: '7',
-        title: 'Sistema de Autenticación',
-        description: 'Sistema de autenticación seguro con OAuth2, 2FA y gestión de sesiones.',
-        technologies: ['Next.js', 'NextAuth.js', 'PostgreSQL', 'Bcrypt'],
-        githubUrl: 'https://github.com',
-      },
-      {
-        id: '8',
-        title: 'Generador de QR',
-        description: 'Aplicación web para generar códigos QR personalizados con opciones de descarga.',
-        technologies: ['React', 'qrcode.react', 'Tailwind CSS'],
-        githubUrl: 'https://github.com',
-        demoUrl: 'https://example.com',
-      },
-    ]);
-  }, []);
+    const techStacks = [
+      ['React', 'Next.js', 'Supabase', 'Tailwind CSS'],
+      ['Next.js', 'PostgreSQL', 'Stripe', 'TypeScript'],
+      ['Next.js', 'Markdown', 'Supabase', 'Tailwind CSS'],
+      ['Node.js', 'Express', 'PostgreSQL', 'JWT'],
+      ['React', 'Recharts', 'TypeScript', 'CSS Modules'],
+      ['Next.js', 'Socket.io', 'MongoDB', 'React'],
+      ['Next.js', 'NextAuth.js', 'PostgreSQL', 'Bcrypt'],
+      ['React', 'qrcode.react', 'Tailwind CSS'],
+    ];
+
+    // Get projects from translations
+    const projectsList = t('projects.list') as any[];
+    const projects = projectsList.map((project, index) => ({
+      id: String(index + 1),
+      title: project.title,
+      description: project.description,
+      technologies: techStacks[index] || [],
+      githubUrl: 'https://github.com',
+      demoUrl: index !== 3 && index !== 6 ? 'https://example.com' : undefined,
+    }));
+
+    setProjects(projects);
+  }, [t]);
 
   return (
     <>

@@ -9,51 +9,57 @@ interface Skill {
   id: string;
   name: string;
   category: string;
-  proficiency: 'Principiante' | 'Intermedio' | 'Avanzado' | 'Experto';
+  proficiency: string;
 }
 
 export default function SkillsPage() {
   const { t } = useLanguage();
   const [skills, setSkills] = useState<Skill[]>([]);
 
+  const skillsData = [
+    // Languages
+    { id: '1', name: 'JavaScript', category: 'languages', proficiency: 'advanced' },
+    { id: '2', name: 'TypeScript', category: 'languages', proficiency: 'advanced' },
+    { id: '3', name: 'Python', category: 'languages', proficiency: 'intermediate' },
+    { id: '4', name: 'SQL', category: 'languages', proficiency: 'advanced' },
+    { id: '5', name: 'HTML/CSS', category: 'languages', proficiency: 'expert' },
+    { id: '6', name: 'Java', category: 'languages', proficiency: 'intermediate' },
+
+    // Frontend
+    { id: '7', name: 'React', category: 'frontend', proficiency: 'advanced' },
+    { id: '8', name: 'Next.js', category: 'frontend', proficiency: 'advanced' },
+    { id: '9', name: 'Tailwind CSS', category: 'frontend', proficiency: 'expert' },
+    { id: '10', name: 'Vue.js', category: 'frontend', proficiency: 'intermediate' },
+    { id: '11', name: 'Responsive Design', category: 'frontend', proficiency: 'advanced' },
+
+    // Backend
+    { id: '12', name: 'Node.js', category: 'backend', proficiency: 'advanced' },
+    { id: '13', name: 'Express.js', category: 'backend', proficiency: 'advanced' },
+    { id: '14', name: 'REST APIs', category: 'backend', proficiency: 'advanced' },
+    { id: '15', name: 'GraphQL', category: 'backend', proficiency: 'intermediate' },
+
+    // Databases
+    { id: '16', name: 'PostgreSQL', category: 'databases', proficiency: 'advanced' },
+    { id: '17', name: 'MongoDB', category: 'databases', proficiency: 'intermediate' },
+    { id: '18', name: 'Supabase', category: 'databases', proficiency: 'advanced' },
+
+    // Tools
+    { id: '19', name: 'Git/GitHub', category: 'tools', proficiency: 'advanced' },
+    { id: '20', name: 'Docker', category: 'tools', proficiency: 'intermediate' },
+    { id: '21', name: 'VS Code', category: 'tools', proficiency: 'expert' },
+    { id: '22', name: 'Vercel', category: 'tools', proficiency: 'advanced' },
+  ];
+
   useEffect(() => {
-    // Mock data for demonstration
-    setSkills([
-      // Lenguajes
-      { id: '1', name: 'JavaScript', category: 'Lenguajes', proficiency: 'Avanzado' },
-      { id: '2', name: 'TypeScript', category: 'Lenguajes', proficiency: 'Avanzado' },
-      { id: '3', name: 'Python', category: 'Lenguajes', proficiency: 'Intermedio' },
-      { id: '4', name: 'SQL', category: 'Lenguajes', proficiency: 'Avanzado' },
-      { id: '5', name: 'HTML/CSS', category: 'Lenguajes', proficiency: 'Experto' },
-      { id: '6', name: 'Java', category: 'Lenguajes', proficiency: 'Intermedio' },
+    // Map proficiency values to translated ones
+    const translatedSkills = skillsData.map((skill) => ({
+      ...skill,
+      proficiency: t(`skills.proficiency.${skill.proficiency}` as any),
+    }));
+    setSkills(translatedSkills);
+  }, [t]);
 
-      // Frontend
-      { id: '7', name: 'React', category: 'Frontend', proficiency: 'Avanzado' },
-      { id: '8', name: 'Next.js', category: 'Frontend', proficiency: 'Avanzado' },
-      { id: '9', name: 'Tailwind CSS', category: 'Frontend', proficiency: 'Experto' },
-      { id: '10', name: 'Vue.js', category: 'Frontend', proficiency: 'Intermedio' },
-      { id: '11', name: 'Responsive Design', category: 'Frontend', proficiency: 'Avanzado' },
-
-      // Backend
-      { id: '12', name: 'Node.js', category: 'Backend', proficiency: 'Avanzado' },
-      { id: '13', name: 'Express.js', category: 'Backend', proficiency: 'Avanzado' },
-      { id: '14', name: 'REST APIs', category: 'Backend', proficiency: 'Avanzado' },
-      { id: '15', name: 'GraphQL', category: 'Backend', proficiency: 'Intermedio' },
-
-      // Bases de Datos
-      { id: '16', name: 'PostgreSQL', category: 'Bases de Datos', proficiency: 'Avanzado' },
-      { id: '17', name: 'MongoDB', category: 'Bases de Datos', proficiency: 'Intermedio' },
-      { id: '18', name: 'Supabase', category: 'Bases de Datos', proficiency: 'Avanzado' },
-
-      // Herramientas
-      { id: '19', name: 'Git/GitHub', category: 'Herramientas', proficiency: 'Avanzado' },
-      { id: '20', name: 'Docker', category: 'Herramientas', proficiency: 'Intermedio' },
-      { id: '21', name: 'VS Code', category: 'Herramientas', proficiency: 'Experto' },
-      { id: '22', name: 'Vercel', category: 'Herramientas', proficiency: 'Avanzado' },
-    ]);
-  }, []);
-
-  const categories = ['Lenguajes', 'Frontend', 'Backend', 'Bases de Datos', 'Herramientas'];
+  const categoryKeys = ['languages', 'frontend', 'backend', 'databases', 'tools'] as const;
 
   return (
     <>
@@ -71,12 +77,12 @@ export default function SkillsPage() {
 
         {/* Skills by Category */}
         <div className="max-w-6xl mx-auto px-4 py-12">
-          {categories.map((category) => (
-            <div key={category} className="mb-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">{category}</h2>
+          {categoryKeys.map((categoryKey) => (
+            <div key={categoryKey} className="mb-12">
+              <h2 className="text-2xl font-bold text-foreground mb-6">{t(`skills.categories.${categoryKey}` as any)}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {skills
-                  .filter((skill) => skill.category === category)
+                  .filter((skill) => skill.category === categoryKey)
                   .map((skill) => (
                     <SkillBadge key={skill.id} {...skill} />
                   ))}

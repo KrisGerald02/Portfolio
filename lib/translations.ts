@@ -39,18 +39,61 @@ export const translations = {
     },
     projects: {
       title: 'Mis Proyectos',
-      subtitle: 'Trabajos destacados y proyectos académicos',
+      subtitle: 'Una colección de proyectos académicos y personales que demuestran mis habilidades en desarrollo web, bases de datos y arquitectura de software.',
       technologies: 'Tecnologías',
       viewProject: 'Ver Proyecto',
       noProjects: 'No hay proyectos disponibles aún',
+      list: [
+        {
+          title: 'Sistema de Gestión de Tareas',
+          description: 'Aplicación web para gestionar tareas personales con interfaz moderna y base de datos integrada.',
+        },
+        {
+          title: 'Plataforma de E-commerce',
+          description: 'Plataforma de comercio electrónico con carrito de compras, pagos y gestión de inventario.',
+        },
+        {
+          title: 'Blog Personal',
+          description: 'Blog dinámico con funcionalidad de comentarios, categorías y búsqueda avanzada.',
+        },
+        {
+          title: 'API REST de Usuarios',
+          description: 'API RESTful con autenticación JWT, validación de datos y documentación completa.',
+        },
+        {
+          title: 'Dashboard Analítico',
+          description: 'Dashboard interactivo con gráficos en tiempo real y análisis de datos.',
+        },
+        {
+          title: 'Chat en Tiempo Real',
+          description: 'Aplicación de chat con WebSockets, notificaciones en tiempo real y persistencia de datos.',
+        },
+        {
+          title: 'Sistema de Autenticación',
+          description: 'Sistema de autenticación seguro con OAuth2, 2FA y gestión de sesiones.',
+        },
+        {
+          title: 'Generador de QR',
+          description: 'Aplicación web para generar códigos QR personalizados con opciones de descarga.',
+        },
+      ],
     },
     skills: {
       title: 'Mis Habilidades',
-      subtitle: 'Tecnologías y conocimientos',
-      frontend: 'Frontend',
-      backend: 'Backend',
-      databases: 'Bases de Datos',
-      tools: 'Herramientas',
+      subtitle: 'Experiencia y competencia en diferentes tecnologías, lenguajes de programación y herramientas de desarrollo.',
+      categories: {
+        languages: 'Lenguajes',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        databases: 'Bases de Datos',
+        tools: 'Herramientas',
+      },
+      proficiency: {
+        beginner: 'Principiante',
+        intermediate: 'Intermedio',
+        advanced: 'Avanzado',
+        expert: 'Experto',
+      },
       noSkills: 'No hay habilidades disponibles aún',
     },
     contact: {
@@ -111,18 +154,61 @@ export const translations = {
     },
     projects: {
       title: 'My Projects',
-      subtitle: 'Highlighted works and academic projects',
+      subtitle: 'A collection of academic and personal projects that demonstrate my skills in web development, databases, and software architecture.',
       technologies: 'Technologies',
       viewProject: 'View Project',
       noProjects: 'No projects available yet',
+      list: [
+        {
+          title: 'Task Management System',
+          description: 'Web application to manage personal tasks with modern interface and integrated database.',
+        },
+        {
+          title: 'E-commerce Platform',
+          description: 'E-commerce platform with shopping cart, payments, and inventory management.',
+        },
+        {
+          title: 'Personal Blog',
+          description: 'Dynamic blog with comments functionality, categories, and advanced search.',
+        },
+        {
+          title: 'User REST API',
+          description: 'RESTful API with JWT authentication, data validation, and complete documentation.',
+        },
+        {
+          title: 'Analytics Dashboard',
+          description: 'Interactive dashboard with real-time charts and data analysis.',
+        },
+        {
+          title: 'Real-Time Chat',
+          description: 'Chat application with WebSockets, real-time notifications, and data persistence.',
+        },
+        {
+          title: 'Authentication System',
+          description: 'Secure authentication system with OAuth2, 2FA, and session management.',
+        },
+        {
+          title: 'QR Code Generator',
+          description: 'Web application to generate customized QR codes with download options.',
+        },
+      ],
     },
     skills: {
       title: 'My Skills',
-      subtitle: 'Technologies and knowledge',
-      frontend: 'Frontend',
-      backend: 'Backend',
-      databases: 'Databases',
-      tools: 'Tools',
+      subtitle: 'Experience and competence in different technologies, programming languages, and development tools.',
+      categories: {
+        languages: 'Languages',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        databases: 'Databases',
+        tools: 'Tools',
+      },
+      proficiency: {
+        beginner: 'Beginner',
+        intermediate: 'Intermediate',
+        advanced: 'Advanced',
+        expert: 'Expert',
+      },
       noSkills: 'No skills available yet',
     },
     contact: {
