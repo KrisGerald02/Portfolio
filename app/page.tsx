@@ -2,7 +2,7 @@
 
 import { Navbar } from '@/components/navbar';
 import { PostCard } from '@/components/post-card';
-import { Mail, MapPin, Globe } from 'lucide-react';
+import { ProfileHeader } from '@/components/profile-header';
 import { useEffect, useState } from 'react';
 
 interface Post {
@@ -48,49 +48,7 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen bg-gradient-to-b from-background via-white to-background">
         {/* Profile Header */}
-        <div className="bg-gradient-to-r from-accent to-secondary py-12">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              {/* Avatar */}
-              <div className="w-32 h-32 rounded-full bg-white shadow-lg flex items-center justify-center border-4 border-primary">
-                <span className="text-5xl font-bold text-primary">MI</span>
-              </div>
-
-              {/* User Info */}
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="text-4xl font-bold text-foreground mb-2">
-                  Mi Nombre
-                </h1>
-                <p className="text-lg text-primary font-semibold mb-4">
-                  Estudiante de Ingeniería en Sistemas
-                </p>
-                <p className="text-foreground mb-6 max-w-2xl leading-relaxed">
-                  Apasionado por la tecnología y el desarrollo de software. Actualmente
-                  estudiando Ingeniería en Sistemas, explorando diferentes áreas como
-                  desarrollo web, bases de datos y arquitectura de sistemas.
-                </p>
-
-                {/* Contact Info */}
-                <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                  <div className="flex items-center gap-2 text-foreground">
-                    <Mail size={20} className="text-primary" />
-                    <span>tu.email@example.com</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-foreground">
-                    <MapPin size={20} className="text-primary" />
-                    <span>Tu Ciudad, País</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-foreground">
-                    <Globe size={20} className="text-primary" />
-                    <a href="#" className="text-primary hover:text-accent transition-colors">
-                      mi-sitio.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProfileHeader />
 
         {/* Feed Section */}
         <div className="max-w-6xl mx-auto px-4 py-12">
