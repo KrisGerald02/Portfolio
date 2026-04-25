@@ -2,6 +2,7 @@
 
 import { Navbar } from '@/components/navbar';
 import { SkillBadge } from '@/components/skill-badge';
+import { useLanguage } from '@/lib/language-context';
 import { useEffect, useState } from 'react';
 
 interface Skill {
@@ -12,6 +13,7 @@ interface Skill {
 }
 
 export default function SkillsPage() {
+  const { t } = useLanguage();
   const [skills, setSkills] = useState<Skill[]>([]);
 
   useEffect(() => {
@@ -60,10 +62,9 @@ export default function SkillsPage() {
         {/* Header */}
         <div className="bg-gradient-to-r from-accent to-secondary py-12">
           <div className="max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Mis Habilidades</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{t('skills.title')}</h1>
             <p className="text-lg text-primary max-w-2xl">
-              Experiencia y competencia en diferentes tecnologías, lenguajes de
-              programación y herramientas de desarrollo.
+              {t('skills.subtitle')}
             </p>
           </div>
         </div>
