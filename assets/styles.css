@@ -148,9 +148,6 @@
   .proj-card{ background:var(--cream); border:1px solid var(--line); border-radius:18px; padding:22px; transition:.3s; display:flex; flex-direction:column; gap:14px; }
   .proj-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--pink-deep); }
   .proj-tag{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--lavender-deep); background:#F1ECFB; padding:4px 10px; border-radius:999px; display:inline-block; width:fit-content; }
-  .proj-gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-  .proj-gallery .proj-image:first-child{ grid-column:1 / -1; height:160px; }
-  .proj-image{ width:100%; height:78px; object-fit:cover; border-radius:12px; border:1px solid var(--line); display:block; background:var(--pink-bg-2); }
   .proj-card h3{ font-size:1.08rem; }
   .proj-card p{ color:var(--ink-soft); font-size:0.9rem; line-height:1.55; }
   .mini-chart{ display:flex; align-items:flex-end; gap:6px; height:54px; margin-top:4px; }
