@@ -148,7 +148,9 @@
   .proj-card{ background:var(--cream); border:1px solid var(--line); border-radius:18px; padding:22px; transition:.3s; display:flex; flex-direction:column; gap:14px; }
   .proj-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--pink-deep); }
   .proj-tag{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--lavender-deep); background:#F1ECFB; padding:4px 10px; border-radius:999px; display:inline-block; width:fit-content; }
-  .proj-image{ width:100%; height:160px; object-fit:cover; border-radius:12px; border:1px solid var(--line); display:block; }
+  .proj-gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .proj-gallery .proj-image:first-child{ grid-column:1 / -1; height:160px; }
+  .proj-image{ width:100%; height:78px; object-fit:cover; border-radius:12px; border:1px solid var(--line); display:block; background:var(--pink-bg-2); }
   .proj-card h3{ font-size:1.08rem; }
   .proj-card p{ color:var(--ink-soft); font-size:0.9rem; line-height:1.55; }
   .mini-chart{ display:flex; align-items:flex-end; gap:6px; height:54px; margin-top:4px; }
@@ -182,6 +184,10 @@
   .modal-card .proj-tag{ margin-bottom:12px; }
   .modal-card h3{ font-size:1.3rem; margin-bottom:10px; padding-right:30px; }
   .modal-card .modal-desc{ color:var(--ink-soft); line-height:1.6; margin-bottom:18px; font-size:0.94rem; }
+  .modal-gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:18px; }
+  .modal-gallery img{ width:100%; height:96px; object-fit:cover; border-radius:12px; border:1px solid var(--line); background:var(--pink-bg-2); cursor:pointer; transition:.2s; }
+  .modal-gallery img:first-child{ grid-column:1 / -1; height:220px; }
+  .modal-gallery img:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
   .dash-preview{
     background:var(--ink); border-radius:14px; padding:18px; margin-bottom:18px;
   }
@@ -250,4 +256,5 @@
     .nav-toggle{ display:block; }
     .edu-item{ grid-template-columns:1fr; gap:4px; }
     .dash-kpis{ grid-template-columns:1fr; }
+    .modal-gallery img:first-child{ height:180px; }
   }

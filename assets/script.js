@@ -139,6 +139,11 @@ Ready for the next challenge 🐇`
     {
       tag: {es:"Business Intelligence", en:"Business Intelligence"},
       title: {es:"Reportes BI para INETER", en:"BI Reports for INETER"},
+      images: [
+        {src:"assets/img/dashboard-ineter-1.png", alt:"Dashboard INETER - vista 1"},
+        {src:"assets/img/dashboard-ineter-2.png", alt:"Dashboard INETER - vista 2"},
+        {src:"assets/img/dashboard-ineter-3.png", alt:"Dashboard INETER - vista 3"}
+      ],
       desc: {
         es:"Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.",
         en:"Relational data modeling and reports in Power BI Report Server built from SQL queries on PostgreSQL, with KPIs calculated in DAX for internal analysis."
@@ -156,6 +161,11 @@ Ready for the next challenge 🐇`
     {
       tag: {es:"ETL & Dashboards", en:"ETL & Dashboards"},
       title: {es:"Panel multi-CRM en Algoritmia", en:"Multi-CRM panel at Algoritmia"},
+      images: [
+        {src:"assets/img/dashboard-algoritmia-1.png", alt:"Panel multi-CRM - vista 1"},
+        {src:"assets/img/dashboard-algoritmia-2.png", alt:"Panel multi-CRM - vista 2"},
+        {src:"assets/img/dashboard-algoritmia-3.png", alt:"Panel multi-CRM - vista 3"}
+      ],
       desc: {
         es:"Integración de datos de seis plataformas distintas en BigQuery, con dashboards en Power BI y Looker Studio para seguimiento de métricas de clientes.",
         en:"Integration of data from six different platforms into BigQuery, with dashboards in Power BI and Looker Studio for client metric tracking."
@@ -173,6 +183,11 @@ Ready for the next challenge 🐇`
     {
       tag: {es:"Investigación", en:"Research"},
       title: {es:"Ecosistema Apple & preferencia social", en:"Apple ecosystem & social preference"},
+      images: [
+        {src:"assets/img/dashboard-investigacion-1.png", alt:"Investigacion Apple - vista 1"},
+        {src:"assets/img/dashboard-investigacion-2.png", alt:"Investigacion Apple - vista 2"},
+        {src:"assets/img/dashboard-investigacion-3.png", alt:"Investigacion Apple - vista 3"}
+      ],
       desc: {
         es:"Investigación sobre los factores psicosociales que influyen en la preferencia por el ecosistema Apple, ganadora del 1er lugar en la Jornada de Investigadores Junior UAM 2024.",
         en:"Research on the psychosocial factors influencing preference for the Apple ecosystem, awarded 1st place at the UAM 2024 Junior Researchers Conference."
@@ -197,6 +212,20 @@ Ready for the next challenge 🐇`
     document.getElementById('modalDesc').textContent = p.desc[currentLang];
     document.getElementById('modalDashLabel').textContent = currentLang === 'es' ? '// vista previa ilustrativa del dashboard' : '// illustrative dashboard preview';
     document.getElementById('modalStackH').textContent = currentLang === 'es' ? 'Aspectos técnicos' : 'Technical highlights';
+    const gallery = document.getElementById('modalGallery');
+    gallery.innerHTML = p.images.map(img => `<img src="${img.src}" alt="${img.alt}" onerror="this.remove()">`).join('');
+    gallery.querySelectorAll('img').forEach(img => {
+      img.addEventListener('click', () => {
+        const first = gallery.querySelector('img');
+        if(!first || first === img) return;
+        const firstSrc = first.src;
+        const firstAlt = first.alt;
+        first.src = img.src;
+        first.alt = img.alt;
+        img.src = firstSrc;
+        img.alt = firstAlt;
+      });
+    });
     const kpiWrap = document.getElementById('modalKpis');
     kpiWrap.innerHTML = p.kpis.map(k => `<div class="dash-kpi"><div class="num">${k.n}</div><div class="lbl">${k.l[currentLang]}</div></div>`).join('');
     const ul = document.getElementById('modalBullets');
