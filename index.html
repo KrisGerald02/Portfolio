@@ -52,6 +52,9 @@
   </div>
 
   <div class="bunny-stage">
+    <figure class="profile-photo">
+      <img src="assets/img/Me/WhatsApp Image 2026-06-27 at 5.48.21 PM.jpeg" alt="Foto de Geraldine">
+    </figure>
     <!-- Conejita kawaii con laptop, inspirada en la ilustración de referencia -->
     <svg viewBox="0 0 400 430" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="205" cy="400" rx="150" ry="16" fill="#E087AE" opacity="0.16"/>
@@ -202,7 +205,7 @@
   <div class="sec-head">
     <span class="eyebrow" data-i18n="proj_eyebrow">proyectos</span>
     <h2 data-i18n="proj_title">Trabajo destacado</h2>
-    <p data-i18n="proj_desc">Da clic en "Ver dashboard" para una vista previa de cada proyecto.</p>
+    <p data-i18n="proj_desc">Da clic en "Ver proyecto" para una vista previa de cada trabajo.</p>
   </div>
   <div class="proj-grid">
     <div class="proj-card">
@@ -210,36 +213,36 @@
       <h3 data-i18n="proj1_h">Reportes BI para INETER</h3>
 
       <div class="client-icon" aria-label="Cliente INETER">
-        <span class="client-mark">IN</span>
+        <img class="client-logo" src="assets/img/INETER/INETER ICON.png" alt="Logo INETER">
         <span class="client-name">INETER</span>
       </div>
       <p data-i18n="proj1_p">Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.</p>
       <div class="proj-stack"><span>PostgreSQL</span><span>Power BI</span><span>DAX</span></div>
-      <button class="proj-btn" onclick="openProject(0)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+      <button class="proj-btn" onclick="openProject(0)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
     <div class="proj-card">
-      <span class="proj-tag" data-i18n="proj2_tag">ETL &amp; Dashboards</span>
-      <h3 data-i18n="proj2_h">Panel multi-CRM en Algoritmia</h3>
+      <span class="proj-tag" data-i18n="proj2_tag">Aplicación móvil</span>
+      <h3 data-i18n="proj2_h">VetPlus</h3>
 
-      <div class="client-icon" aria-label="Cliente Algoritmia">
-        <span class="client-mark">AL</span>
-        <span class="client-name">Algoritmia</span>
+      <div class="client-icon" aria-label="Proyecto VetPlus">
+        <img class="client-logo wide" src="assets/img/VetPlus/VETPLUS ICONN.jpg" alt="Logo VetPlus">
+        <span class="client-name">VetPlus</span>
       </div>
-      <p data-i18n="proj2_p">Integración de datos de seis plataformas distintas (Vonigo, ADP, Google Ads, entre otras) en BigQuery, con dashboards en Power BI y Looker Studio para seguimiento de métricas de clientes.</p>
-      <div class="proj-stack"><span>BigQuery</span><span>Looker Studio</span><span>ETL</span></div>
-      <button class="proj-btn" onclick="openProject(1)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+      <p data-i18n="proj2_p">Aplicación enfocada en la gestión veterinaria, con vistas para organizar pacientes, servicios y seguimiento de información clínica de mascotas.</p>
+      <div class="proj-stack"><span>Diseño UI</span><span>Gestión</span><span>Móvil</span></div>
+      <button class="proj-btn" onclick="openProject(1)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
     <div class="proj-card">
-      <span class="proj-tag" data-i18n="proj3_tag">Investigación</span>
-      <h3 data-i18n="proj3_h">Ecosistema Apple &amp; preferencia social</h3>
+      <span class="proj-tag" data-i18n="proj3_tag">Aplicación móvil</span>
+      <h3 data-i18n="proj3_h">Elite Marry Me</h3>
 
-      <div class="client-icon" aria-label="Proyecto de investigacion Apple">
-        <span class="client-mark">AP</span>
-        <span class="client-name">Apple Research</span>
+      <div class="client-icon" aria-label="Proyecto Elite Marry Me">
+        <img class="client-logo" src="assets/img/Marry Me/ICON MARRY ME.jpg" alt="Logo Elite Marry Me">
+        <span class="client-name">Elite Marry Me</span>
       </div>
-      <p data-i18n="proj3_p">Investigación sobre los factores psicosociales que influyen en la preferencia por el ecosistema Apple, ganadora del 1er lugar en la Jornada de Investigadores Junior UAM 2024.</p>
-      <div class="proj-stack"><span data-i18n="chip_analisis">Análisis de datos</span><span data-i18n="chip_invest">Investigación</span></div>
-      <button class="proj-btn" onclick="openProject(2)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+      <p data-i18n="proj3_p">Propuesta digital para una experiencia premium de bodas, con identidad visual elegante y pantallas pensadas para gestionar servicios y eventos.</p>
+      <div class="proj-stack"><span data-i18n="chip_analisis">Diseño UI</span><span data-i18n="chip_invest">Servicios</span></div>
+      <button class="proj-btn" onclick="openProject(2)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
   </div>
 </section>
@@ -247,7 +250,9 @@
 
 <section id="kgtech">
   <div class="kgtech-head">
-    <div class="kgtech-logo">🐇</div>
+    <div class="kgtech-logo">
+      <img src="assets/img/Me/kg tech.png" alt="Logo KG Tech">
+    </div>
     <h2 data-i18n="kg_title">KG Tech · Soluciones Digitales</h2>
   </div>
   <p class="kgtech-tagline" data-i18n="kg_tagline">Mi emprendimiento de soluciones en datos: dashboards, bases de datos y automatización de reportes para que tu negocio tome mejores decisiones, más rápido.</p>
