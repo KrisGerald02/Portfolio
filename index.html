@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kristel Villalta · Ingeniera en Sistemas de Información</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true">
+  <span style="top:8%; left:6%;">🐰</span>
+  <span style="top:22%; left:88%; animation-delay:2s;">🐰</span>
+  <span style="top:60%; left:4%; animation-delay:4s;">🐰</span>
+  <span style="top:75%; left:80%; animation-delay:1s;">🐰</span>
+  <span style="top:40%; left:50%; animation-delay:3s; opacity:0.08;">🐰</span>
+</div>
+
+<header>
+  <div class="brand display">
+    <span class="paw">🐇</span>Geraldine<span style="color:var(--pink-deeper)">.dev</span>
+  </div>
+  <nav id="navMenu">
+    <a href="#sobre" data-i18n="nav_sobre">Sobre mí</a>
+    <a href="#skills" data-i18n="nav_skills">Habilidades</a>
+    <a href="#experiencia" data-i18n="nav_experiencia">Experiencia</a>
+    <a href="#proyectos" data-i18n="nav_proyectos">Proyectos</a>
+    <a href="#kgtech" data-i18n="nav_kgtech">KG Tech</a>
+    <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
+  </nav>
+  <div class="header-actions">
+    <button class="lang-btn" id="langBtn" type="button">🌐 <span id="langLabel">EN</span></button>
+    <a class="cv-btn" href="mailto:krisvilalta02@gmail.com" data-i18n="cv_btn">Contáctame</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<section id="hero">
+  <div>
+    <h1 data-i18n="hero_title">Hola, soy Geraldine<span class="accent">🐰</span><br>convierto datos en <span class="accent">decisiones</span>.</h1>
+    <p class="role" data-i18n="hero_role">Estudiante de Ingeniería en Sistemas de Información, enfocada en administración de bases de datos y analisis de datos con Power BI, Looker Studio.</p>
+    <div class="typewrap">
+      <div class="dot-row"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <span id="typed"></span><span class="cursor">&nbsp;</span>
+    </div>
+    <div class="cta-row">
+      <a href="#proyectos" class="btn btn-primary" data-i18n="cta_primary">Ver proyectos →</a>
+      <a href="#contacto" class="btn btn-ghost" data-i18n="cta_ghost">Hablemos</a>
+    </div>
+  </div>
+
+  <div class="bunny-stage">
+    <!-- Conejita kawaii con laptop, inspirada en la ilustración de referencia -->
+    <svg viewBox="0 0 400 430" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="205" cy="400" rx="150" ry="16" fill="#E087AE" opacity="0.16"/>
+
+      <text x="30" y="55" class="float-bit mono" font-family="JetBrains Mono" font-size="18" fill="#C9BCEC">01</text>
+      <text x="335" y="80" class="float-bit mono" font-family="JetBrains Mono" font-size="16" fill="#E087AE" style="animation-delay:1s">SQL</text>
+      <text x="15" y="230" class="float-bit mono" font-family="JetBrains Mono" font-size="14" fill="#A7E3B8" style="animation-delay:2s">10</text>
+
+      <!-- back foot peeking -->
+      <ellipse cx="300" cy="368" rx="26" ry="16" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4"/>
+
+      <!-- body -->
+      <path d="M120 300 Q90 340 120 380 Q160 410 220 405 Q280 400 300 360 Q310 320 280 290 Q250 265 190 268 Q140 270 120 300 Z" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4.5"/>
+
+      <!-- ears -->
+      <g class="ear left">
+        <path d="M158 150 Q140 70 175 20 Q198 -5 205 30 Q210 90 188 155 Q175 168 158 150 Z" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4.5"/>
+        <path d="M168 135 Q158 78 182 40 Q196 22 198 48 Q198 92 184 138 Q176 145 168 135 Z" fill="#F6C6D8"/>
+      </g>
+      <g class="ear right">
+        <path d="M225 150 Q222 68 250 15 Q270 -8 280 25 Q292 85 252 155 Q238 168 225 150 Z" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4.5"/>
+        <path d="M232 135 Q230 80 252 42 Q266 22 270 48 Q276 92 244 140 Q236 146 232 135 Z" fill="#F6C6D8"/>
+      </g>
+
+      <!-- head -->
+      <circle cx="205" cy="205" r="92" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4.5"/>
+
+      <!-- cheeks -->
+      <circle cx="152" cy="228" r="15" fill="#F6BFD6" opacity="0.85"/>
+      <circle cx="258" cy="228" r="15" fill="#F6BFD6" opacity="0.85"/>
+
+      <!-- happy closed eyes ^‿^ -->
+      <path d="M168 198 Q178 184 190 198" stroke="#3D2B39" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <path d="M222 198 Q234 184 246 198" stroke="#3D2B39" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+
+      <!-- nose + mouth -->
+      <ellipse cx="205" cy="220" rx="4.5" ry="3.5" fill="#3D2B39"/>
+      <path d="M205 224 Q205 234 195 238 M205 234 Q205 234 215 238" stroke="#3D2B39" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+      <!-- arms resting on laptop -->
+      <ellipse cx="165" cy="300" rx="16" ry="22" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4"/>
+      <ellipse cx="255" cy="300" rx="16" ry="24" fill="#FFFFFF" stroke="#3D2B39" stroke-width="4"/>
+
+      <!-- laptop -->
+      <g class="paw-tap">
+        <rect x="118" y="318" width="170" height="10" rx="4" fill="#F6C6D8" stroke="#3D2B39" stroke-width="3.5"/>
+        <path d="M130 318 L150 270 Q152 262 162 262 L248 262 Q258 262 258 272 L258 318 Z" fill="#FBEFD8" stroke="#3D2B39" stroke-width="4"/>
+        <rect x="164" y="274" width="80" height="38" rx="4" fill="#F3B4CC" class="type-blink"/>
+        <circle cx="204" cy="300" r="6" fill="#E087AE"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="query-card">
+    <div class="qline"><span class="kw">SELECT</span> nombre, universidad, enfoque, pasion</div>
+    <div class="qline"><span class="kw">FROM</span> perfil</div>
+    <div class="qline"><span class="kw">WHERE</span> curiosidad = <span class="str">'alta'</span>;</div>
+    <table>
+      <tr><th data-i18n="tbl_campo">campo</th><th data-i18n="tbl_valor">valor</th></tr>
+      <tr><td data-i18n="tbl_nombre_k">nombre</td><td>Geraldine</td></tr>
+      <tr><td data-i18n="tbl_uni_k">universidad</td><td>Universidad Americana (UAM)</td></tr>
+      <tr><td data-i18n="tbl_enfoque_k">enfoque</td><td data-i18n="tbl_enfoque_v">Bases de datos &amp; Analisis de Datos</td></tr>
+      <tr><td data-i18n="tbl_ubi_k">ubicación</td><td>Managua, Nicaragua</td></tr>
+    </table>
+    <div class="rowcount" data-i18n="tbl_footer">1 fila afectada · 0.02s</div>
+  </div>
+
+  <div class="about-text">
+    <span class="eyebrow" data-i18n="sobre_eyebrow">sobre mí</span>
+    <h2 style="margin-bottom:16px;" data-i18n="sobre_title">Del dato crudo al dashboard que sí se entiende</h2>
+    <p data-i18n="sobre_p1">Soy estudiante de 3er año de <strong>Ingeniería en Sistemas de Información</strong> en la UAM. Me especializo en <strong>administración de bases de datos</strong> (PostgreSQL, SQL Server, Oracle, BigQuery) y en transformar esos datos en <strong>reportes y dashboards</strong> con Power BI y Looker Studio que faciliten la toma de decisiones.</p>
+    <p data-i18n="sobre_p2">He trabajado limpiando y modelando datos, escribiendo consultas SQL, diseñando KPIs con DAX y automatizando procesos ETL desde plataformas como Google Ads, ADP y distintos CRMs. Me apasiona encontrar el hallazgo que estaba escondido entre miles de filas.</p>
+    <p data-i18n="sobre_p3">Fuera del análisis de datos, también incursiono en desarrollo móvil (Swift, Kotlin) y disfruto los retos de innovación: dos primeros lugares en jornadas de investigación e innovación de mi universidad lo confirman 🐇.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-head">
+    <span class="eyebrow" data-i18n="skills_eyebrow">stack técnico</span>
+    <h2 data-i18n="skills_title">Herramientas con las que trabajo</h2>
+    <p data-i18n="skills_desc">De la base de datos al dashboard final, este es el camino que sigo con los datos.</p>
+  </div>
+  <div class="skill-groups">
+    <div class="skill-card">
+      <h3 data-i18n="skill_h1">🗄️ Bases de Datos</h3>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span><span class="chip">SQL Server</span>
+        <span class="chip">Oracle</span><span class="chip">BigQuery</span><span class="chip">Docker</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3 data-i18n="skill_h2">📊 BI &amp; Visualización</h3>
+      <div class="chip-row">
+        <span class="chip">Power BI</span><span class="chip">Looker Studio</span>
+        <span class="chip">Excel / Spreadsheets</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3 data-i18n="skill_h3">💻 Programación</h3>
+      <div class="chip-row">
+        <span class="chip">Swift (Xcode)</span><span class="chip">Kotlin (Android Studio)</span>
+        <span class="chip">Git</span><span class="chip">Enterprise Architect</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3 data-i18n="skill_h4">🧠 Otras habilidades</h3>
+      <div class="chip-row">
+        <span class="chip" data-i18n="chip_equipo">Trabajo en equipo</span><span class="chip" data-i18n="chip_com">Comunicación</span>
+        <span class="chip" data-i18n="chip_idiomas">Español / Inglés</span><span class="chip">Office 365</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="sec-head">
+    <span class="eyebrow" data-i18n="exp_eyebrow">experiencia</span>
+    <h2 data-i18n="exp_title">Experiencia Laboral 🐇</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🐰</div>
+      <h3 data-i18n="exp1_h">Pasante de Analista de Datos Junior</h3>
+      <div class="meta" data-i18n="exp1_meta">Algoritmia · Mayo – Noviembre 2026</div>
+      <ul>
+        <li data-i18n="exp1_l1">Administración y creación de estructuras de datos en Google BigQuery para un entorno de análisis escalable.</li>
+        <li data-i18n="exp1_l2">Procesos ETL de datos desde múltiples plataformas CRM: Vonigo, ADP, Google Ads, Local Services, Bloom y Wonolo.</li>
+        <li data-i18n="exp1_l3">Desarrollo de dashboards avanzados en Power BI y Looker Studio para convertir datos crudos en visualizaciones estratégicas.</li>
+        <li data-i18n="exp1_l4">Monitoreo de métricas semanales y mensuales de rendimiento de clientes.</li>
+      </ul>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🐰</div>
+      <h3 data-i18n="exp2_h">Pasante de Desarrollador BI</h3>
+      <div class="meta" data-i18n="exp2_meta">INETER · Enero – Marzo 2026</div>
+      <ul>
+        <li data-i18n="exp2_l1">Consultas SQL en PostgreSQL para extracción y limpieza de datos.</li>
+        <li data-i18n="exp2_l2">Diseño de reportes en Power BI para análisis interno.</li>
+        <li data-i18n="exp2_l3">Creación de fórmulas DAX para KPIs.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <div class="sec-head">
+    <span class="eyebrow" data-i18n="proj_eyebrow">proyectos</span>
+    <h2 data-i18n="proj_title">Trabajo destacado</h2>
+    <p data-i18n="proj_desc">Da clic en "Ver dashboard" para una vista previa de cada proyecto.</p>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <span class="proj-tag" data-i18n="proj1_tag">Business Intelligence</span>
+      <h3 data-i18n="proj1_h">Reportes BI para INETER</h3>
+
+      <!-- 🖼️ IMAGEN DEL DASHBOARD (proyecto 1) -->
+      <!-- 1. Guarda tu captura en la carpeta assets/img/ -->
+      <!-- 2. Cambia "dashboard-ineter.png" por el nombre real de tu archivo -->
+      <!-- 3. Tamaño sugerido: 600x400px aprox -->
+      <img src="assets/img/dashboard-ineter.png" alt="Vista previa del dashboard INETER" class="proj-image" onerror="this.style.display='none'">
+
+      <div class="mini-chart"><div style="height:40%"></div><div style="height:70%"></div><div style="height:55%"></div><div style="height:90%"></div><div style="height:65%"></div></div>
+      <p data-i18n="proj1_p">Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.</p>
+      <div class="proj-stack"><span>PostgreSQL</span><span>Power BI</span><span>DAX</span></div>
+      <button class="proj-btn" onclick="openProject(0)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag" data-i18n="proj2_tag">ETL &amp; Dashboards</span>
+      <h3 data-i18n="proj2_h">Panel multi-CRM en Algoritmia</h3>
+
+      <!-- 🖼️ IMAGEN DEL DASHBOARD (proyecto 2) -->
+      <!-- 1. Guarda tu captura en la carpeta assets/img/ -->
+      <!-- 2. Cambia "dashboard-algoritmia.png" por el nombre real de tu archivo -->
+      <!-- 3. Tamaño sugerido: 600x400px aprox -->
+      <img src="assets/img/dashboard-algoritmia.png" alt="Vista previa del panel multi-CRM" class="proj-image" onerror="this.style.display='none'">
+
+      <div class="mini-chart"><div style="height:60%"></div><div style="height:35%"></div><div style="height:80%"></div><div style="height:50%"></div><div style="height:70%"></div></div>
+      <p data-i18n="proj2_p">Integración de datos de seis plataformas distintas (Vonigo, ADP, Google Ads, entre otras) en BigQuery, con dashboards en Power BI y Looker Studio para seguimiento de métricas de clientes.</p>
+      <div class="proj-stack"><span>BigQuery</span><span>Looker Studio</span><span>ETL</span></div>
+      <button class="proj-btn" onclick="openProject(1)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag" data-i18n="proj3_tag">Investigación</span>
+      <h3 data-i18n="proj3_h">Ecosistema Apple &amp; preferencia social</h3>
+
+      <!-- 🖼️ IMAGEN DEL DASHBOARD (proyecto 3) -->
+      <!-- 1. Guarda tu captura en la carpeta assets/img/ -->
+      <!-- 2. Cambia "dashboard-investigacion.png" por el nombre real de tu archivo -->
+      <!-- 3. Tamaño sugerido: 600x400px aprox -->
+      <img src="assets/img/dashboard-investigacion.png" alt="Vista previa de la investigación" class="proj-image" onerror="this.style.display='none'">
+
+      <div class="mini-chart"><div style="height:75%"></div><div style="height:45%"></div><div style="height:85%"></div><div style="height:60%"></div><div style="height:40%"></div></div>
+      <p data-i18n="proj3_p">Investigación sobre los factores psicosociales que influyen en la preferencia por el ecosistema Apple, ganadora del 1er lugar en la Jornada de Investigadores Junior UAM 2024.</p>
+      <div class="proj-stack"><span data-i18n="chip_analisis">Análisis de datos</span><span data-i18n="chip_invest">Investigación</span></div>
+      <button class="proj-btn" onclick="openProject(2)">👀 <span data-i18n="proj_btn">Ver dashboard</span></button>
+    </div>
+  </div>
+</section>
+
+
+<section id="kgtech">
+  <div class="kgtech-head">
+    <div class="kgtech-logo">🐇</div>
+    <h2 data-i18n="kg_title">KG Tech · Soluciones Digitales</h2>
+  </div>
+  <p class="kgtech-tagline" data-i18n="kg_tagline">Mi emprendimiento de soluciones en datos: dashboards, bases de datos y automatización de reportes para que tu negocio tome mejores decisiones, más rápido.</p>
+  <div class="kg-services">
+    <div class="kg-service">
+      <span class="icon">📊</span>
+      <h4 data-i18n="kg_s1_h">Dashboards &amp; BI</h4>
+      <p data-i18n="kg_s1_p">Diseño de dashboards interactivos en Power BI y Looker Studio adaptados a tus KPIs.</p>
+    </div>
+    <div class="kg-service">
+      <span class="icon">🗄️</span>
+      <h4 data-i18n="kg_s2_h">Administración de Bases de Datos</h4>
+      <p data-i18n="kg_s2_p">Diseño, modelado y mantenimiento en PostgreSQL, SQL Server, Oracle y BigQuery.</p>
+    </div>
+    <div class="kg-service">
+      <span class="icon">🔄</span>
+      <h4 data-i18n="kg_s3_h">Automatización de Reportes (ETL)</h4>
+      <p data-i18n="kg_s3_p">Conexión y limpieza de datos de múltiples fuentes para reportes siempre actualizados.</p>
+    </div>
+    <div class="kg-service">
+      <span class="icon">💡</span>
+      <h4 data-i18n="kg_s4_h">Consultoría en Datos</h4>
+      <p data-i18n="kg_s4_p">Acompañamiento para pequeños negocios que quieren empezar a usar sus datos a su favor.</p>
+    </div>
+  </div>
+  <div class="kg-cta">
+    <a class="btn btn-primary" href="mailto:krisvilalta02@gmail.com?subject=Consulta%20KG%20Tech" data-i18n="kg_cta1">Solicita una cotización</a>
+    <a class="btn btn-ghost" href="https://wa.me/50575151790" target="_blank" rel="noopener" data-i18n="kg_cta2">Escríbeme por WhatsApp</a>
+  </div>
+  <p class="kg-note" data-i18n="kg_note">*Servicios de ejemplo — cuéntame más sobre tu emprendimiento y los ajusto a la medida.</p>
+</section>
+
+<section id="contacto">
+  
+  <h2 data-i18n="contact_title">¿Listo para convertir tus datos en decisiones?</h2>
+  <p data-i18n="contact_desc">Estoy disponible para proyectos freelance de análisis de datos y BI</p>
+  <div class="contact-row">
+    <a class="contact-pill" href="mailto:krisvilalta02@gmail.com">✉️ krisvilalta02@gmail.com</a>
+    <a class="contact-pill" href="https://wa.me/50575151790" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a class="contact-pill outline" href="tel:+50575151790">📞 +505 7515 1790</a>
+  </div>
+</section>
+
+<footer data-i18n="footer_text">Hecho con amor · Geraldine Tech © 2026</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeProject()">✕</button>
+    <span class="proj-tag" id="modalTag"></span>
+    <h3 id="modalTitle"></h3>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="dash-preview">
+      <div class="dash-label" id="modalDashLabel">// vista previa ilustrativa del dashboard</div>
+      <div class="dash-kpis" id="modalKpis"></div>
+      <div class="dash-chart">
+        <div style="height:45%"></div><div style="height:80%"></div><div style="height:60%"></div>
+        <div style="height:95%"></div><div style="height:55%"></div><div style="height:75%"></div><div style="height:40%"></div>
+      </div>
+    </div>
+    <h4 id="modalStackH">Stack técnico</h4>
+    <ul id="modalBullets"></ul>
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+
+</body>
+</html>
