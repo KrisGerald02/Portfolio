@@ -73,15 +73,15 @@ Ready for the next challenge 🐇`
     exp2_l2:"Design of reports in Power BI Report Server for internal analysis.",
     exp2_l3:"Creation of relational models and DAX formulas for KPIs.",
     proj_eyebrow:"projects", proj_title:"Featured work",
-    proj_desc:"Click \"View dashboard\" for a preview of each project.",
+    proj_desc:"Click \"View project\" for a preview of each work.",
     proj1_tag:"Business Intelligence", proj1_h:"BI Reports for INETER",
     proj1_p:"Relational data modeling and reports in Power BI Report Server built from SQL queries on PostgreSQL, with KPIs calculated in DAX for internal analysis.",
-    proj2_tag:"ETL &amp; Dashboards", proj2_h:"Multi-CRM panel at Algoritmia",
-    proj2_p:"Integration of data from six different platforms (Vonigo, ADP, Google Ads, among others) into BigQuery, with dashboards in Power BI and Looker Studio for client metric tracking.",
-    proj3_tag:"Research", proj3_h:"Apple ecosystem &amp; social preference",
-    proj3_p:"Research on the psychosocial factors influencing preference for the Apple ecosystem, awarded 1st place at the UAM 2024 Junior Researchers Conference.",
-    chip_analisis:"Data analysis", chip_invest:"Research",
-    proj_btn:"View dashboard",
+    proj2_tag:"Mobile app", proj2_h:"VetPlus",
+    proj2_p:"App focused on veterinary management, with screens for organizing patients, services and clinical information for pets.",
+    proj3_tag:"Mobile app", proj3_h:"Elite Marry Me",
+    proj3_p:"Digital proposal for a premium wedding experience, with an elegant visual identity and screens designed to manage services and events.",
+    chip_analisis:"UI design", chip_invest:"Services",
+    proj_btn:"View project",
     logros_eyebrow:"achievements", logros_title:"Recognition",
     badge1_h:"1st place · Junior Researchers Conference", badge1_p:"UAM, 2024 — research on preference for the Apple ecosystem.",
     badge2_h:"1st place UAM campus · Social Innovation", badge2_p:'Representative at the "Nicaragua Innova 2024" National Innovation Rally.',
@@ -142,7 +142,9 @@ Ready for the next challenge 🐇`
       images: [
         {src:"assets/img/INETER/view1.png", alt:"Dashboard INETER - vista 1"},
         {src:"assets/img/INETER/view2.png", alt:"Dashboard INETER - vista 2"},
-        {src:"assets/img/INETER/view3.png", alt:"Dashboard INETER - vista 3"}
+        {src:"assets/img/INETER/view3.png", alt:"Dashboard INETER - vista 3"},
+        {src:"assets/img/INETER/view4.png", alt:"Dashboard INETER - vista 4"},
+        {src:"assets/img/INETER/view5.png", alt:"Dashboard INETER - vista 5"}
       ],
       desc: {
         es:"Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.",
@@ -159,39 +161,47 @@ Ready for the next challenge 🐇`
       }
     },
     {
-      tag: {es:"ETL & Dashboards", en:"ETL & Dashboards"},
-      title: {es:"Panel multi-CRM en Algoritmia", en:"Multi-CRM panel at Algoritmia"},
-      images: [],
+      tag: {es:"Aplicación móvil", en:"Mobile app"},
+      title: {es:"VetPlus", en:"VetPlus"},
+      images: [
+        {src:"assets/img/VetPlus/view1.png", alt:"VetPlus - vista 1"},
+        {src:"assets/img/VetPlus/view2.png", alt:"VetPlus - vista 2"},
+        {src:"assets/img/VetPlus/view3.png", alt:"VetPlus - vista 3"},
+        {src:"assets/img/VetPlus/view4.png", alt:"VetPlus - vista 4"}
+      ],
       desc: {
-        es:"Integración de datos de seis plataformas distintas en BigQuery, con dashboards en Power BI y Looker Studio para seguimiento de métricas de clientes.",
-        en:"Integration of data from six different platforms into BigQuery, with dashboards in Power BI and Looker Studio for client metric tracking."
+        es:"Aplicación enfocada en la gestión veterinaria, con vistas para organizar pacientes, servicios y seguimiento de información clínica de mascotas.",
+        en:"App focused on veterinary management, with screens for organizing patients, services and clinical information for pets."
       },
       kpis: [
-        {n:"6", l:{es:"fuentes CRM", en:"CRM sources"}},
-        {n:"BQ", l:{es:"BigQuery", en:"BigQuery"}},
-        {n:"2", l:{es:"herramientas BI", en:"BI tools"}}
+        {n:"4", l:{es:"vistas", en:"views"}},
+        {n:"UI", l:{es:"diseño", en:"design"}},
+        {n:"Vet", l:{es:"gestión", en:"management"}}
       ],
       bullets: {
-        es:["Estructuras de datos escalables en Google BigQuery","ETL desde Vonigo, ADP, Google Ads, Local Services, Bloom y Wonolo","Dashboards estratégicos en Power BI y Looker Studio","Monitoreo semanal y mensual de métricas de clientes"],
-        en:["Scalable data structures in Google BigQuery","ETL from Vonigo, ADP, Google Ads, Local Services, Bloom and Wonolo","Strategic dashboards in Power BI and Looker Studio","Weekly and monthly client metric monitoring"]
+        es:["Pantallas para organizar información de mascotas y servicios","Identidad visual limpia orientada al sector veterinario","Flujo pensado para consulta rápida de datos","Interfaz adaptable para uso móvil"],
+        en:["Screens to organize pet and service information","Clean visual identity for the veterinary sector","Flow designed for quick data lookup","Mobile-friendly interface"]
       }
     },
     {
-      tag: {es:"Investigación", en:"Research"},
-      title: {es:"Ecosistema Apple & preferencia social", en:"Apple ecosystem & social preference"},
-      images: [],
+      tag: {es:"Aplicación móvil", en:"Mobile app"},
+      title: {es:"Elite Marry Me", en:"Elite Marry Me"},
+      images: [
+        {src:"assets/img/Marry Me/view1.png", alt:"Elite Marry Me - vista 1"},
+        {src:"assets/img/Marry Me/view2.png", alt:"Elite Marry Me - vista 2"}
+      ],
       desc: {
-        es:"Investigación sobre los factores psicosociales que influyen en la preferencia por el ecosistema Apple, ganadora del 1er lugar en la Jornada de Investigadores Junior UAM 2024.",
-        en:"Research on the psychosocial factors influencing preference for the Apple ecosystem, awarded 1st place at the UAM 2024 Junior Researchers Conference."
+        es:"Propuesta digital para una experiencia premium de bodas, con identidad visual elegante y pantallas pensadas para gestionar servicios y eventos.",
+        en:"Digital proposal for a premium wedding experience, with an elegant visual identity and screens designed to manage services and events."
       },
       kpis: [
-        {n:"#1", l:{es:"lugar UAM", en:"place UAM"}},
-        {n:"2024", l:{es:"jornada", en:"conference"}},
-        {n:"BI", l:{es:"análisis", en:"analysis"}}
+        {n:"2", l:{es:"vistas", en:"views"}},
+        {n:"UX", l:{es:"experiencia", en:"experience"}},
+        {n:"VIP", l:{es:"servicios", en:"services"}}
       ],
       bullets: {
-        es:["Diseño de encuesta y recolección de datos","Análisis estadístico de factores psicosociales","Presentación de hallazgos ante jurado académico","1er lugar en la Jornada de Investigadores Junior UAM"],
-        en:["Survey design and data collection","Statistical analysis of psychosocial factors","Findings presentation to an academic panel","1st place at the UAM Junior Researchers Conference"]
+        es:["Identidad visual sobria para servicios de bodas premium","Pantallas enfocadas en eventos y servicios","Uso de imágenes y jerarquía visual elegante","Experiencia pensada para clientes y planificación"],
+        en:["Elegant visual identity for premium wedding services","Screens focused on events and services","Use of imagery and refined visual hierarchy","Experience designed for clients and planning"]
       }
     }
   ];
@@ -208,6 +218,7 @@ Ready for the next challenge 🐇`
     const images = p.images || [];
     gallery.hidden = images.length === 0;
     gallery.innerHTML = images.map(img => `<img src="${img.src}" alt="${img.alt}" onerror="this.remove()">`).join('');
+    document.querySelector('.dash-preview').hidden = images.length > 0;
     gallery.querySelectorAll('img').forEach(img => {
       img.addEventListener('click', () => {
         const first = gallery.querySelector('img');
