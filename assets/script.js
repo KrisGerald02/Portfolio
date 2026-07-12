@@ -36,8 +36,6 @@ Ready for the next challenge 🐇`
     }
     typeChar();
   }
-  typeHero('es', true);
-
   // ---------- i18n ----------
   const enDict = {
     nav_sobre:"About", nav_skills:"Skills", nav_terminal:"Terminal", nav_experiencia:"Experience",
@@ -74,13 +72,14 @@ Ready for the next challenge 🐇`
     exp2_l3:"Creation of relational models and DAX formulas for KPIs.",
     proj_eyebrow:"projects", proj_title:"Featured work",
     proj_desc:"Click \"View project\" for a preview of each work.",
-    proj1_tag:"Business Intelligence", proj1_h:"BI Reports for INETER",
-    proj1_p:"Relational data modeling and reports in Power BI Report Server built from SQL queries on PostgreSQL, with KPIs calculated in DAX for internal analysis.",
-    proj2_tag:"Mobile app", proj2_h:"VetPlus",
-    proj2_p:"App focused on veterinary management, with screens for organizing patients, services and clinical information for pets.",
-    proj3_tag:"Mobile app", proj3_h:"Elite Marry Me",
-    proj3_p:"Digital proposal for a premium wedding experience, with an elegant visual identity and screens designed to manage services and events.",
-    chip_analisis:"UI design", chip_invest:"Services",
+    proj1_hi:"River Monitoring System in Nicaragua",
+    proj1_des:"Dashboard dedicated to identifying historical overflow patterns, enabling the auditing of reading records and temporal analysis by station.",
+    proj2_hello:"VetPlus 2026 Historical Analysis",
+    proj2_p:"Dashboard for operational sales monitoring in the veterinary and supermarket sectors. This solution provides traceability throughout the sales cycle, from customer geolocation to detailed analysis of sales force performance and product inventory.",
+    proj3_ho:"Elite Marry Me Profit Analysis",
+    proj3_p:"This dashboard enables the tracking of business proposals and revenue performance.",
+    chip_powerBI:"Power BI", chip_soread:"Spreadsheets", chip_analisi:"Power BI", chip_invet:"Looker Studio", chip_big:"BigQuery", chip_spread:"Spreadsheets",
+    chip_analisis:"UI design", chip_invest:"Services", chip_ui:"UI design", chip_management:"Management", chip_mobile:"Mobile",
     proj_btn:"View project",
     logros_eyebrow:"achievements", logros_title:"Recognition",
     badge1_h:"1st place · Junior Researchers Conference", badge1_p:"UAM, 2024 — research on preference for the Apple ecosystem.",
@@ -99,14 +98,15 @@ Ready for the next challenge 🐇`
     kg_s2_h:"Database Administration", kg_s2_p:"Design, modeling and maintenance in PostgreSQL, SQL Server, Oracle and BigQuery.",
     kg_s3_h:"Report Automation (ETL)", kg_s3_p:"Connecting and cleaning data from multiple sources for always up-to-date reports.",
     kg_s4_h:"Data Consulting", kg_s4_p:"Support for small businesses looking to start using their data to their advantage.",
-    kg_cta1:"Request a quote", kg_cta2:"Message me on WhatsApp",
+    kg_cta1:"Request a quote", kg_cta2:"Request a quote", kg_cta3:"Visit my website",
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
     contact_eyebrow:"contact", contact_title:"Let's build your next dashboard?",
     contact_desc:"I'm available for internships and freelance data analysis / BI projects. Write to me, this bunny replies fast 🐇.",
-    footer_text:"Made with 🐰 and lots of coffee · Kristel Villalta © 2026"
+    footer_text:"Made with 🐰 and lots of coffee ·"
   };
 
-  let currentLang = 'es';
+  let currentLang = 'en';
+  let activeProjectIndex = null;
   const esCache = {};
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -131,14 +131,16 @@ Ready for the next challenge 🐇`
       el.setAttribute('placeholder', lang === 'en' ? (enDict[key] || esPlaceholders[key]) : esPlaceholders[key]);
     });
     typeHero(lang, false);
+    if(activeProjectIndex !== null) openProject(activeProjectIndex);
   }
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
+  setLang('en');
 
   // ---------- project modal ----------
   const projects = [
     {
       tag: {es:"Business Intelligence", en:"Business Intelligence"},
-      title: {es:"Reportes BI para INETER", en:"BI Reports for INETER"},
+      title: {es:"Sistema de Monitoreo de Ríos en Nicaragua", en:"River Monitoring System in Nicaragua"},
       images: [
         {src:"assets/img/INETER/view1.png", alt:"Dashboard INETER - vista 1"},
         {src:"assets/img/INETER/view2.png", alt:"Dashboard INETER - vista 2"},
@@ -147,8 +149,8 @@ Ready for the next challenge 🐇`
         {src:"assets/img/INETER/view5.png", alt:"Dashboard INETER - vista 5"}
       ],
       desc: {
-        es:"Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.",
-        en:"Relational data modeling and reports in Power BI Report Server built from SQL queries on PostgreSQL, with KPIs calculated in DAX for internal analysis."
+        es:"Panel dedicado a la identificación de patrones históricos en desbordamientos, facilitando la auditoría de registros de lectura y el análisis temporal por estación.",
+        en:"Dashboard dedicated to identifying historical overflow patterns, enabling the auditing of reading records and temporal analysis by station."
       },
       kpis: [
         {n:"SQL", l:{es:"consultas", en:"queries"}},
@@ -156,13 +158,13 @@ Ready for the next challenge 🐇`
         {n:"PBI", l:{es:"reportes", en:"reports"}}
       ],
       bullets: {
-        es:["Extracción y limpieza de datos con consultas SQL en PostgreSQL","Modelos relacionales para análisis interno","Reportes publicados en Power BI Report Server","KPIs calculados mediante fórmulas DAX"],
-        en:["Data extraction and cleaning with SQL queries on PostgreSQL","Relational models for internal analysis","Reports published on Power BI Report Server","KPIs calculated using DAX formulas"]
+        es:["Integración de geovisores (claro y satelital) para el despliegue dinámico de estaciones a nivel nacional","Tablero de control","Visualización de tendencias de desbordamiento","Control de niveles de alerta"],
+        en:["Integration of standard and satellite geoviewers for the dynamic display of stations nationwide","Control dashboard","Overflow trend visualization","Alert level monitoring"]
       }
     },
     {
       tag: {es:"Aplicación móvil", en:"Mobile app"},
-      title: {es:"VetPlus", en:"VetPlus"},
+      title: {es:"Análisis Histórico 2026 VetPlus", en:"VetPlus 2026 Historical Analysis"},
       images: [
         {src:"assets/img/VetPlus/view1.png", alt:"VetPlus - vista 1"},
         {src:"assets/img/VetPlus/view2.png", alt:"VetPlus - vista 2"},
@@ -170,8 +172,8 @@ Ready for the next challenge 🐇`
         {src:"assets/img/VetPlus/view4.png", alt:"VetPlus - vista 4"}
       ],
       desc: {
-        es:"Aplicación enfocada en la gestión veterinaria, con vistas para organizar pacientes, servicios y seguimiento de información clínica de mascotas.",
-        en:"App focused on veterinary management, with screens for organizing patients, services and clinical information for pets."
+        es:"Dashboard para el monitoreo operativo de ventas en el sector de veterinarias y supermercados. Esta solución permite la trazabilidad del ciclo de ventas, desde la geolocalización de clientes hasta el análisis detallado del desempeño de la fuerza de ventas y el inventario de productos.",
+        en:"Dashboard for operational sales monitoring in the veterinary and supermarket sectors. This solution provides traceability throughout the sales cycle, from customer geolocation to detailed analysis of sales force performance and product inventory."
       },
       kpis: [
         {n:"4", l:{es:"vistas", en:"views"}},
@@ -179,20 +181,20 @@ Ready for the next challenge 🐇`
         {n:"Vet", l:{es:"gestión", en:"management"}}
       ],
       bullets: {
-        es:["Pantallas para organizar información de mascotas y servicios","Identidad visual limpia orientada al sector veterinario","Flujo pensado para consulta rápida de datos","Interfaz adaptable para uso móvil"],
-        en:["Screens to organize pet and service information","Clean visual identity for the veterinary sector","Flow designed for quick data lookup","Mobile-friendly interface"]
+        es:["KPIs de rendimiento","Geovisualización","Análisis multidimensional de producto"],
+        en:["Performance KPIs","Geovisualization","Multidimensional product analysis"]
       }
     },
     {
       tag: {es:"Aplicación móvil", en:"Mobile app"},
-      title: {es:"Elite Marry Me", en:"Elite Marry Me"},
+      title: {es:"Análisis de Ganancias Elite Marry Me", en:"Elite Marry Me Profit Analysis"},
       images: [
         {src:"assets/img/Marry Me/view1.png", alt:"Elite Marry Me - vista 1"},
         {src:"assets/img/Marry Me/view2.png", alt:"Elite Marry Me - vista 2"}
       ],
       desc: {
-        es:"Propuesta digital para una experiencia premium de bodas, con identidad visual elegante y pantallas pensadas para gestionar servicios y eventos.",
-        en:"Digital proposal for a premium wedding experience, with an elegant visual identity and screens designed to manage services and events."
+        es:"Este dashboard permite el seguimiento de propuestas de negocio y rendimiento de ingresos.",
+        en:"This dashboard enables the tracking of business proposals and revenue performance."
       },
       kpis: [
         {n:"2", l:{es:"vistas", en:"views"}},
@@ -200,43 +202,89 @@ Ready for the next challenge 🐇`
         {n:"VIP", l:{es:"servicios", en:"services"}}
       ],
       bullets: {
-        es:["Identidad visual sobria para servicios de bodas premium","Pantallas enfocadas en eventos y servicios","Uso de imágenes y jerarquía visual elegante","Experiencia pensada para clientes y planificación"],
-        en:["Elegant visual identity for premium wedding services","Screens focused on events and services","Use of imagery and refined visual hierarchy","Experience designed for clients and planning"]
+        es:["Análisis de rendimiento comercial","Análisis de rendimiento comercial","Atribución de canales de venta"],
+        en:["Commercial performance analysis","Commercial performance analysis","Sales channel attribution"]
       }
     }
   ];
 
   const modal = document.getElementById('projectModal');
+  const lightbox = document.getElementById('imageLightbox');
+  let activeImages = [];
+  let activeImageIndex = 0;
+
+  function showCarouselImage(index){
+    if(!activeImages.length) return;
+    activeImageIndex = (index + activeImages.length) % activeImages.length;
+    const image = activeImages[activeImageIndex];
+    const main = document.getElementById('carouselImage');
+    main.src = image.src;
+    main.alt = image.alt;
+    document.getElementById('carouselCounter').textContent = `${activeImageIndex + 1} / ${activeImages.length}`;
+    document.querySelectorAll('.carousel-thumb').forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === activeImageIndex);
+      thumb.setAttribute('aria-current', i === activeImageIndex ? 'true' : 'false');
+    });
+  }
+
+  function openLightbox(){
+    const image = activeImages[activeImageIndex];
+    document.getElementById('lightboxImage').src = image.src;
+    document.getElementById('lightboxImage').alt = image.alt;
+    document.getElementById('lightboxCounter').textContent = `${activeImageIndex + 1} / ${activeImages.length}`;
+    lightbox.classList.add('open');
+  }
+
+  function moveLightbox(step){
+    showCarouselImage(activeImageIndex + step);
+    openLightbox();
+  }
   function openProject(i){
+    activeProjectIndex = i;
     const p = projects[i];
-    document.getElementById('modalTag').textContent = p.tag[currentLang];
     document.getElementById('modalTitle').textContent = p.title[currentLang];
     document.getElementById('modalDesc').textContent = p.desc[currentLang];
     document.getElementById('modalDashLabel').textContent = currentLang === 'es' ? '// vista previa ilustrativa del dashboard' : '// illustrative dashboard preview';
     document.getElementById('modalStackH').textContent = currentLang === 'es' ? 'Aspectos técnicos' : 'Technical highlights';
     const gallery = document.getElementById('modalGallery');
     const images = p.images || [];
+    activeImages = images;
+    activeImageIndex = 0;
     gallery.hidden = images.length === 0;
-    gallery.innerHTML = images.map(img => `<img src="${img.src}" alt="${img.alt}" onerror="this.remove()">`).join('');
+    gallery.innerHTML = images.length ? `
+      <div class="carousel-stage">
+        <img class="carousel-image" id="carouselImage" src="${images[0].src}" alt="${images[0].alt}">
+        <button class="carousel-nav prev" type="button" aria-label="Imagen anterior">‹</button>
+        <button class="carousel-nav next" type="button" aria-label="Imagen siguiente">›</button>
+        <span class="carousel-counter" id="carouselCounter">1 / ${images.length}</span>
+        <button class="carousel-zoom" type="button" aria-label="Ampliar imagen">🔍 ${currentLang === 'es' ? 'Ampliar' : 'Zoom'}</button>
+      </div>
+      <div class="carousel-thumbs" aria-label="Miniaturas">
+        ${images.map((img, index) => `<button class="carousel-thumb${index === 0 ? ' active' : ''}" type="button" data-index="${index}" aria-label="Ver imagen ${index + 1}"><img src="${img.src}" alt=""></button>`).join('')}
+      </div>` : '';
     document.querySelector('.dash-preview').hidden = images.length > 0;
-    gallery.querySelectorAll('img').forEach(img => {
-      img.addEventListener('click', () => {
-        const first = gallery.querySelector('img');
-        if(!first || first === img) return;
-        const firstSrc = first.src;
-        const firstAlt = first.alt;
-        first.src = img.src;
-        first.alt = img.alt;
-        img.src = firstSrc;
-        img.alt = firstAlt;
-      });
-    });
+    if(images.length){
+      gallery.querySelector('.carousel-nav.prev').addEventListener('click', () => showCarouselImage(activeImageIndex - 1));
+      gallery.querySelector('.carousel-nav.next').addEventListener('click', () => showCarouselImage(activeImageIndex + 1));
+      gallery.querySelector('.carousel-image').addEventListener('click', openLightbox);
+      gallery.querySelector('.carousel-zoom').addEventListener('click', openLightbox);
+      gallery.querySelectorAll('.carousel-thumb').forEach(thumb => thumb.addEventListener('click', () => showCarouselImage(Number(thumb.dataset.index))));
+    }
     const kpiWrap = document.getElementById('modalKpis');
     kpiWrap.innerHTML = p.kpis.map(k => `<div class="dash-kpi"><div class="num">${k.n}</div><div class="lbl">${k.l[currentLang]}</div></div>`).join('');
     const ul = document.getElementById('modalBullets');
     ul.innerHTML = p.bullets[currentLang].map(b => `<li>${b}</li>`).join('');
     modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-  function closeProject(){ modal.classList.remove('open'); }
+  function closeProject(){ activeProjectIndex = null; modal.classList.remove('open'); lightbox.classList.remove('open'); document.body.style.overflow = ''; }
   modal.addEventListener('click', (e) => { if(e.target === modal) closeProject(); });
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeProject(); });
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  document.getElementById('lightboxPrev').addEventListener('click', () => moveLightbox(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => moveLightbox(1));
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') lightbox.classList.contains('open') ? lightbox.classList.remove('open') : closeProject();
+    if((modal.classList.contains('open') || lightbox.classList.contains('open')) && e.key === 'ArrowLeft') lightbox.classList.contains('open') ? moveLightbox(-1) : showCarouselImage(activeImageIndex - 1);
+    if((modal.classList.contains('open') || lightbox.classList.contains('open')) && e.key === 'ArrowRight') lightbox.classList.contains('open') ? moveLightbox(1) : showCarouselImage(activeImageIndex + 1);
+  });
