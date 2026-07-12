@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" id="htmlRoot">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
 
 <header>
   <div class="brand display">
-    <span class="paw">🐇</span>Geraldine<span style="color:var(--pink-deeper)">.dev</span>
+    <span class="paw">🐇</span>Geraldine<span style="color:var(--pink-deeper)">.io</span>
   </div>
   <nav id="navMenu">
     <a href="#sobre" data-i18n="nav_sobre">Sobre mí</a>
@@ -31,16 +31,14 @@
     <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
   </nav>
   <div class="header-actions">
-    <button class="lang-btn" id="langBtn" type="button">🌐 <span id="langLabel">EN</span></button>
-    <a class="cv-btn" href="mailto:krisvilalta02@gmail.com" data-i18n="cv_btn">Contáctame</a>
+    <button class="lang-btn" id="langBtn" type="button">🌐 <span id="langLabel">ES</span></button>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
   </div>
 </header>
 
 <section id="hero">
   <div>
-    <h1 data-i18n="hero_title">Hola, soy Geraldine<span class="accent">🐰</span><br>convierto datos en <span class="accent">decisiones</span>.</h1>
-    <p class="role" data-i18n="hero_role">Estudiante de Ingeniería en Sistemas de Información, enfocada en administración de bases de datos y analisis de datos con Power BI, Looker Studio.</p>
+    <h1 data-i18n="hero_title">Hola, soy Geraldine</span><br>convierto datos en <span class="accent">decisiones</span>.</h1>
     <div class="typewrap">
       <div class="dot-row"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
       <span id="typed"></span><span class="cursor">&nbsp;</span>
@@ -129,7 +127,7 @@
     <h2 style="margin-bottom:16px;" data-i18n="sobre_title">Del dato crudo al dashboard que sí se entiende</h2>
     <p data-i18n="sobre_p1">Soy estudiante de 3er año de <strong>Ingeniería en Sistemas de Información</strong> en la UAM. Me especializo en <strong>administración de bases de datos</strong> (PostgreSQL, SQL Server, Oracle, BigQuery) y en transformar esos datos en <strong>reportes y dashboards</strong> con Power BI y Looker Studio que faciliten la toma de decisiones.</p>
     <p data-i18n="sobre_p2">He trabajado limpiando y modelando datos, escribiendo consultas SQL, diseñando KPIs con DAX y automatizando procesos ETL desde plataformas como Google Ads, ADP y distintos CRMs. Me apasiona encontrar el hallazgo que estaba escondido entre miles de filas.</p>
-    <p data-i18n="sobre_p3">Fuera del análisis de datos, también incursiono en desarrollo móvil (Swift, Kotlin) y disfruto los retos de innovación: dos primeros lugares en jornadas de investigación e innovación de mi universidad lo confirman 🐇.</p>
+    <p data-i18n="sobre_p3">Fuera del análisis de datos, también incursiono en desarrollo móvil Swift, Kotlin.</p>
   </div>
 </section>
 
@@ -184,7 +182,7 @@
       <ul>
         <li data-i18n="exp1_l1">Administración y creación de estructuras de datos en Google BigQuery para un entorno de análisis escalable.</li>
         <li data-i18n="exp1_l2">Procesos ETL de datos desde múltiples plataformas CRM: Vonigo, ADP, Google Ads, Local Services, Bloom y Wonolo.</li>
-        <li data-i18n="exp1_l3">Desarrollo de dashboards avanzados en Power BI y Looker Studio para convertir datos crudos en visualizaciones estratégicas.</li>
+        <li data-i18n="exp1_l3">Desarrollo de dashboards en Power BI y Looker Studio para convertir datos crudos en visualizaciones estratégicas.</li>
         <li data-i18n="exp1_l4">Monitoreo de métricas semanales y mensuales de rendimiento de clientes.</li>
       </ul>
     </div>
@@ -205,44 +203,37 @@
   <div class="sec-head">
     <span class="eyebrow" data-i18n="proj_eyebrow">proyectos</span>
     <h2 data-i18n="proj_title">Trabajo destacado</h2>
-    <p data-i18n="proj_desc">Da clic en "Ver proyecto" para una vista previa de cada trabajo.</p>
   </div>
   <div class="proj-grid">
     <div class="proj-card">
-      <span class="proj-tag" data-i18n="proj1_tag">Business Intelligence</span>
-      <h3 data-i18n="proj1_h">Reportes BI para INETER</h3>
+      <h3 data-i18n="proj1_hi">Sistema de Monitoreo de Ríos en Nicaragua</h3>
 
       <div class="client-icon" aria-label="Cliente INETER">
         <img class="client-logo" src="assets/img/INETER/INETER ICON.png" alt="Logo INETER">
-        <span class="client-name">INETER</span>
       </div>
-      <p data-i18n="proj1_p">Modelado de datos relacional y reportes en Power BI Report Server a partir de consultas SQL sobre PostgreSQL, con KPIs calculados en DAX para análisis interno.</p>
+      <p data-i18n="proj1_des">Panel dedicado a la identificación de patrones históricos en desbordamientos, facilitando la auditoría de registros de lectura y el análisis temporal por estación.</p>
       <div class="proj-stack"><span>PostgreSQL</span><span>Power BI</span><span>DAX</span></div>
-      <button class="proj-btn" onclick="openProject(0)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
+      <button class="proj-btn" onclick="openProject(0)"><span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
     <div class="proj-card">
-      <span class="proj-tag" data-i18n="proj2_tag">Aplicación móvil</span>
-      <h3 data-i18n="proj2_h">VetPlus</h3>
+      <h3 data-i18n="proj2_hello">Análisis Histórico 2026 VetPlus</h3>
 
       <div class="client-icon" aria-label="Proyecto VetPlus">
         <img class="client-logo wide" src="assets/img/VetPlus/VETPLUS ICONN.jpg" alt="Logo VetPlus">
-        <span class="client-name">VetPlus</span>
       </div>
-      <p data-i18n="proj2_p">Aplicación enfocada en la gestión veterinaria, con vistas para organizar pacientes, servicios y seguimiento de información clínica de mascotas.</p>
-      <div class="proj-stack"><span>Diseño UI</span><span>Gestión</span><span>Móvil</span></div>
-      <button class="proj-btn" onclick="openProject(1)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
+      <p data-i18n="proj2_p">Dashboard para el monitoreo operativo de ventas en el sector de veterinarias y supermercados. Esta solución permite la trazabilidad del ciclo de ventas, desde la geolocalización de clientes hasta el análisis detallado del desempeño de la fuerza de ventas y el inventario de productos.</p>
+      <div class="proj-stack"><span data-i18n="chip_powerBI">Power BI</span><span data-i18n="chip_soread">Spreadsheets</span></div>
+      <button class="proj-btn" onclick="openProject(1)"><span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
     <div class="proj-card">
-      <span class="proj-tag" data-i18n="proj3_tag">Aplicación móvil</span>
-      <h3 data-i18n="proj3_h">Elite Marry Me</h3>
+      <h3 data-i18n="proj3_ho">Análisis de Ganancias Elite Marry Me</h3>
 
       <div class="client-icon" aria-label="Proyecto Elite Marry Me">
         <img class="client-logo" src="assets/img/Marry Me/ICON MARRY ME.jpg" alt="Logo Elite Marry Me">
-        <span class="client-name">Elite Marry Me</span>
       </div>
-      <p data-i18n="proj3_p">Propuesta digital para una experiencia premium de bodas, con identidad visual elegante y pantallas pensadas para gestionar servicios y eventos.</p>
-      <div class="proj-stack"><span data-i18n="chip_analisis">Diseño UI</span><span data-i18n="chip_invest">Servicios</span></div>
-      <button class="proj-btn" onclick="openProject(2)">👀 <span data-i18n="proj_btn">Ver proyecto</span></button>
+      <p data-i18n="proj3_p">Este dashboard permite el seguimiento de propuestas de negocio y rendimiento de ingresos.</p>
+      <div class="proj-stack"><span data-i18n="chip_analisi">Power BI</span><span data-i18n="chip_invet">Looker Studio</span><span data-i18n="chip_big">BigQuery</span><span data-i18n="chip_spread">Spreadsheets</span></div>
+      <button class="proj-btn" onclick="openProject(2)"><span data-i18n="proj_btn">Ver proyecto</span></button>
     </div>
   </div>
 </section>
@@ -258,54 +249,48 @@
   <p class="kgtech-tagline" data-i18n="kg_tagline">Mi emprendimiento de soluciones en datos: dashboards, bases de datos y automatización de reportes para que tu negocio tome mejores decisiones, más rápido.</p>
   <div class="kg-services">
     <div class="kg-service">
-      <span class="icon">📊</span>
       <h4 data-i18n="kg_s1_h">Dashboards &amp; BI</h4>
       <p data-i18n="kg_s1_p">Diseño de dashboards interactivos en Power BI y Looker Studio adaptados a tus KPIs.</p>
     </div>
     <div class="kg-service">
-      <span class="icon">🗄️</span>
       <h4 data-i18n="kg_s2_h">Administración de Bases de Datos</h4>
       <p data-i18n="kg_s2_p">Diseño, modelado y mantenimiento en PostgreSQL, SQL Server, Oracle y BigQuery.</p>
     </div>
     <div class="kg-service">
-      <span class="icon">🔄</span>
       <h4 data-i18n="kg_s3_h">Automatización de Reportes (ETL)</h4>
       <p data-i18n="kg_s3_p">Conexión y limpieza de datos de múltiples fuentes para reportes siempre actualizados.</p>
     </div>
     <div class="kg-service">
-      <span class="icon">💡</span>
       <h4 data-i18n="kg_s4_h">Consultoría en Datos</h4>
       <p data-i18n="kg_s4_p">Acompañamiento para pequeños negocios que quieren empezar a usar sus datos a su favor.</p>
     </div>
   </div>
   <div class="kg-cta">
-    <a class="btn btn-primary" href="mailto:krisvilalta02@gmail.com?subject=Consulta%20KG%20Tech" data-i18n="kg_cta1">Solicita una cotización</a>
-    <a class="btn btn-ghost" href="https://wa.me/50575151790" target="_blank" rel="noopener" data-i18n="kg_cta2">Escríbeme por WhatsApp</a>
+    <a class="btn btn-primary" href="https://wa.me/50575151790" target="_blank" rel="noopener" data-i18n="kg_cta2">Solicita una cotización</a>
+    <!-- Reemplaza este enlace por la dirección real de tu web -->
+    <a class="btn btn-ghost" href="https://www.example.com" target="_blank" rel="noopener" data-i18n="kg_cta3">Visita mi web</a>
   </div>
-  <p class="kg-note" data-i18n="kg_note">*Servicios de ejemplo — cuéntame más sobre tu emprendimiento y los ajusto a la medida.</p>
+
 </section>
 
 <section id="contacto">
   
   <h2 data-i18n="contact_title">¿Listo para convertir tus datos en decisiones?</h2>
-  <p data-i18n="contact_desc">Estoy disponible para proyectos freelance de análisis de datos y BI</p>
   <div class="contact-row">
     <a class="contact-pill" href="mailto:krisvilalta02@gmail.com">✉️ krisvilalta02@gmail.com</a>
-    <a class="contact-pill" href="https://wa.me/50575151790" target="_blank" rel="noopener">💬 WhatsApp</a>
-    <a class="contact-pill outline" href="tel:+50575151790">📞 +505 7515 1790</a>
+    <a class="contact-pill" href="https://wa.me/50575151790" target="_blank" rel="noopener">📞 WhatsApp</a>
   </div>
 </section>
 
-<footer data-i18n="footer_text">Hecho con amor · Geraldine Tech © 2026</footer>
+<footer data-i18n="footer_text">Hecho con amor · Geraldine © 2026</footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="projectModal">
   <div class="modal-card">
     <button class="modal-close" onclick="closeProject()">✕</button>
-    <span class="proj-tag" id="modalTag"></span>
     <h3 id="modalTitle"></h3>
     <p class="modal-desc" id="modalDesc"></p>
-    <div class="modal-gallery" id="modalGallery" aria-label="Imagenes del proyecto"></div>
+    <div class="modal-gallery" id="modalGallery" aria-label="Galería de imágenes del proyecto"></div>
     <div class="dash-preview">
       <div class="dash-label" id="modalDashLabel">// vista previa ilustrativa del dashboard</div>
       <div class="dash-kpis" id="modalKpis"></div>
@@ -319,7 +304,16 @@
   </div>
 </div>
 
-<script src="assets/script.js"></script>
+<!-- VISOR DE IMAGEN AMPLIADA -->
+<div class="image-lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar imagen ampliada">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Imagen anterior">‹</button>
+  <img id="lightboxImage" src="" alt="">
+  <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Imagen siguiente">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script src="assets/script.js?v=5"></script>
 
 </body>
 </html>
