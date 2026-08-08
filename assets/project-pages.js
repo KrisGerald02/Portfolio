@@ -26,6 +26,11 @@ themeBtn.addEventListener('click', () => {
   try { localStorage.setItem('portfolio-theme', nextTheme); } catch(error) {}
 });
 
+window.addEventListener('storage', event => {
+  if(event.key === 'portfolio-theme') applyTheme(event.newValue === 'dark' ? 'dark' : 'light');
+  if(event.key === 'portfolio-lang') setLang(event.newValue === 'es' ? 'es' : 'en', false);
+});
+
 const translations = {
   en: {
     nav_about:'About', nav_skills:'Skills', nav_projects:'Projects', nav_contact:'Contact',
@@ -88,7 +93,7 @@ const translations = {
 let currentLang = 'en';
 let activeProjectIndex = null;
 
-function setLang(lang){
+function setLang(lang, persist = true){
   currentLang = lang;
   document.documentElement.lang = lang;
   langLabel.textContent = lang === 'en' ? 'ES' : 'EN';
@@ -97,12 +102,24 @@ function setLang(lang){
     if(translations[lang][key]) element.textContent = translations[lang][key];
   });
   if(activeProjectIndex !== null) openProject(activeProjectIndex);
+  if(persist){
+    try { localStorage.setItem('portfolio-lang', lang); } catch(error) {}
+  }
 }
 
 function closeProjectsMenu(){
   projectsDropdown.classList.remove('open');
   projectsToggle.setAttribute('aria-expanded', 'false');
 }
+
+function closeMobileMenu(){
+  navMenu.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  closeProjectsMenu();
+}
+
+closeMobileMenu();
+window.addEventListener('pageshow', closeMobileMenu);
 
 navToggle.addEventListener('click', () => {
   const isOpen = navMenu.classList.toggle('open');
@@ -116,9 +133,7 @@ projectsToggle.addEventListener('click', () => {
 });
 
 navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  navMenu.classList.remove('open');
-  navToggle.setAttribute('aria-expanded', 'false');
-  closeProjectsMenu();
+  closeMobileMenu();
 }));
 
 document.addEventListener('click', event => {
@@ -388,4 +403,6 @@ if(modal && lightbox){
   });
 }
 
-setLang('en');
+let savedLang = 'en';
+try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch(error) {}
+setLang(savedLang === 'es' ? 'es' : 'en', false);
