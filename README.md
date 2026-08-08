@@ -1,14 +1,34 @@
 # Portafolio de Kristel Villalta 🐰
 
-Portafolio interactivo hecho en HTML, CSS y JavaScript puro.
+Portafolio interactivo desarrollado con HTML, CSS y JavaScript puro.
+
+## Secciones
+
+- Análisis de datos
+- Automatizaciones
+- Diseños
+- Aplicaciones web
+- Aplicaciones móviles
+- Electrónica y robótica
 
 ## Estructura del proyecto
 
-```
-portfolio-kristel/
-├── index.html          → estructura y contenido de la página
+```text
+portfolio-gege/
+├── index.html
+├── analisis-datos.html
+├── automatizaciones.html
+├── disenos.html
+├── web-apps.html
+├── mobile-apps.html
+├── electronica-robotica.html
 ├── assets/
-│   ├── styles.css       → todos los estilos (colores, tipografía, animaciones)
-│   └── script.js        → interactividad (terminal, traductor, modal de proyectos)
-└── README.md            → este archivo
+│   ├── styles.css
+│   ├── script.js
+│   ├── project-pages.js
+│   ├── theme-init.js
+│   └── img/
+└── README.md
 ```
+
+Hecho con 🐰
