@@ -375,7 +375,7 @@
     #hero{ padding-top:40px; }
     #hero .bunny-stage{ order:-1; min-height:390px; }
     #hero .profile-photo{ right:8%; width:112px; height:112px; }
-    nav{ display:none; position:absolute; top:64px; left:0; right:0; background:var(--pink-bg); flex-direction:column; padding:12px 5vw; border-bottom:1px solid var(--line); }
+    nav, .category-nav{ display:none; position:absolute; top:64px; left:0; right:0; background:var(--pink-bg); flex-direction:column; padding:12px 5vw; border-bottom:1px solid var(--line); }
     nav.open{ display:flex; }
     .category-nav.open{ display:flex; }
     .nav-dropdown-toggle{ width:100%; justify-content:space-between; }

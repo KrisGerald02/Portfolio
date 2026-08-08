@@ -30,6 +30,13 @@
     projectsDropdown.classList.remove('open');
     projectsToggle.setAttribute('aria-expanded', 'false');
   }
+  function closeMobileMenu(){
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    closeProjectsMenu();
+  }
+  closeMobileMenu();
+  window.addEventListener('pageshow', closeMobileMenu);
   navToggle.addEventListener('click', () => {
     const isOpen = navMenu.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', String(isOpen));
@@ -40,9 +47,7 @@
     projectsToggle.setAttribute('aria-expanded', String(isOpen));
   });
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navMenu.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    closeProjectsMenu();
+    closeMobileMenu();
   }));
   document.addEventListener('click', (event) => {
     if(!projectsDropdown.contains(event.target)) closeProjectsMenu();
@@ -172,7 +177,7 @@ Ready for the next challenge 🐇`
     esPlaceholders[key] = el.getAttribute('placeholder');
   });
 
-  function setLang(lang){
+  function setLang(lang, persist = true){
     currentLang = lang;
     document.getElementById('htmlRoot').lang = lang;
     document.getElementById('langLabel').textContent = lang === 'es' ? 'EN' : 'ES';
@@ -185,9 +190,19 @@ Ready for the next challenge 🐇`
       el.setAttribute('placeholder', lang === 'en' ? (enDict[key] || esPlaceholders[key]) : esPlaceholders[key]);
     });
     typeHero(lang, false);
+    if(persist){
+      try { localStorage.setItem('portfolio-lang', lang); } catch(error) {}
+    }
   }
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
-  setLang('en');
+  let savedLang = 'en';
+  try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch(error) {}
+  setLang(savedLang === 'es' ? 'es' : 'en', false);
+
+  window.addEventListener('storage', event => {
+    if(event.key === 'portfolio-theme') applyTheme(event.newValue === 'dark' ? 'dark' : 'light');
+    if(event.key === 'portfolio-lang') setLang(event.newValue === 'es' ? 'es' : 'en', false);
+  });
 
   // ---------- project modal ----------
   const projects = [
