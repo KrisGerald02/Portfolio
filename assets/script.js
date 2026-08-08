@@ -1,8 +1,58 @@
-// ---------- mobile nav ----------
+// ---------- color theme ----------
+  const themeBtn = document.getElementById('themeBtn');
+  const themeIcon = document.getElementById('themeIcon');
+
+  function applyTheme(theme){
+    const isDark = theme === 'dark';
+    document.documentElement.dataset.theme = theme;
+    themeIcon.textContent = isDark ? '☀' : '☾';
+    themeBtn.setAttribute('aria-pressed', String(isDark));
+    themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+
+  let savedTheme = 'light';
+  try { savedTheme = localStorage.getItem('portfolio-theme') || 'light'; } catch(error) {}
+  applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+
+  themeBtn.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+    try { localStorage.setItem('portfolio-theme', nextTheme); } catch(error) {}
+  });
+
+  // ---------- mobile nav ----------
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
-  navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+  const projectsDropdown = document.getElementById('projectsDropdown');
+  const projectsToggle = document.getElementById('projectsToggle');
+  function closeProjectsMenu(){
+    projectsDropdown.classList.remove('open');
+    projectsToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    if(!isOpen) closeProjectsMenu();
+  });
+  projectsToggle.addEventListener('click', () => {
+    const isOpen = projectsDropdown.classList.toggle('open');
+    projectsToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    closeProjectsMenu();
+  }));
+  document.addEventListener('click', (event) => {
+    if(!projectsDropdown.contains(event.target)) closeProjectsMenu();
+  });
+  projectsDropdown.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape'){
+      closeProjectsMenu();
+      projectsToggle.focus();
+    }
+  });
 
   // ---------- hero typewriter (bilingual) ----------
   const typedEl = document.getElementById('typed');
@@ -39,7 +89,9 @@ Ready for the next challenge 🐇`
   // ---------- i18n ----------
   const enDict = {
     nav_sobre:"About", nav_skills:"Skills", nav_terminal:"Terminal", nav_experiencia:"Experience",
-    nav_proyectos:"Projects", nav_logros:"Achievements", nav_kgtech:"KG Tech", nav_contacto:"Contact",
+    nav_proyectos:"Projects", nav_proj_data:"Data Analysis", nav_proj_automation:"Automations", nav_proj_robotics:"Electronics &amp; Robotics",
+    nav_proj_mobile:"Mobile Apps", nav_proj_web:"Web Apps", nav_proj_design:"Designs",
+    nav_logros:"Achievements", nav_kgtech:"KG Tech", nav_contacto:"Contact",
     cv_btn:"Contact me",
     hero_eyebrow:"available for internships &amp; freelance projects",
     hero_title:'Hi, I\'m Kristel <span class="accent">🐰</span><br>I turn data into <span class="accent">decisions</span>.',
@@ -48,19 +100,18 @@ Ready for the next challenge 🐇`
     tbl_campo:"field", tbl_valor:"value", tbl_nombre_k:"name", tbl_uni_k:"university",
     tbl_enfoque_k:"focus", tbl_enfoque_v:"Databases &amp; BI", tbl_ubi_k:"location",
     tbl_footer:"1 row affected · 0.02s",
-    sobre_eyebrow:"about me", sobre_title:"From raw data to a dashboard people actually understand",
+    sobre_eyebrow:"about me",
     sobre_p1:"I'm a 3rd-year <strong>Systems Information Engineering</strong> student at UAM. I specialize in <strong>database administration</strong> (PostgreSQL, SQL Server, Oracle, BigQuery) and turning that data into <strong>reports and dashboards</strong> with Power BI and Looker Studio that support decision-making.",
     sobre_p2:"I've worked cleaning and modeling data, writing SQL queries, designing KPIs with DAX, and automating ETL processes from platforms like Google Ads, ADP and various CRMs. I love finding the insight hiding among thousands of rows.",
     sobre_p3:"Outside of data analysis, I also explore mobile development (Swift, Kotlin) and enjoy innovation challenges: two first places in my university's research and innovation events prove it 🐇.",
-    skills_eyebrow:"tech stack", skills_title:"Tools I work with",
-    skills_desc:"From the database to the final dashboard, this is the path I follow with data.",
-    skill_h1:"🗄️ Databases", skill_h2:"📊 BI &amp; Visualization", skill_h3:"💻 Programming", skill_h4:"🧠 Other skills",
+    skills_eyebrow:"tech stack", skills_title:"Technological tools",
+    skill_h1:"🗄️ Databases", skill_h2:"📊 BI &amp; Visualization", skill_h3:"💻 Programming", skill_h4:"🧠 Other skills", skill_h5:"⚙️ Automations", skill_h6:"🎨 Design",
     chip_equipo:"Teamwork", chip_com:"Communication", chip_idiomas:"Spanish / English",
     term_eyebrow:"interactive", term_title:"Ask my terminal 🐾",
     term_desc:"Type a command and press Enter. Try <code class=\"mono\">help</code>.",
     term_placeholder:"type 'help'…",
     term_hint:"Commands: <code>help</code> · <code>whoami</code> · <code>skills</code> · <code>experiencia</code> · <code>proyectos</code> · <code>logros</code> · <code>kgtech</code> · <code>contacto</code> · <code>sudo abraza-conejo</code> · <code>clear</code>",
-    exp_eyebrow:"experience", exp_title:"Where this bunny has hopped 🐇",
+    exp_eyebrow:"experience", exp_title:"Employment history",
     exp1_h:"Junior Data Analyst Intern", exp1_meta:"Algoritmia · May – November 2026",
     exp1_l1:"Administration and creation of data structures in Google BigQuery for a scalable analytics environment.",
     exp1_l2:"ETL processes from multiple CRM platforms: Vonigo, ADP, Google Ads, Local Services, Bloom and Wonolo.",
@@ -78,6 +129,9 @@ Ready for the next challenge 🐇`
     proj2_p:"Dashboard for operational sales monitoring in the veterinary and supermarket sectors. This solution provides traceability throughout the sales cycle, from customer geolocation to detailed analysis of sales force performance and product inventory.",
     proj3_ho:"Elite Marry Me Profit Analysis",
     proj3_p:"This dashboard enables the tracking of business proposals and revenue performance.",
+    proj4_title:"Project 4 name", proj4_desc:"Add a brief description of your new project here.",
+    proj5_title:"Project 5 name", proj5_desc:"Add a brief description of your new project here.",
+    proj_placeholder:"Your logo here",
     chip_powerBI:"Power BI", chip_soread:"Spreadsheets", chip_analisi:"Power BI", chip_invet:"Looker Studio", chip_big:"BigQuery", chip_spread:"Spreadsheets",
     chip_analisis:"UI design", chip_invest:"Services", chip_ui:"UI design", chip_management:"Management", chip_mobile:"Mobile",
     proj_btn:"View project",
@@ -98,11 +152,11 @@ Ready for the next challenge 🐇`
     kg_s2_h:"Database Administration", kg_s2_p:"Design, modeling and maintenance in PostgreSQL, SQL Server, Oracle and BigQuery.",
     kg_s3_h:"Report Automation (ETL)", kg_s3_p:"Connecting and cleaning data from multiple sources for always up-to-date reports.",
     kg_s4_h:"Data Consulting", kg_s4_p:"Support for small businesses looking to start using their data to their advantage.",
-    kg_cta1:"Request a quote", kg_cta2:"Request a quote", kg_cta3:"Visit my website",
+    kg_cta1:"Request a quote", kg_cta2:"Request a quote",
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
     contact_eyebrow:"contact", contact_title:"Let's build your next dashboard?",
     contact_desc:"I'm available for internships and freelance data analysis / BI projects. Write to me, this bunny replies fast 🐇.",
-    footer_text:"Made with 🐰 and lots of coffee ·"
+    footer_text:"Geraldine.io © 2026"
   };
 
   let currentLang = 'en';
@@ -131,7 +185,6 @@ Ready for the next challenge 🐇`
       el.setAttribute('placeholder', lang === 'en' ? (enDict[key] || esPlaceholders[key]) : esPlaceholders[key]);
     });
     typeHero(lang, false);
-    if(activeProjectIndex !== null) openProject(activeProjectIndex);
   }
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
   setLang('en');
@@ -205,11 +258,50 @@ Ready for the next challenge 🐇`
         es:["Análisis de rendimiento comercial","Análisis de rendimiento comercial","Atribución de canales de venta"],
         en:["Commercial performance analysis","Commercial performance analysis","Sales channel attribution"]
       }
+    },
+    // PROJECT 4: edit this object when you add the final content and images.
+    {
+      tag: {es:"Tipo de proyecto", en:"Project type"},
+      title: {es:"Nombre del proyecto 4", en:"Project 4 name"},
+      images: [],
+      desc: {
+        es:"Agrega aquí una descripción más detallada de tu nuevo proyecto.",
+        en:"Add a more detailed description of your new project here."
+      },
+      kpis: [
+        {n:"01", l:{es:"dato clave", en:"key metric"}},
+        {n:"02", l:{es:"dato clave", en:"key metric"}},
+        {n:"03", l:{es:"dato clave", en:"key metric"}}
+      ],
+      bullets: {
+        es:["Característica o logro principal","Tecnología o proceso utilizado","Resultado obtenido"],
+        en:["Main feature or achievement","Technology or process used","Result achieved"]
+      }
+    },
+    // PROJECT 5: edit this object when you add the final content and images.
+    {
+      tag: {es:"Tipo de proyecto", en:"Project type"},
+      title: {es:"Nombre del proyecto 5", en:"Project 5 name"},
+      images: [],
+      desc: {
+        es:"Agrega aquí una descripción más detallada de tu nuevo proyecto.",
+        en:"Add a more detailed description of your new project here."
+      },
+      kpis: [
+        {n:"01", l:{es:"dato clave", en:"key metric"}},
+        {n:"02", l:{es:"dato clave", en:"key metric"}},
+        {n:"03", l:{es:"dato clave", en:"key metric"}}
+      ],
+      bullets: {
+        es:["Característica o logro principal","Tecnología o proceso utilizado","Resultado obtenido"],
+        en:["Main feature or achievement","Technology or process used","Result achieved"]
+      }
     }
   ];
 
   const modal = document.getElementById('projectModal');
   const lightbox = document.getElementById('imageLightbox');
+  if(modal && lightbox){
   let activeImages = [];
   let activeImageIndex = 0;
 
@@ -288,3 +380,4 @@ Ready for the next challenge 🐇`
     if((modal.classList.contains('open') || lightbox.classList.contains('open')) && e.key === 'ArrowLeft') lightbox.classList.contains('open') ? moveLightbox(-1) : showCarouselImage(activeImageIndex - 1);
     if((modal.classList.contains('open') || lightbox.classList.contains('open')) && e.key === 'ArrowRight') lightbox.classList.contains('open') ? moveLightbox(1) : showCarouselImage(activeImageIndex + 1);
   });
+  }

@@ -6,7 +6,8 @@
 <title>Kristel Villalta · Ingeniera en Sistemas de Información</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=2">
+<link rel="stylesheet" href="assets/styles.css?v=9">
+<script src="assets/theme-init.js"></script>
 </head>
 <body>
 
@@ -26,13 +27,27 @@
     <a href="#sobre" data-i18n="nav_sobre">Sobre mí</a>
     <a href="#skills" data-i18n="nav_skills">Habilidades</a>
     <a href="#experiencia" data-i18n="nav_experiencia">Experiencia</a>
-    <a href="#proyectos" data-i18n="nav_proyectos">Proyectos</a>
+    <div class="nav-dropdown" id="projectsDropdown">
+      <button class="nav-dropdown-toggle" id="projectsToggle" type="button" aria-expanded="false" aria-controls="projectsMenu">
+        <span data-i18n="nav_proyectos">Proyectos</span>
+        <span class="nav-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div class="nav-dropdown-menu" id="projectsMenu">
+        <a href="analisis-datos.html" data-i18n="nav_proj_data">Análisis de Datos</a>
+        <a href="automatizaciones.html" data-i18n="nav_proj_automation">Automatizaciones</a>
+        <a href="electronica-robotica.html" data-i18n="nav_proj_robotics">Electrónica y Robótica</a>
+        <a href="mobile-apps.html" data-i18n="nav_proj_mobile">Mobile Apps</a>
+        <a href="web-apps.html" data-i18n="nav_proj_web">Web Apps</a>
+        <a href="disenos.html" data-i18n="nav_proj_design">Diseños</a>
+      </div>
+    </div>
     <a href="#kgtech" data-i18n="nav_kgtech">KG Tech</a>
     <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
   </nav>
   <div class="header-actions">
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><span id="themeIcon" aria-hidden="true">☾</span></button>
     <button class="lang-btn" id="langBtn" type="button">🌐 <span id="langLabel">ES</span></button>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">☰</button>
   </div>
 </header>
 
@@ -44,7 +59,7 @@
       <span id="typed"></span><span class="cursor">&nbsp;</span>
     </div>
     <div class="cta-row">
-      <a href="#proyectos" class="btn btn-primary" data-i18n="cta_primary">Ver proyectos →</a>
+      <a href="analisis-datos.html" class="btn btn-primary" data-i18n="cta_primary">Ver proyectos →</a>
       <a href="#contacto" class="btn btn-ghost" data-i18n="cta_ghost">Hablemos</a>
     </div>
   </div>
@@ -124,7 +139,6 @@
 
   <div class="about-text">
     <span class="eyebrow" data-i18n="sobre_eyebrow">sobre mí</span>
-    <h2 style="margin-bottom:16px;" data-i18n="sobre_title">Del dato crudo al dashboard que sí se entiende</h2>
     <p data-i18n="sobre_p1">Soy estudiante de 3er año de <strong>Ingeniería en Sistemas de Información</strong> en la UAM. Me especializo en <strong>administración de bases de datos</strong> (PostgreSQL, SQL Server, Oracle, BigQuery) y en transformar esos datos en <strong>reportes y dashboards</strong> con Power BI y Looker Studio que faciliten la toma de decisiones.</p>
     <p data-i18n="sobre_p2">He trabajado limpiando y modelando datos, escribiendo consultas SQL, diseñando KPIs con DAX y automatizando procesos ETL desde plataformas como Google Ads, ADP y distintos CRMs. Me apasiona encontrar el hallazgo que estaba escondido entre miles de filas.</p>
     <p data-i18n="sobre_p3">Fuera del análisis de datos, también incursiono en desarrollo móvil Swift, Kotlin.</p>
@@ -134,8 +148,7 @@
 <section id="skills">
   <div class="sec-head">
     <span class="eyebrow" data-i18n="skills_eyebrow">stack técnico</span>
-    <h2 data-i18n="skills_title">Herramientas con las que trabajo</h2>
-    <p data-i18n="skills_desc">De la base de datos al dashboard final, este es el camino que sigo con los datos.</p>
+    <h2 data-i18n="skills_title">Herramientas tecnológicas</h2>
   </div>
   <div class="skill-groups">
     <div class="skill-card">
@@ -156,7 +169,20 @@
       <h3 data-i18n="skill_h3">💻 Programación</h3>
       <div class="chip-row">
         <span class="chip">Swift (Xcode)</span><span class="chip">Kotlin (Android Studio)</span>
+        <span class="chip">Python</span><span class="chip">Arduino</span>
         <span class="chip">Git</span><span class="chip">Enterprise Architect</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3 data-i18n="skill_h5">⚙️ Automatizaciones</h3>
+      <div class="chip-row">
+        <span class="chip">Google Apps Script</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3 data-i18n="skill_h6">🎨 Diseño</h3>
+      <div class="chip-row">
+        <span class="chip">Figma</span><span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">Canva</span>
       </div>
     </div>
     <div class="skill-card">
@@ -172,7 +198,7 @@
 <section id="experiencia">
   <div class="sec-head">
     <span class="eyebrow" data-i18n="exp_eyebrow">experiencia</span>
-    <h2 data-i18n="exp_title">Experiencia Laboral 🐇</h2>
+    <h2 data-i18n="exp_title">Historial laboral</h2>
   </div>
   <div class="timeline">
     <div class="tl-item">
@@ -198,46 +224,6 @@
     </div>
   </div>
 </section>
-
-<section id="proyectos">
-  <div class="sec-head">
-    <span class="eyebrow" data-i18n="proj_eyebrow">proyectos</span>
-    <h2 data-i18n="proj_title">Trabajo destacado</h2>
-  </div>
-  <div class="proj-grid">
-    <div class="proj-card">
-      <h3 data-i18n="proj1_hi">Sistema de Monitoreo de Ríos en Nicaragua</h3>
-
-      <div class="client-icon" aria-label="Cliente INETER">
-        <img class="client-logo" src="assets/img/INETER/INETER ICON.png" alt="Logo INETER">
-      </div>
-      <p data-i18n="proj1_des">Panel dedicado a la identificación de patrones históricos en desbordamientos, facilitando la auditoría de registros de lectura y el análisis temporal por estación.</p>
-      <div class="proj-stack"><span>PostgreSQL</span><span>Power BI</span><span>DAX</span></div>
-      <button class="proj-btn" onclick="openProject(0)"><span data-i18n="proj_btn">Ver proyecto</span></button>
-    </div>
-    <div class="proj-card">
-      <h3 data-i18n="proj2_hello">Análisis Histórico 2026 VetPlus</h3>
-
-      <div class="client-icon" aria-label="Proyecto VetPlus">
-        <img class="client-logo wide" src="assets/img/VetPlus/VETPLUS ICONN.jpg" alt="Logo VetPlus">
-      </div>
-      <p data-i18n="proj2_p">Dashboard para el monitoreo operativo de ventas en el sector de veterinarias y supermercados. Esta solución permite la trazabilidad del ciclo de ventas, desde la geolocalización de clientes hasta el análisis detallado del desempeño de la fuerza de ventas y el inventario de productos.</p>
-      <div class="proj-stack"><span data-i18n="chip_powerBI">Power BI</span><span data-i18n="chip_soread">Spreadsheets</span></div>
-      <button class="proj-btn" onclick="openProject(1)"><span data-i18n="proj_btn">Ver proyecto</span></button>
-    </div>
-    <div class="proj-card">
-      <h3 data-i18n="proj3_ho">Análisis de Ganancias Elite Marry Me</h3>
-
-      <div class="client-icon" aria-label="Proyecto Elite Marry Me">
-        <img class="client-logo" src="assets/img/Marry Me/ICON MARRY ME.jpg" alt="Logo Elite Marry Me">
-      </div>
-      <p data-i18n="proj3_p">Este dashboard permite el seguimiento de propuestas de negocio y rendimiento de ingresos.</p>
-      <div class="proj-stack"><span data-i18n="chip_analisi">Power BI</span><span data-i18n="chip_invet">Looker Studio</span><span data-i18n="chip_big">BigQuery</span><span data-i18n="chip_spread">Spreadsheets</span></div>
-      <button class="proj-btn" onclick="openProject(2)"><span data-i18n="proj_btn">Ver proyecto</span></button>
-    </div>
-  </div>
-</section>
-
 
 <section id="kgtech">
   <div class="kgtech-head">
@@ -267,8 +253,6 @@
   </div>
   <div class="kg-cta">
     <a class="btn btn-primary" href="https://wa.me/50575151790" target="_blank" rel="noopener" data-i18n="kg_cta2">Solicita una cotización</a>
-    <!-- Reemplaza este enlace por la dirección real de tu web -->
-    <a class="btn btn-ghost" href="https://www.example.com" target="_blank" rel="noopener" data-i18n="kg_cta3">Visita mi web</a>
   </div>
 
 </section>
@@ -282,36 +266,7 @@
   </div>
 </section>
 
-<footer data-i18n="footer_text">Hecho con amor · Geraldine © 2026</footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="projectModal">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeProject()">✕</button>
-    <h3 id="modalTitle"></h3>
-    <p class="modal-desc" id="modalDesc"></p>
-    <div class="modal-gallery" id="modalGallery" aria-label="Galería de imágenes del proyecto"></div>
-    <div class="dash-preview">
-      <div class="dash-label" id="modalDashLabel">// vista previa ilustrativa del dashboard</div>
-      <div class="dash-kpis" id="modalKpis"></div>
-      <div class="dash-chart">
-        <div style="height:45%"></div><div style="height:80%"></div><div style="height:60%"></div>
-        <div style="height:95%"></div><div style="height:55%"></div><div style="height:75%"></div><div style="height:40%"></div>
-      </div>
-    </div>
-    <h4 id="modalStackH">Stack técnico</h4>
-    <ul id="modalBullets"></ul>
-  </div>
-</div>
-
-<!-- VISOR DE IMAGEN AMPLIADA -->
-<div class="image-lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar imagen ampliada">✕</button>
-  <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Imagen anterior">‹</button>
-  <img id="lightboxImage" src="" alt="">
-  <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Imagen siguiente">›</button>
-  <div class="lightbox-counter" id="lightboxCounter"></div>
-</div>
+<footer data-i18n="footer_text">Geraldine.io © 2026</footer>
 
 <script src="assets/script.js?v=5"></script>
 
