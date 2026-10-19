@@ -484,3 +484,18 @@
 @media (prefers-reduced-motion:reduce){
   .reveal-ready{opacity:1;translate:none;}
 }
+
+/* Lightweight native SVG entrance: the rose follows the supplied lettering. */
+.site-launcher{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;background:var(--pink-bg);pointer-events:none;animation:launcher-away 180ms ease-out 1000ms both;}
+.launcher-track{--run-distance:min(340px,75vw);position:relative;width:var(--run-distance);height:110px;overflow:hidden;color:#ad5074;}
+.launcher-rabbit{position:absolute;top:0;left:0;width:100px;height:85px;animation:rabbit-run 1100ms linear both;}
+.rabbit-hop{animation:rabbit-hop 180ms ease-in-out infinite;transform-origin:60px 65px;}
+.rabbit-eye{fill:var(--pink-bg);}
+.rabbit-back-leg{transform-origin:48px 52px;animation:rabbit-stride 180ms ease-in-out infinite alternate;}
+.rabbit-front-leg{transform-origin:72px 49px;animation:rabbit-stride 180ms ease-in-out -180ms infinite alternate-reverse;}
+.launcher-ground{position:absolute;left:0;right:0;bottom:21px;height:2px;background:currentColor;opacity:.18;border-radius:2px;}
+@keyframes rabbit-run{from{transform:translateX(-105px);}to{transform:translateX(var(--run-distance));}}
+@keyframes rabbit-hop{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-9px) rotate(-4deg);}}
+@keyframes rabbit-stride{from{transform:rotate(-18deg);}to{transform:rotate(18deg);}}
+@keyframes launcher-away{from{opacity:1;visibility:visible;}to{opacity:0;visibility:hidden;}}
+@media (prefers-reduced-motion:reduce){.site-launcher{display:none;}}

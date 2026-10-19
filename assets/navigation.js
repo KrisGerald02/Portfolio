@@ -125,8 +125,10 @@
     const items = document.querySelectorAll('#hero > div, .category-hero, .skill-card, .proj-card, .tl-item, .kg-service, .query-card, .about-text, .kgtech-head, .contact-row');
     items.forEach(element => {
       element.classList.add('reveal-ready');
-      observer.observe(element);
     });
+    const startReveals = () => items.forEach(element => observer.observe(element));
+    if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', startReveals, {once: true});
+    else startReveals();
     reduced.addEventListener('change', () => {
       if (reduced.matches) {
         observer.disconnect();
