@@ -493,12 +493,9 @@
 .rabbit-body{transform-origin:65px 62px;animation:rabbit-stretch 600ms ease-in-out infinite;}
 .rabbit-back-leg{transform-origin:55px 65px;animation:rabbit-hind-stride 600ms ease-in-out infinite;}
 .rabbit-front-leg{transform-origin:105px 63px;animation:rabbit-fore-stride 600ms ease-in-out infinite;}
-.rabbit-far-leg{opacity:.6;animation-delay:-70ms;}
+.rabbit-far-leg{animation-delay:-70ms;}
 .rabbit-head{transform-origin:100px 55px;animation:rabbit-head-bob 600ms ease-in-out infinite;}
 .rabbit-ears{transform-origin:113px 34px;animation:rabbit-ear-flow 600ms ease-in-out infinite;}
-.rabbit-eye{fill:#452334;}
-.rabbit-muzzle{fill:#f9dce7;}
-.rabbit-inner-ear{fill:#f3b4cc;}
 @keyframes rabbit-gallop{0%,100%{transform:translateY(4px) rotate(0);}20%{transform:translateY(-5px) rotate(-5deg);}40%{transform:translateY(-10px) rotate(-2deg);}60%{transform:translateY(-4px) rotate(5deg);}80%{transform:translateY(4px) rotate(3deg);}}
 @keyframes rabbit-stretch{0%,100%{transform:scale(.94,1.04);}35%{transform:scale(1.1,.92);}65%{transform:scale(1.02,1);}85%{transform:scale(.94,1.04);}}
 @keyframes rabbit-hind-stride{0%,100%{transform:rotate(-12deg);}22%{transform:rotate(32deg);}42%{transform:rotate(67deg);}65%{transform:rotate(25deg);}85%{transform:rotate(-20deg);}}
