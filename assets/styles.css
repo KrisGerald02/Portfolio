@@ -485,22 +485,9 @@
   .reveal-ready{opacity:1;translate:none;}
 }
 
-/* A single centered rabbit running in place, animated with transforms only. */
+/* The supplied GIF is an alpha mask: exact original motion, one solid rose. */
 .site-launcher{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;background:var(--pink-bg);pointer-events:none;animation:launcher-away 180ms ease-out 1200ms both;}
-.launcher-track{width:180px;height:140px;display:grid;place-items:center;color:#ad5074;}
-.launcher-rabbit{display:block;width:180px;height:135px;overflow:visible;}
-.rabbit-hop{transform-origin:80px 65px;animation:rabbit-gallop 600ms ease-in-out infinite;}
-.rabbit-body{transform-origin:65px 62px;animation:rabbit-stretch 600ms ease-in-out infinite;}
-.rabbit-back-leg{transform-origin:55px 65px;animation:rabbit-hind-stride 600ms ease-in-out infinite;}
-.rabbit-front-leg{transform-origin:105px 63px;animation:rabbit-fore-stride 600ms ease-in-out infinite;}
-.rabbit-far-leg{animation-delay:-70ms;}
-.rabbit-head{transform-origin:100px 55px;animation:rabbit-head-bob 600ms ease-in-out infinite;}
-.rabbit-ears{transform-origin:113px 34px;animation:rabbit-ear-flow 600ms ease-in-out infinite;}
-@keyframes rabbit-gallop{0%,100%{transform:translateY(4px) rotate(0);}20%{transform:translateY(-5px) rotate(-5deg);}40%{transform:translateY(-10px) rotate(-2deg);}60%{transform:translateY(-4px) rotate(5deg);}80%{transform:translateY(4px) rotate(3deg);}}
-@keyframes rabbit-stretch{0%,100%{transform:scale(.94,1.04);}35%{transform:scale(1.1,.92);}65%{transform:scale(1.02,1);}85%{transform:scale(.94,1.04);}}
-@keyframes rabbit-hind-stride{0%,100%{transform:rotate(-12deg);}22%{transform:rotate(32deg);}42%{transform:rotate(67deg);}65%{transform:rotate(25deg);}85%{transform:rotate(-20deg);}}
-@keyframes rabbit-fore-stride{0%,100%{transform:rotate(15deg);}22%{transform:rotate(-38deg);}42%{transform:rotate(-72deg);}65%{transform:rotate(-10deg);}85%{transform:rotate(28deg);}}
-@keyframes rabbit-head-bob{0%,100%{transform:rotate(0);}35%{transform:rotate(-5deg);}70%{transform:rotate(4deg);}}
-@keyframes rabbit-ear-flow{0%,100%{transform:rotate(0);}35%{transform:rotate(-12deg);}70%{transform:rotate(9deg);}}
+.launcher-track{width:min(260px,70vw);aspect-ratio:16/9;display:grid;place-items:center;}
+.launcher-rabbit{width:100%;height:100%;background:#ad5074;mask:url('img/launcher-rabbit.gif') center/contain no-repeat;-webkit-mask:url('img/launcher-rabbit.gif') center/contain no-repeat;clip-path:inset(0 0 3.5% 0);}
 @keyframes launcher-away{from{opacity:1;visibility:visible;}to{opacity:0;visibility:hidden;}}
 @media (prefers-reduced-motion:reduce){.site-launcher{display:none;}}
