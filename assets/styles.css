@@ -449,7 +449,7 @@
 @keyframes menu-item{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @keyframes content-enter{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion:no-preference){
-  #hero h1,.category-hero h1{animation:content-enter 280ms cubic-bezier(.16,1,.3,1) both;}
+
   .proj-card .client-icon img{transition:transform 220ms cubic-bezier(.16,1,.3,1);}
   .proj-card .client-icon:hover img{transform:scale(1.04);}
   .btn,.proj-btn{transition:transform 160ms;}
@@ -473,3 +473,14 @@
 }
 /* Decorative artwork stays visible without continuous background animation. */
 .bg-decor span,.ear,.float-bit,.type-blink,.paw-tap{animation:none;}
+
+@media (prefers-reduced-motion:no-preference){
+  .reveal-ready{opacity:0;translate:0 16px;transition:opacity 420ms ease-out,translate 420ms cubic-bezier(.16,1,.3,1);}
+  .reveal-ready.reveal-visible{opacity:1;translate:0 0;}
+  .ear{animation:twitch 6s ease-in-out infinite;}
+  .ear.right{animation-delay:1s;}
+  .modal-overlay.open .modal-card{animation-duration:320ms;}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal-ready{opacity:1;translate:none;}
+}
