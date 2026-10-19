@@ -113,4 +113,26 @@
   window.addEventListener('pagehide', () => closeMenu(false, true));
   window.addEventListener('pageshow', () => { toggle.setAttribute('aria-expanded', 'false'); });
 
+  // Reveal once on entry, using only opacity and translation (no blur or timers).
+  if ('IntersectionObserver' in window && !reduced.matches) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {threshold: 0, rootMargin: '0px 0px -24px 0px'});
+    const items = document.querySelectorAll('#hero > div, .category-hero, .skill-card, .proj-card, .tl-item, .kg-service, .query-card, .about-text, .kgtech-head, .contact-row');
+    items.forEach(element => {
+      element.classList.add('reveal-ready');
+      observer.observe(element);
+    });
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) {
+        observer.disconnect();
+        items.forEach(element => element.classList.add('reveal-visible'));
+      }
+    });
+  }
+
 })();
