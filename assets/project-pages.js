@@ -332,14 +332,14 @@ function openProject(index){
   gallery.hidden = project.images.length === 0;
   gallery.innerHTML = project.images.length ? `
     <div class="carousel-stage">
-      <img class="carousel-image" id="carouselImage" src="${project.images[0].src}" alt="${project.images[0].alt}">
+      <img decoding="async" class="carousel-image" id="carouselImage" src="${project.images[0].src}" alt="${project.images[0].alt}">
       <button class="carousel-nav prev" type="button" aria-label="Previous image">‹</button>
       <button class="carousel-nav next" type="button" aria-label="Next image">›</button>
       <span class="carousel-counter" id="carouselCounter">1 / ${project.images.length}</span>
       <button class="carousel-zoom" type="button">🔍 ${currentLang === 'en' ? 'Zoom' : 'Ampliar'}</button>
     </div>
     <div class="carousel-thumbs">
-      ${project.images.map((image, i) => `<button class="carousel-thumb${i === 0 ? ' active' : ''}" type="button" data-index="${i}" aria-label="Image ${i + 1}"><img src="${image.src}" alt=""></button>`).join('')}
+      ${project.images.map((image, i) => `<button class="carousel-thumb${i === 0 ? ' active' : ''}" type="button" data-index="${i}" aria-label="Image ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" alt=""></button>`).join('')}
     </div>` : '';
   document.getElementById('modalKpis').innerHTML = project.technologies.map(technology => `<span class="modal-tech-pill">${technology}</span>`).join('');
   const fileLink = document.getElementById('modalFileLink');

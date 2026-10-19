@@ -52,7 +52,7 @@
     };
     clearTimeout(closingTimer);
     if (reduced.matches || immediate) finish();
-    else closingTimer = setTimeout(finish, 230);
+    else closingTimer = setTimeout(finish, 180);
   }
 
   function openMenu() {
@@ -80,7 +80,7 @@
       }
     });
     panel.querySelectorAll('.mobile-menu-top, .mobile-menu-kicker, .mobile-menu-links a, .mobile-menu-footer').forEach((el, i) => {
-      el.style.setProperty('--menu-delay', `${i * 45}ms`);
+      el.style.setProperty('--menu-delay', `${Math.min(i * 15, 90)}ms`);
     });
     savedOverflow = document.body.style.overflow;
     savedRootOverflow = document.documentElement.style.overflow;
@@ -113,21 +113,4 @@
   window.addEventListener('pagehide', () => closeMenu(false, true));
   window.addEventListener('pageshow', () => { toggle.setAttribute('aria-expanded', 'false'); });
 
-  // Content remains visible if JavaScript or IntersectionObserver is unavailable.
-  const revealItems = document.querySelectorAll('.skill-card, .proj-card, .tl-item, .kg-service, .query-card, .about-text');
-  if ('IntersectionObserver' in window && !reduced.matches) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-      });
-    }, {threshold: 0.08});
-    revealItems.forEach((element, i) => {
-      element.classList.add('scroll-reveal');
-      element.style.setProperty('--reveal-delay', `${(i % 3) * 45}ms`);
-      observer.observe(element);
-    });
-    reduced.addEventListener('change', () => {
-      if (reduced.matches) { observer.disconnect(); revealItems.forEach(el => el.classList.add('is-visible')); }
-    });
-  }
 })();
