@@ -111,7 +111,7 @@ Ready for the next challenge 🐇`
     sobre_p3:"Outside of data analysis, I also explore mobile development (Swift, Kotlin) and enjoy innovation challenges: two first places in my university's research and innovation events prove it 🐇.",
     skills_eyebrow:"tech stack", skills_title:"Technological tools",
     skill_h1:"🗄️ Databases", skill_h2:"📊 BI &amp; Visualization", skill_h3:"💻 Programming", skill_h4:"🧠 Other skills", skill_h5:"⚙️ Automations", skill_h6:"🎨 Design",
-    skill_tools:"🛠️ Collaboration tools", skill_methods:"📋 Methodologies", skill_web:"🌐 Web development", skill_containers:"📦 Containers", skill_os:"🖥️ Operating systems",
+    skill_tools:"🛠️ Collaboration tools", skill_methods:"📋 Methodologies", chip_agile:"Agile", skill_web:"🌐 Web development", skill_containers:"📦 Containers", skill_os:"🖥️ Operating systems",
     chip_equipo:"Teamwork", chip_com:"Communication", chip_idiomas:"Spanish / English",
     term_eyebrow:"interactive", term_title:"Ask my terminal 🐾",
     term_desc:"Type a command and press Enter. Try <code class=\"mono\">help</code>.",
