@@ -485,17 +485,25 @@
   .reveal-ready{opacity:1;translate:none;}
 }
 
-/* Lightweight native SVG entrance: the rose follows the supplied lettering. */
-.site-launcher{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;background:var(--pink-bg);pointer-events:none;animation:launcher-away 180ms ease-out 1000ms both;}
-.launcher-track{--run-distance:min(340px,75vw);position:relative;width:var(--run-distance);height:110px;overflow:hidden;color:#ad5074;}
-.launcher-rabbit{position:absolute;top:0;left:0;width:100px;height:85px;animation:rabbit-run 1100ms linear both;}
-.rabbit-hop{animation:rabbit-hop 180ms ease-in-out infinite;transform-origin:60px 65px;}
-.rabbit-eye{fill:var(--pink-bg);}
-.rabbit-back-leg{transform-origin:48px 52px;animation:rabbit-stride 180ms ease-in-out infinite alternate;}
-.rabbit-front-leg{transform-origin:72px 49px;animation:rabbit-stride 180ms ease-in-out -180ms infinite alternate-reverse;}
-.launcher-ground{position:absolute;left:0;right:0;bottom:21px;height:2px;background:currentColor;opacity:.18;border-radius:2px;}
-@keyframes rabbit-run{from{transform:translateX(-105px);}to{transform:translateX(var(--run-distance));}}
-@keyframes rabbit-hop{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-9px) rotate(-4deg);}}
-@keyframes rabbit-stride{from{transform:rotate(-18deg);}to{transform:rotate(18deg);}}
+/* A single centered rabbit running in place, animated with transforms only. */
+.site-launcher{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;background:var(--pink-bg);pointer-events:none;animation:launcher-away 180ms ease-out 1200ms both;}
+.launcher-track{width:180px;height:140px;display:grid;place-items:center;color:#ad5074;}
+.launcher-rabbit{display:block;width:180px;height:135px;overflow:visible;}
+.rabbit-hop{transform-origin:80px 65px;animation:rabbit-gallop 600ms ease-in-out infinite;}
+.rabbit-body{transform-origin:65px 62px;animation:rabbit-stretch 600ms ease-in-out infinite;}
+.rabbit-back-leg{transform-origin:55px 65px;animation:rabbit-hind-stride 600ms ease-in-out infinite;}
+.rabbit-front-leg{transform-origin:105px 63px;animation:rabbit-fore-stride 600ms ease-in-out infinite;}
+.rabbit-far-leg{opacity:.6;animation-delay:-70ms;}
+.rabbit-head{transform-origin:100px 55px;animation:rabbit-head-bob 600ms ease-in-out infinite;}
+.rabbit-ears{transform-origin:113px 34px;animation:rabbit-ear-flow 600ms ease-in-out infinite;}
+.rabbit-eye{fill:#452334;}
+.rabbit-muzzle{fill:#f9dce7;}
+.rabbit-inner-ear{fill:#f3b4cc;}
+@keyframes rabbit-gallop{0%,100%{transform:translateY(4px) rotate(0);}20%{transform:translateY(-5px) rotate(-5deg);}40%{transform:translateY(-10px) rotate(-2deg);}60%{transform:translateY(-4px) rotate(5deg);}80%{transform:translateY(4px) rotate(3deg);}}
+@keyframes rabbit-stretch{0%,100%{transform:scale(.94,1.04);}35%{transform:scale(1.1,.92);}65%{transform:scale(1.02,1);}85%{transform:scale(.94,1.04);}}
+@keyframes rabbit-hind-stride{0%,100%{transform:rotate(-12deg);}22%{transform:rotate(32deg);}42%{transform:rotate(67deg);}65%{transform:rotate(25deg);}85%{transform:rotate(-20deg);}}
+@keyframes rabbit-fore-stride{0%,100%{transform:rotate(15deg);}22%{transform:rotate(-38deg);}42%{transform:rotate(-72deg);}65%{transform:rotate(-10deg);}85%{transform:rotate(28deg);}}
+@keyframes rabbit-head-bob{0%,100%{transform:rotate(0);}35%{transform:rotate(-5deg);}70%{transform:rotate(4deg);}}
+@keyframes rabbit-ear-flow{0%,100%{transform:rotate(0);}35%{transform:rotate(-12deg);}70%{transform:rotate(9deg);}}
 @keyframes launcher-away{from{opacity:1;visibility:visible;}to{opacity:0;visibility:hidden;}}
 @media (prefers-reduced-motion:reduce){.site-launcher{display:none;}}
