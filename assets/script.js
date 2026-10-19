@@ -181,7 +181,7 @@ Ready for the next challenge 🐇`
   function setLang(lang, persist = true){
     currentLang = lang;
     document.getElementById('htmlRoot').lang = lang;
-    document.getElementById('langLabel').textContent = lang === 'es' ? 'EN' : 'ES';
+    document.getElementById('langLabel').textContent = lang === 'es' ? 'Cambiar idioma · EN' : 'Change language · ES';
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       el.innerHTML = lang === 'en' ? (enDict[key] || esCache[key]) : esCache[key];

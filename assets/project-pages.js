@@ -96,7 +96,7 @@ let activeProjectIndex = null;
 function setLang(lang, persist = true){
   currentLang = lang;
   document.documentElement.lang = lang;
-  langLabel.textContent = lang === 'en' ? 'ES' : 'EN';
+  langLabel.textContent = lang === 'en' ? 'Change language · ES' : 'Cambiar idioma · EN';
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.dataset.i18n;
     if(translations[lang][key]) element.textContent = translations[lang][key];
