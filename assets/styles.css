@@ -85,7 +85,7 @@
   .lang-btn{
     display:flex; align-items:center; gap:6px; background:var(--cream); border:1.5px solid var(--pink-deep);
     color:var(--pink-deeper); padding:8px 14px; border-radius:999px; font-size:0.82rem; font-weight:700;
-    font-family:'JetBrains Mono',monospace; cursor:pointer; transition:.25s;
+    font-family:'Inter',sans-serif; white-space:nowrap; cursor:pointer; transition:.25s;
   }
   .lang-btn:hover{ background:var(--pink-primary); color:var(--ink); }
   .theme-btn{
@@ -405,3 +405,9 @@
 .proj-card .website-logo{display:block;width:100%;height:auto;max-height:100%;object-fit:contain;}
 
 .proj-card .website-logo-wrap{background:transparent;}
+
+@media (max-width:480px){
+  header{flex-wrap:wrap;}
+  .header-actions{width:100%;justify-content:flex-end;}
+  nav, .category-nav{top:100%;}
+}
