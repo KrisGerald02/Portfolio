@@ -158,7 +158,7 @@ Ready for the next challenge 🐇`
     kg_s2_h:"Database Administration", kg_s2_p:"Design, modeling and maintenance in PostgreSQL, SQL Server and BigQuery.",
     kg_s3_h:"Report Automation (ETL)", kg_s3_p:"Connecting and cleaning data from multiple sources for always up-to-date reports.",
     kg_s4_h:"Data Consulting", kg_s4_p:"Support for small businesses looking to start using their data to their advantage.",
-    kg_cta1:"Request a quote", kg_cta2:"Request a quote",
+    kg_website:"Visit KG Tech →", kg_cta1:"Request a quote", kg_cta2:"Request a quote",
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
     contact_eyebrow:"contact", contact_title:"Let's build your next dashboard?",
     contact_desc:"I'm available for internships and freelance data analysis / BI projects. Write to me, this bunny replies fast 🐇.",
