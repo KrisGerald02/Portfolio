@@ -346,14 +346,14 @@ Ready for the next challenge 🐇`
     gallery.hidden = images.length === 0;
     gallery.innerHTML = images.length ? `
       <div class="carousel-stage">
-        <img class="carousel-image" id="carouselImage" src="${images[0].src}" alt="${images[0].alt}">
+        <img decoding="async" class="carousel-image" id="carouselImage" src="${images[0].src}" alt="${images[0].alt}">
         <button class="carousel-nav prev" type="button" aria-label="Imagen anterior">‹</button>
         <button class="carousel-nav next" type="button" aria-label="Imagen siguiente">›</button>
         <span class="carousel-counter" id="carouselCounter">1 / ${images.length}</span>
         <button class="carousel-zoom" type="button" aria-label="Ampliar imagen">🔍 ${currentLang === 'es' ? 'Ampliar' : 'Zoom'}</button>
       </div>
       <div class="carousel-thumbs" aria-label="Miniaturas">
-        ${images.map((img, index) => `<button class="carousel-thumb${index === 0 ? ' active' : ''}" type="button" data-index="${index}" aria-label="Ver imagen ${index + 1}"><img src="${img.src}" alt=""></button>`).join('')}
+        ${images.map((img, index) => `<button class="carousel-thumb${index === 0 ? ' active' : ''}" type="button" data-index="${index}" aria-label="Ver imagen ${index + 1}"><img loading="lazy" decoding="async" src="${img.src}" alt=""></button>`).join('')}
       </div>` : '';
     document.querySelector('.dash-preview').hidden = images.length > 0;
     if(images.length){

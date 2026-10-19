@@ -52,8 +52,8 @@
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
     padding:16px 5vw;
-    background:rgba(253,238,243,0.75);
-    backdrop-filter:blur(10px);
+    background:var(--pink-bg);
+
     border-bottom:1px solid var(--line);
     gap:12px;
   }
@@ -67,7 +67,7 @@
     display:flex; align-items:center; gap:5px; padding:8px 12px; border:0; border-radius:999px;
     background:transparent; color:var(--ink-soft); font:500 0.85rem 'Inter',sans-serif; cursor:pointer; transition:.25s;
   }
-  html[data-theme="dark"] header{ background:rgba(33,25,32,.86); }
+  html[data-theme="dark"] header{ background:var(--pink-bg); }
   .nav-dropdown-toggle:hover, .nav-dropdown-toggle:focus-visible, .nav-dropdown.open .nav-dropdown-toggle{
     background:var(--pink-primary); color:var(--ink); outline:none;
   }
@@ -227,7 +227,7 @@
 
   /* MODAL */
   .modal-overlay{
-    position:fixed; inset:0; background:rgba(61,43,57,0.55); backdrop-filter:blur(3px);
+    position:fixed; inset:0; background:rgba(61,43,57,0.55);
     display:none; align-items:center; justify-content:center; z-index:200; padding:20px;
   }
   .modal-overlay.open{ display:flex; }
@@ -414,10 +414,10 @@
     width:100%;max-width:none;height:100dvh;max-height:none;margin:0;
     padding:28px;border:0;overflow-y:auto;overscroll-behavior:contain;
     background:var(--pink-bg);color:var(--ink);z-index:1000;
-    clip-path:inset(0);animation:menu-reveal 480ms cubic-bezier(.16,1,.3,1) both;
+    animation:menu-reveal 280ms cubic-bezier(.16,1,.3,1) both;
   }
   .mobile-menu::backdrop{background:var(--pink-bg);}
-  .mobile-menu[open].is-closing{animation:menu-conceal 230ms cubic-bezier(.16,1,.3,1) both;}
+  .mobile-menu[open].is-closing{animation:menu-conceal 180ms cubic-bezier(.16,1,.3,1) both;}
   .mobile-menu-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .mobile-menu-top .brand{width:170px;font-size:1.18rem;gap:4px;}
   .mobile-menu-top .brand span{color:var(--pink-deeper);}
@@ -442,26 +442,23 @@
   .mobile-menu-contact svg{width:17px;height:17px;}
   .mobile-menu-contact a:hover{background:var(--pink-primary);}
   .mobile-menu :focus-visible{outline:2px solid var(--pink-deeper);outline-offset:4px;}
-  .mobile-menu.is-open :is(.mobile-menu-top,.mobile-menu-kicker,.mobile-menu-links a,.mobile-menu-footer){animation:menu-item 450ms cubic-bezier(.16,1,.3,1) var(--menu-delay,0ms) both;}
+  .mobile-menu.is-open :is(.mobile-menu-top,.mobile-menu-kicker,.mobile-menu-links a,.mobile-menu-footer){animation:menu-item 220ms cubic-bezier(.16,1,.3,1) var(--menu-delay,0ms) both;}
 }
-@keyframes menu-reveal{from{clip-path:inset(0 0 100% 0);}to{clip-path:inset(0);}}
-@keyframes menu-conceal{from{clip-path:inset(0);}to{clip-path:inset(0 0 100% 0);}}
+@keyframes menu-reveal{from{transform:translateY(-100%);}to{transform:translateY(0);}}
+@keyframes menu-conceal{from{transform:translateY(0);}to{transform:translateY(-100%);}}
 @keyframes menu-item{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @keyframes content-enter{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion:no-preference){
-  #hero h1,.category-hero h1{animation:content-enter 800ms cubic-bezier(.16,1,.3,1) both;}
-  .scroll-reveal{opacity:0;translate:0 28px;transition:opacity 800ms cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms),translate 800ms cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms);}
-  .scroll-reveal.is-visible{opacity:1;translate:0 0;}
-  .proj-card .client-icon img{transition:transform 650ms cubic-bezier(.16,1,.3,1);}
+  #hero h1,.category-hero h1{animation:content-enter 280ms cubic-bezier(.16,1,.3,1) both;}
+  .proj-card .client-icon img{transition:transform 220ms cubic-bezier(.16,1,.3,1);}
   .proj-card .client-icon:hover img{transform:scale(1.04);}
-  .btn,.proj-btn{transition:transform 280ms,box-shadow 280ms,filter 280ms;}
-  .btn:hover,.btn:focus-visible,.proj-btn:hover,.proj-btn:focus-visible{transform:translateY(-3px);filter:brightness(1.04);box-shadow:var(--shadow);}
+  .btn,.proj-btn{transition:transform 160ms;}
+  .btn:hover,.btn:focus-visible,.proj-btn:hover,.proj-btn:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow);}
   .btn:active,.proj-btn:active{transform:scale(.97);}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-  .scroll-reveal{opacity:1;translate:none;}
 }
 
 @media (max-width:480px){
@@ -470,16 +467,9 @@
   nav, .category-nav{top:100%;}
 }
 
-/* Shared project opening animation, replayed whenever a project is opened. */
+/* One short, compositor-friendly entrance for the project panel. */
 @media (prefers-reduced-motion:no-preference){
-  .modal-overlay.open{animation:project-backdrop-in 380ms ease-out both;}
-  .modal-overlay.open .modal-card{animation:modalIn 480ms cubic-bezier(.16,1,.3,1) both;}
-  .modal-overlay.open .modal-card > :not(.modal-close){animation:project-content-in 450ms cubic-bezier(.16,1,.3,1) both;}
-  .modal-overlay.open .modal-card > :nth-child(2){animation-delay:60ms;}
-  .modal-overlay.open .modal-card > :nth-child(3){animation-delay:105ms;}
-  .modal-overlay.open .modal-card > :nth-child(4){animation-delay:150ms;}
-  .modal-overlay.open .modal-card > :nth-child(5){animation-delay:195ms;}
-  .modal-overlay.open .modal-card > :nth-child(n+6){animation-delay:240ms;}
+  .modal-overlay.open .modal-card{animation:modalIn 220ms cubic-bezier(.16,1,.3,1) both;}
 }
-@keyframes project-backdrop-in{from{background-color:rgba(61,43,57,0);backdrop-filter:blur(0);}to{background-color:rgba(61,43,57,.55);backdrop-filter:blur(3px);}}
-@keyframes project-content-in{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+/* Decorative artwork stays visible without continuous background animation. */
+.bg-decor span,.ear,.float-bit,.type-blink,.paw-tap{animation:none;}
