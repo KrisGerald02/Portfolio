@@ -30,25 +30,10 @@
     projectsDropdown.classList.remove('open');
     projectsToggle.setAttribute('aria-expanded', 'false');
   }
-  function closeMobileMenu(){
-    navMenu.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    closeProjectsMenu();
-  }
-  closeMobileMenu();
-  window.addEventListener('pageshow', closeMobileMenu);
-  navToggle.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-    if(!isOpen) closeProjectsMenu();
-  });
   projectsToggle.addEventListener('click', () => {
     const isOpen = projectsDropdown.classList.toggle('open');
     projectsToggle.setAttribute('aria-expanded', String(isOpen));
   });
-  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    closeMobileMenu();
-  }));
   document.addEventListener('click', (event) => {
     if(!projectsDropdown.contains(event.target)) closeProjectsMenu();
   });
