@@ -196,11 +196,11 @@ Ready for the next challenge 🐇`
       tag: {es:"Business Intelligence", en:"Business Intelligence"},
       title: {es:"Sistema de Monitoreo de Ríos en Nicaragua", en:"River Monitoring System in Nicaragua"},
       images: [
-        {src:"assets/img/INETER/view1.png", alt:"Dashboard INETER - vista 1"},
-        {src:"assets/img/INETER/view2.png", alt:"Dashboard INETER - vista 2"},
-        {src:"assets/img/INETER/view3.png", alt:"Dashboard INETER - vista 3"},
-        {src:"assets/img/INETER/view4.png", alt:"Dashboard INETER - vista 4"},
-        {src:"assets/img/INETER/view5.png", alt:"Dashboard INETER - vista 5"}
+        {src:"assets/img/INETER/view1.webp", alt:"Dashboard INETER - vista 1"},
+        {src:"assets/img/INETER/view2.webp", alt:"Dashboard INETER - vista 2"},
+        {src:"assets/img/INETER/view3.webp", alt:"Dashboard INETER - vista 3"},
+        {src:"assets/img/INETER/view4.webp", alt:"Dashboard INETER - vista 4"},
+        {src:"assets/img/INETER/view5.webp", alt:"Dashboard INETER - vista 5"}
       ],
       desc: {
         es:"Panel dedicado a la identificación de patrones históricos en desbordamientos, facilitando la auditoría de registros de lectura y el análisis temporal por estación.",
@@ -220,10 +220,10 @@ Ready for the next challenge 🐇`
       tag: {es:"Aplicación móvil", en:"Mobile app"},
       title: {es:"Análisis Histórico 2026 VetPlus", en:"VetPlus 2026 Historical Analysis"},
       images: [
-        {src:"assets/img/VetPlus/view1.png", alt:"VetPlus - vista 1"},
-        {src:"assets/img/VetPlus/view2.png", alt:"VetPlus - vista 2"},
-        {src:"assets/img/VetPlus/view3.png", alt:"VetPlus - vista 3"},
-        {src:"assets/img/VetPlus/view4.png", alt:"VetPlus - vista 4"}
+        {src:"assets/img/VetPlus/view1.webp", alt:"VetPlus - vista 1"},
+        {src:"assets/img/VetPlus/view2.webp", alt:"VetPlus - vista 2"},
+        {src:"assets/img/VetPlus/view3.webp", alt:"VetPlus - vista 3"},
+        {src:"assets/img/VetPlus/view4.webp", alt:"VetPlus - vista 4"}
       ],
       desc: {
         es:"Dashboard para el monitoreo operativo de ventas en el sector de veterinarias y supermercados. Esta solución permite la trazabilidad del ciclo de ventas, desde la geolocalización de clientes hasta el análisis detallado del desempeño de la fuerza de ventas y el inventario de productos.",
@@ -243,8 +243,8 @@ Ready for the next challenge 🐇`
       tag: {es:"Aplicación móvil", en:"Mobile app"},
       title: {es:"Análisis de Ganancias Elite Marry Me", en:"Elite Marry Me Profit Analysis"},
       images: [
-        {src:"assets/img/Marry Me/view1.png", alt:"Elite Marry Me - vista 1"},
-        {src:"assets/img/Marry Me/view2.png", alt:"Elite Marry Me - vista 2"}
+        {src:"assets/img/Marry Me/view1.webp", alt:"Elite Marry Me - vista 1"},
+        {src:"assets/img/Marry Me/view2.webp", alt:"Elite Marry Me - vista 2"}
       ],
       desc: {
         es:"Este dashboard permite el seguimiento de propuestas de negocio y rendimiento de ingresos.",
