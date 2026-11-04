@@ -134,11 +134,11 @@ const projects = [
   {
     title:{en:'River Monitoring System in Nicaragua', es:'Sistema de Monitoreo de Ríos en Nicaragua'},
     images:[
-      {src:'assets/img/INETER/view1.png', alt:'Dashboard INETER - vista 1'},
-      {src:'assets/img/INETER/view2.png', alt:'Dashboard INETER - vista 2'},
-      {src:'assets/img/INETER/view3.png', alt:'Dashboard INETER - vista 3'},
-      {src:'assets/img/INETER/view4.png', alt:'Dashboard INETER - vista 4'},
-      {src:'assets/img/INETER/view5.png', alt:'Dashboard INETER - vista 5'}
+      {src:'assets/img/INETER/view1.webp', alt:'Dashboard INETER - vista 1'},
+      {src:'assets/img/INETER/view2.webp', alt:'Dashboard INETER - vista 2'},
+      {src:'assets/img/INETER/view3.webp', alt:'Dashboard INETER - vista 3'},
+      {src:'assets/img/INETER/view4.webp', alt:'Dashboard INETER - vista 4'},
+      {src:'assets/img/INETER/view5.webp', alt:'Dashboard INETER - vista 5'}
     ],
     desc:{en:'Dashboard for identifying historical overflow patterns, auditing reading records and analyzing each station over time.', es:'Panel dedicado a identificar patrones históricos de desbordamiento, auditar registros de lectura y analizar cada estación a través del tiempo.'},
     technologies:['PostgreSQL','Power BI','DAX'],
@@ -147,10 +147,10 @@ const projects = [
   {
     title:{en:'VetPlus 2026 Historical Analysis', es:'Análisis Histórico 2026 VetPlus'},
     images:[
-      {src:'assets/img/VetPlus/view1.png', alt:'VetPlus - vista 1'},
-      {src:'assets/img/VetPlus/view2.png', alt:'VetPlus - vista 2'},
-      {src:'assets/img/VetPlus/view3.png', alt:'VetPlus - vista 3'},
-      {src:'assets/img/VetPlus/view4.png', alt:'VetPlus - vista 4'}
+      {src:'assets/img/VetPlus/view1.webp', alt:'VetPlus - vista 1'},
+      {src:'assets/img/VetPlus/view2.webp', alt:'VetPlus - vista 2'},
+      {src:'assets/img/VetPlus/view3.webp', alt:'VetPlus - vista 3'},
+      {src:'assets/img/VetPlus/view4.webp', alt:'VetPlus - vista 4'}
     ],
     desc:{en:'Sales dashboard covering customer geolocation, sales force performance and product inventory.', es:'Dashboard de ventas con geolocalización de clientes, desempeño de la fuerza comercial e inventario de productos.'},
     technologies:['Power BI','Spreadsheets'],
@@ -159,8 +159,8 @@ const projects = [
   {
     title:{en:'Elite Marry Me Profit Analysis', es:'Análisis de Ganancias Elite Marry Me'},
     images:[
-      {src:'assets/img/Marry Me/view1.png', alt:'Elite Marry Me - vista 1'},
-      {src:'assets/img/Marry Me/view2.png', alt:'Elite Marry Me - vista 2'}
+      {src:'assets/img/Marry Me/view1.webp', alt:'Elite Marry Me - vista 1'},
+      {src:'assets/img/Marry Me/view2.webp', alt:'Elite Marry Me - vista 2'}
     ],
     desc:{en:'Dashboard for tracking business proposals and analyzing revenue performance.', es:'Dashboard para dar seguimiento a propuestas de negocio y analizar el rendimiento de los ingresos.'},
     technologies:['Power BI','Looker Studio','BigQuery','Spreadsheets'],
@@ -191,17 +191,17 @@ const projects = [
   {
     title:{en:'EffiDuino Production Efficiency Monitor', es:'Monitor de Eficiencia Productiva EffiDuino'},
     images:[
-      {src:'assets/img/EffiDuino/effiduino.png', alt:'EffiDuino production monitoring web dashboard'},
-      {src:'assets/img/EffiDuino/circuito.jpeg', alt:'EffiDuino Arduino circuit diagram'},
-      {src:'assets/img/EffiDuino/presentation/page-1.png', alt:'EffiDuino presentation cover'},
-      {src:'assets/img/EffiDuino/presentation/page-2.png', alt:'EffiDuino project introduction'},
-      {src:'assets/img/EffiDuino/presentation/page-3.png', alt:'EffiDuino project objectives'},
-      {src:'assets/img/EffiDuino/presentation/page-4.png', alt:'EffiDuino hardware components'},
-      {src:'assets/img/EffiDuino/presentation/page-5.png', alt:'EffiDuino Fritzing diagram'},
-      {src:'assets/img/EffiDuino/presentation/page-6.png', alt:'How EffiDuino works'},
-      {src:'assets/img/EffiDuino/presentation/page-7.png', alt:'EffiDuino impact in daily life'},
-      {src:'assets/img/EffiDuino/presentation/page-8.png', alt:'EffiDuino demonstration'},
-      {src:'assets/img/EffiDuino/presentation/page-9.png', alt:'EffiDuino presentation closing slide'}
+      {src:'assets/img/EffiDuino/effiduino.webp', alt:'EffiDuino production monitoring web dashboard'},
+      {src:'assets/img/EffiDuino/circuito.webp', alt:'EffiDuino Arduino circuit diagram'},
+      {src:'assets/img/EffiDuino/presentation/page-1.webp', alt:'EffiDuino presentation cover'},
+      {src:'assets/img/EffiDuino/presentation/page-2.webp', alt:'EffiDuino project introduction'},
+      {src:'assets/img/EffiDuino/presentation/page-3.webp', alt:'EffiDuino project objectives'},
+      {src:'assets/img/EffiDuino/presentation/page-4.webp', alt:'EffiDuino hardware components'},
+      {src:'assets/img/EffiDuino/presentation/page-5.webp', alt:'EffiDuino Fritzing diagram'},
+      {src:'assets/img/EffiDuino/presentation/page-6.webp', alt:'How EffiDuino works'},
+      {src:'assets/img/EffiDuino/presentation/page-7.webp', alt:'EffiDuino impact in daily life'},
+      {src:'assets/img/EffiDuino/presentation/page-8.webp', alt:'EffiDuino demonstration'},
+      {src:'assets/img/EffiDuino/presentation/page-9.webp', alt:'EffiDuino presentation closing slide'}
     ],
     desc:{en:'Accessible production-efficiency monitoring system that combines Arduino hardware, infrared sensors and Bluetooth communication with a web application. The dashboard displays real-time production, efficiency, active time and historical performance.', es:'Sistema accesible para monitorear la eficiencia productiva que combina hardware Arduino, sensores infrarrojos y comunicación Bluetooth con una aplicación web. El dashboard muestra producción en tiempo real, eficiencia, tiempo activo y rendimiento histórico.'},
     technologies:['HTML','CSS','JavaScript'],
@@ -213,16 +213,16 @@ const projects = [
   {
     title:{en:'Gerald Shop Brand Identity', es:'Identidad de Marca Gerald Shop'},
     images:[
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-1.png', alt:'Gerald Shop brand proposal cover'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-7.png', alt:'Gerald Shop product identity mockup'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-11.png', alt:'Gerald Shop brand description'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-12.png', alt:'Gerald Shop logo construction grid'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-13.png', alt:'Gerald Shop logo color variants'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-15.png', alt:'Gerald Shop brand colors'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-19.png', alt:'Gerald Shop social media stories'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-20.png', alt:'Gerald Shop social media posts'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-25.png', alt:'Gerald Shop delivery and apparel mockups'},
-      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-26.png', alt:'Gerald Shop promotional mockups'}
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-1.webp', alt:'Gerald Shop brand proposal cover'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-7.webp', alt:'Gerald Shop product identity mockup'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-11.webp', alt:'Gerald Shop brand description'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-12.webp', alt:'Gerald Shop logo construction grid'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-13.webp', alt:'Gerald Shop logo color variants'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-15.webp', alt:'Gerald Shop brand colors'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-19.webp', alt:'Gerald Shop social media stories'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-20.webp', alt:'Gerald Shop social media posts'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-25.webp', alt:'Gerald Shop delivery and apparel mockups'},
+      {src:'assets/img/GeraldShop/Propuesta%20de%20Marca%20Gerald%20Shop/slide-26.webp', alt:'Gerald Shop promotional mockups'}
     ],
     desc:{en:'Complete brand identity for Gerald Shop, a shipping agency that helps customers in Nicaragua purchase products from the United States. The project includes the logo, visual system, social media pieces, promotional mockups and a full brand proposal.', es:'Identidad de marca completa para Gerald Shop, una agencia de envíos que ayuda a clientes en Nicaragua a comprar productos de Estados Unidos. El proyecto incluye el logo, sistema visual, piezas para redes sociales, mockups promocionales y una propuesta de marca completa.'},
     technologies:['Canva','Illustrator','Photoshop','PowerPoint'],
@@ -232,14 +232,14 @@ const projects = [
   },
   {
     title:{en:'Weekly Sales Performance Automation', es:'Automatización de Rendimiento Semanal de Ventas'},
-    images:[{src:'assets/img/Marry Me/gmail data weekly.png', alt:'Automated weekly sales performance report'}],
+    images:[{src:'assets/img/Marry Me/gmail data weekly.webp', alt:'Automated weekly sales performance report'}],
     desc:{en:'Weekly sales performance report automated with Google Apps Script. It consolidates data from BigQuery and HubSpot and distributes the updated report through Gmail.', es:'Reporte semanal de rendimiento de ventas automatizado con Google Apps Script. Consolida datos de BigQuery y HubSpot y distribuye el reporte actualizado por Gmail.'},
     technologies:['Google Apps Script','BigQuery','HubSpot','Gmail'],
     bullets:{en:['Automated extraction and processing with Google Apps Script','BigQuery and HubSpot data integration','Weekly report delivery through Gmail','Week-over-week KPI comparison'],es:['Extracción y procesamiento automatizados con Google Apps Script','Integración de datos de BigQuery y HubSpot','Envío semanal del reporte mediante Gmail','Comparación de KPIs contra la semana anterior']}
   },
   {
     title:{en:'Junk Rescue Monthly Marketing Performance', es:'Rendimiento Mensual de Marketing de Junk Rescue'},
-    images:[{src:'assets/img/Junk Rescue/view1.png', alt:'Junk Rescue monthly marketing performance dashboard'}],
+    images:[{src:'assets/img/Junk Rescue/view1.webp', alt:'Junk Rescue monthly marketing performance dashboard'}],
     desc:{en:'Monthly marketing data dashboard for Junk Rescue. It centralizes Excel and Vonigo CRM data to evaluate spend, leads, cost per lead and conversions by source.', es:'Dashboard mensual de datos de marketing para Junk Rescue. Centraliza información de Excel y del CRM Vonigo para evaluar inversión, leads, costo por lead y conversiones por fuente.'},
     technologies:['Excel','Vonigo CRM','Power BI','Marketing Analytics'],
     bullets:{en:['Monthly marketing performance update','Excel and Vonigo CRM data sources','Spend and leads analysis by source','Cost-per-lead and call conversion monitoring'],es:['Actualización mensual del rendimiento de marketing','Fuentes de datos Excel y CRM Vonigo','Análisis de inversión y leads por fuente','Monitoreo de costo por lead y conversión de llamadas']}
@@ -247,9 +247,9 @@ const projects = [
   {
     title:{en:'WashBunny Car Wash', es:'Autolavado WashBunny'},
     images:[
-      {src:'assets/img/WashBunny/view1.png', alt:'WashBunny dashboard - view 1'},
-      {src:'assets/img/WashBunny/view2.png', alt:'WashBunny dashboard - view 2'},
-      {src:'assets/img/WashBunny/view3.png', alt:'WashBunny dashboard - view 3'}
+      {src:'assets/img/WashBunny/view1.webp', alt:'WashBunny dashboard - view 1'},
+      {src:'assets/img/WashBunny/view2.webp', alt:'WashBunny dashboard - view 2'},
+      {src:'assets/img/WashBunny/view3.webp', alt:'WashBunny dashboard - view 3'}
     ],
     desc:{en:'Car wash dashboard that consolidates operational data from Excel and CSV files, with Power BI reporting and SharePoint-based collaboration.', es:'Dashboard para autolavado que consolida datos operativos provenientes de Excel y archivos CSV, con reportes en Power BI y colaboración mediante SharePoint.'},
     technologies:['Excel','CSV','Power BI','SharePoint'],
