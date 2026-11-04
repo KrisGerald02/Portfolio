@@ -6,10 +6,8 @@
   const mobile = matchMedia('(max-width: 860px)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const langBtn = document.getElementById('langBtn');
-  const themeBtn = document.getElementById('themeBtn');
   const isEs = () => document.documentElement.lang === 'es';
   const t = (es, en) => (isEs() ? es : en);
-  const GITHUB_PATH = 'M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.58 9.58 0 0 1 12 6.82c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.58 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z';
 
   // Header button: three bars plus a "Menú" label, like KG Tech.
   toggle.innerHTML = '<span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="menu-label"></span>';
@@ -29,28 +27,11 @@
       <nav class="mobile-menu-nav"><ul></ul></nav>
       <div class="mobile-menu-bottom">
         <a class="mobile-menu-cta" href="index.html#contacto"></a>
-        <div class="mobile-switch" role="group" data-switch="lang">
-          <span class="mobile-switch-label"></span>
-          <button type="button" data-value="es" lang="es">ES</button>
-          <button type="button" data-value="en" lang="en">EN</button>
-        </div>
-        <div class="mobile-switch" role="group" data-switch="theme">
-          <span class="mobile-switch-label"></span>
-          <button type="button" data-value="light"><span aria-hidden="true">☾</span><span class="mobile-switch-text"></span></button>
-          <button type="button" data-value="dark"><span aria-hidden="true">☀</span><span class="mobile-switch-text"></span></button>
-        </div>
-        <p class="mobile-menu-note"></p>
-        <div class="mobile-menu-contact">
-          <a href="https://wa.me/50576935552" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">☏</span> WhatsApp</a>
-          <a href="https://github.com/KrisGerald02" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="${GITHUB_PATH}"/></svg> GitHub</a>
-        </div>
       </div>
     </div>`;
   document.body.append(panel);
   const closeButton = panel.querySelector('.mobile-menu-close');
   const list = panel.querySelector('.mobile-menu-nav ul');
-  const langSwitch = panel.querySelector('[data-switch="lang"]');
-  const themeSwitch = panel.querySelector('[data-switch="theme"]');
   toggle.setAttribute('aria-controls', panel.id);
   let closingTimer;
   let savedOverflow = '';
@@ -117,18 +98,6 @@
     panel.querySelector('#mobileMenuTitle').textContent = t('EXPLORA MI PORTAFOLIO', 'EXPLORE MY PORTFOLIO');
     panel.querySelector('.mobile-menu-nav').setAttribute('aria-label', t('Navegación móvil', 'Mobile navigation'));
     panel.querySelector('.mobile-menu-cta').textContent = t('Hablemos →', 'Let’s talk →');
-    langSwitch.setAttribute('aria-label', t('Idioma', 'Language'));
-    langSwitch.querySelector('.mobile-switch-label').textContent = t('Idioma', 'Language');
-    themeSwitch.setAttribute('aria-label', t('Tema', 'Theme'));
-    themeSwitch.querySelector('.mobile-switch-label').textContent = t('Tema', 'Theme');
-    const texts = themeSwitch.querySelectorAll('.mobile-switch-text');
-    texts[0].textContent = t('Claro', 'Light');
-    texts[1].textContent = t('Oscuro', 'Dark');
-    panel.querySelector('.mobile-menu-note').textContent = t('Convirtamos tus ideas en soluciones digitales.', 'Let’s turn your ideas into digital solutions.');
-    const lang = isEs() ? 'es' : 'en';
-    const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-    langSwitch.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === lang)));
-    themeSwitch.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === theme)));
     if (langBtn) langBtn.dataset.short = isEs() ? 'EN' : 'ES';
   }
 
@@ -195,17 +164,6 @@
       }
     });
   });
-  langSwitch.addEventListener('click', event => {
-    const button = event.target.closest('button');
-    if (!button || button.getAttribute('aria-pressed') === 'true') return;
-    langBtn?.click();
-  });
-  themeSwitch.addEventListener('click', event => {
-    const button = event.target.closest('button');
-    if (!button || button.getAttribute('aria-pressed') === 'true') return;
-    themeBtn?.click();
-    syncLabels();
-  });
   // Rebuild translated labels whenever the page language changes.
   new MutationObserver(() => {
     syncLabels();
@@ -215,7 +173,6 @@
       projectsOpen = keep;
       const group = list.querySelector('.mobile-menu-group-toggle');
       if (group) { group.setAttribute('aria-expanded', String(keep)); list.querySelector('#mobileProjects').hidden = !keep; }
-      langSwitch.querySelector('[aria-pressed="true"]').focus({preventScroll: true});
     }
   }).observe(document.documentElement, {attributes: true, attributeFilter: ['lang']});
 
@@ -256,4 +213,38 @@
     });
   }
 
+})();
+
+// Round arrow button that appears after scrolling down and returns to the top.
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'back-to-top';
+  button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const label = () => {
+    const text = document.documentElement.lang === 'es' ? 'Volver arriba' : 'Back to top';
+    button.setAttribute('aria-label', text);
+    button.title = text;
+  };
+  label();
+  new MutationObserver(label).observe(document.documentElement, {attributes: true, attributeFilter: ['lang']});
+  document.body.append(button);
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const show = window.scrollY > Math.max(400, window.innerHeight * 0.6);
+    button.classList.toggle('is-visible', show);
+    button.tabIndex = show ? 0 : -1;
+    button.setAttribute('aria-hidden', String(!show));
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, {passive: true});
+  button.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: reduced.matches ? 'auto' : 'smooth'});
+    const target = Array.from(document.querySelectorAll('header a, header button')).find(el => el.offsetParent !== null);
+    if (target) target.focus({preventScroll: true});
+  });
+  update();
 })();
