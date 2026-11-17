@@ -551,7 +551,8 @@ html[data-theme="dark"] .back-to-top{color:var(--pink-bg);}
 html[data-theme="dark"] .back-to-top:hover{background:var(--ink);}
 
 /* ---------- Foto de perfil en una ventana tipo Windows, con la coneja que se asoma ---------- */
-#hero .photo-stage{min-height:0;padding:clamp(110px,14vw,140px) 0 46px;margin-top:clamp(-90px,-6vw,-40px);}
+#hero .photo-stage{min-height:0;padding:clamp(110px,14vw,140px) 0 46px;margin-top:clamp(-30px,-2vw,-10px);}
+@media (min-width:861px){#hero .photo-stage{justify-content:flex-end;padding-right:clamp(30px,5vw,80px);}}
 .photo-peek{--d:clamp(200px,27vw,280px);--x:74%;--y:0%;--r:9deg;position:relative;width:var(--d);height:calc(var(--d) * 1.26);}
 .coat-tan{--fur1:#F0C592;--fur2:#DDA468;--fur3:#B9824C;--ear1:#E2AE76;--ear2:#B98452;--in1:#EDD0D2;--in2:#D4A9AE;--shade:#8C5A2E;}
 .coat-grey{--fur1:#ADA399;--fur2:#847A70;--fur3:#5B524A;--ear1:#8F857B;--ear2:#5E554D;--in1:#DCC6C8;--in2:#B59A9D;--shade:#3A332E;}
