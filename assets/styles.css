@@ -551,7 +551,7 @@ html[data-theme="dark"] .back-to-top{color:var(--pink-bg);}
 html[data-theme="dark"] .back-to-top:hover{background:var(--ink);}
 
 /* ---------- Foto de perfil en una ventana tipo Windows, con la coneja que se asoma ---------- */
-#hero .photo-stage{min-height:0;padding:clamp(120px,17vw,170px) 0 46px;}
+#hero .photo-stage{min-height:0;padding:clamp(110px,14vw,140px) 0 46px;margin-top:clamp(-90px,-6vw,-40px);}
 .photo-peek{--d:clamp(200px,27vw,280px);--x:74%;--y:0%;--r:9deg;position:relative;width:var(--d);height:calc(var(--d) * 1.26);}
 .coat-tan{--fur1:#F0C592;--fur2:#DDA468;--fur3:#B9824C;--ear1:#E2AE76;--ear2:#B98452;--in1:#EDD0D2;--in2:#D4A9AE;--shade:#8C5A2E;}
 .coat-grey{--fur1:#ADA399;--fur2:#847A70;--fur3:#5B524A;--ear1:#8F857B;--ear2:#5E554D;--in1:#DCC6C8;--in2:#B59A9D;--shade:#3A332E;}
@@ -574,4 +574,16 @@ html[data-theme="dark"] .back-to-top:hover{background:var(--ink);}
 .peek-paw{position:absolute;top:calc(var(--d) * -.035);width:calc(var(--d) * .1);height:calc(var(--d) * .085);background:radial-gradient(ellipse at 50% 28%,#fff 50%,#DDD5D9 100%);box-shadow:0 2px 4px rgba(0,0,0,.28);border-radius:50%;transform:scale(0);transition:transform 160ms;}
 .peek-paw:first-child{left:calc(var(--d) * -.15);} .peek-paw:last-child{left:calc(var(--d) * .05);}
 .is-up .peek-paw{transform:scale(1);transition:transform 280ms 330ms cubic-bezier(.34,1.56,.64,1);}
-#hero .photo-stage{overflow-x:clip;}
+html{overflow-x:clip;}
+
+/* ---------- Proyectos en el inicio: un botón por categoría ---------- */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.cat-btn{display:flex;align-items:center;gap:14px;padding:18px 20px;background:var(--cream);border:1px solid var(--line);border-radius:16px;color:var(--ink);text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;}
+.cat-btn:hover{transform:translateY(-3px);border-color:var(--pink-deep);box-shadow:0 16px 30px -18px rgba(201,98,143,.55);}
+.cat-btn:focus-visible{outline:3px solid var(--pink-deeper);outline-offset:3px;}
+.cat-ico{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--pink-bg-2);font-size:1.5rem;}
+.cat-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+.cat-txt strong{font-family:'Fredoka',sans-serif;font-size:1.08rem;font-weight:600;}
+.cat-txt small{color:var(--ink-soft);font-size:.86rem;line-height:1.4;}
+.cat-arrow{flex:none;color:var(--pink-deeper);font-weight:700;transition:transform .2s;}
+.cat-btn:hover .cat-arrow{transform:translateX(3px);}
