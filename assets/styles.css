@@ -549,3 +549,29 @@ section[id]{scroll-margin-top:84px;}
 .back-to-top:focus-visible{outline:2px solid var(--pink-deeper);outline-offset:3px;}
 html[data-theme="dark"] .back-to-top{color:var(--pink-bg);}
 html[data-theme="dark"] .back-to-top:hover{background:var(--ink);}
+
+/* ---------- Foto de perfil en una ventana tipo Windows, con la coneja que se asoma ---------- */
+#hero .photo-stage{min-height:0;padding:clamp(120px,17vw,170px) 0 46px;}
+.photo-peek{--d:clamp(200px,27vw,280px);--x:74%;--y:0%;--r:9deg;position:relative;width:var(--d);height:calc(var(--d) * 1.26);}
+.coat-tan{--fur1:#F0C592;--fur2:#DDA468;--fur3:#B9824C;--ear1:#E2AE76;--ear2:#B98452;--in1:#EDD0D2;--in2:#D4A9AE;--shade:#8C5A2E;}
+.coat-grey{--fur1:#ADA399;--fur2:#847A70;--fur3:#5B524A;--ear1:#8F857B;--ear2:#5E554D;--in1:#DCC6C8;--in2:#B59A9D;--shade:#3A332E;}
+.peek-layer{position:absolute;inset:0;z-index:1;pointer-events:none;}
+.peek-front{z-index:3;}
+.peek-spot{position:absolute;left:var(--x);top:var(--y);width:0;height:0;transform:rotate(var(--r));}
+#hero .photo-stage svg.peek-bunny{position:absolute;left:0;bottom:0;width:calc(var(--d) * .62);max-width:none;height:auto;flex:none;z-index:auto;opacity:0;transform:translate(-50%,125%);transition:transform 300ms ease-in,opacity 120ms 200ms;}
+#hero .photo-stage .is-up svg.peek-bunny{opacity:1;transform:translate(-50%,9%);transition:transform 640ms cubic-bezier(.34,1.56,.64,1),opacity 80ms;}
+
+@keyframes peek-blink{0%,93%,100%{transform:scaleY(1);}96%{transform:scaleY(.1);}}
+#hero .photo-stage .profile-photo{position:relative;top:auto;right:auto;z-index:2;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);transform:none;cursor:pointer;box-shadow:0 22px 44px -20px rgba(201,98,143,.6);-webkit-tap-highlight-color:transparent;}
+#hero .photo-stage .profile-photo::after{display:none;}
+.win-bar{flex:none;display:flex;justify-content:flex-end;height:36px;}
+.win-ctl{display:flex;height:100%;}
+.win-ctl i{display:grid;place-items:center;width:38px;height:100%;font:400 .82rem/1 'Inter',sans-serif;font-style:normal;color:var(--ink-soft);}
+.win-ctl i:last-child{background:var(--pink-deeper);color:var(--pink-bg);border-radius:0 13px 0 0;}
+.win-photo{flex:1;min-height:0;margin:0 8px 8px;border-radius:9px;overflow:hidden;background:var(--pink-bg-2);}
+#hero .photo-stage .profile-photo .win-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;}
+#hero .photo-stage .profile-photo:focus-visible{outline:3px solid var(--pink-deeper);outline-offset:6px;}
+.peek-paw{position:absolute;top:calc(var(--d) * -.035);width:calc(var(--d) * .1);height:calc(var(--d) * .085);background:radial-gradient(ellipse at 50% 28%,#fff 50%,#DDD5D9 100%);box-shadow:0 2px 4px rgba(0,0,0,.28);border-radius:50%;transform:scale(0);transition:transform 160ms;}
+.peek-paw:first-child{left:calc(var(--d) * -.15);} .peek-paw:last-child{left:calc(var(--d) * .05);}
+.is-up .peek-paw{transform:scale(1);transition:transform 280ms 330ms cubic-bezier(.34,1.56,.64,1);}
+#hero .photo-stage{overflow-x:clip;}
