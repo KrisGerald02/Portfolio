@@ -248,3 +248,15 @@
   });
   update();
 })();
+
+// When arriving with #section in the URL (for example "Volver al inicio" → #proyectos),
+// jump there again once fonts, images and the entrance screen are done, so late layout shifts don't leave you elsewhere.
+(() => {
+  if (!location.hash) return;
+  const jump = () => {
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView({block: 'start'});
+  };
+  if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', jump, {once: true});
+  if (document.readyState === 'complete') jump(); else window.addEventListener('load', jump, {once: true});
+})();
