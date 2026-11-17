@@ -15,10 +15,10 @@
       peek.classList.toggle('coat-tan'); peek.classList.toggle('coat-grey');
       peek.style.setProperty('--x', x + '%'); peek.style.setProperty('--y', y + '%'); peek.style.setProperty('--r', r + 'deg');
       void peek.offsetWidth; up();
-      if (!reduce) timer = setTimeout(next, 5200);
+      if (!reduce) timer = setTimeout(next, 3000);
     }, reduce ? 0 : 420);
   }
-  function start() { up(); if (!reduce) timer = setTimeout(next, 5200); }
+  function start() { up(); if (!reduce) timer = setTimeout(next, 3000); }
   photo.addEventListener('click', next);
   if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', () => setTimeout(start, 350), { once: true });
   else setTimeout(start, 350);
