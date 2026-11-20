@@ -665,6 +665,7 @@ a.contact-item:hover,a.contact-item:focus-visible{background:rgba(255,255,255,.1
 .contact-ico svg{width:22px;height:22px;}
 .contact-ico.wa{background:#25D366;}
 .contact-ico.gh{background:#181717;border:1px solid rgba(255,255,255,.2);}
+.contact-ico.li{background:#0A66C2;}
 .contact-ico.loc{background:var(--pink-deeper);}
 .contact-form{display:grid;gap:14px;padding:28px;border-radius:22px;background:var(--cream);color:var(--ink);box-shadow:0 24px 50px -24px rgba(0,0,0,.6);}
 .contact-form h3{font-size:1.3rem;}
