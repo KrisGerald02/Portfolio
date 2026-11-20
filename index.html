@@ -6,9 +6,9 @@
 <title>Kristel Villalta · Ingeniera en Sistemas de Información</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=32">
+<link rel="stylesheet" href="assets/styles.css?v=33">
 <link rel="preload" as="image" href="assets/img/launcher-rabbit.gif">
-<script src="assets/theme-init.js"></script>
+<script src="assets/theme-init.js?v=2"></script>
 </head>
 <body>
 <div class="site-launcher" id="siteLauncher" aria-hidden="true">
@@ -319,63 +319,91 @@
 <section id="servicios">
   <div class="sec-head">
     <span class="eyebrow" data-i18n="serv_eyebrow">servicios</span>
-    <h2 data-i18n="serv_title">Lo que sé hacer</h2>
-    <p data-i18n="serv_desc">Así puedo ayudarte a ti o a tu negocio.</p>
+    <h2 data-i18n="serv_title">Mis servicios</h2>
+    <p data-i18n="serv_desc">Te ayudo a ordenar tus datos, quitarte trabajo repetitivo y tener presencia en internet, con soluciones hechas a tu medida.</p>
   </div>
-  <div class="kg-services serv-grid">
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">📊</span>
-      <h4 data-i18n="serv1_h">Análisis de datos y dashboards</h4>
-      <p data-i18n="serv1_p">Limpio, modelo y visualizo tus datos en Power BI o Looker Studio con KPIs claros para tomar decisiones.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">🗄️</span>
-      <h4 data-i18n="serv2_h">Bases de datos</h4>
-      <p data-i18n="serv2_p">Diseño, modelado y consultas SQL en PostgreSQL, SQL Server y BigQuery.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">⚙️</span>
-      <h4 data-i18n="serv3_h">Automatizaciones</h4>
-      <p data-i18n="serv3_p">Procesos ETL y reportes que se actualizan solos con Google Apps Script y otras herramientas.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">🌐</span>
-      <h4 data-i18n="serv4_h">Páginas web y web apps</h4>
-      <p data-i18n="serv4_p">Sitios para negocios y marcas, y aplicaciones web a la medida.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">📱</span>
-      <h4 data-i18n="serv5_h">Apps móviles</h4>
-      <p data-i18n="serv5_p">Aplicaciones para iOS y Android con Swift y Kotlin.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">🎨</span>
-      <h4 data-i18n="serv6_h">Diseño de marca</h4>
-      <p data-i18n="serv6_p">Identidad visual y piezas gráficas con Figma, Photoshop, Illustrator y Canva.</p>
-    </div>
-    <div class="kg-service">
-      <span class="icon" aria-hidden="true">🤖</span>
-      <h4 data-i18n="serv7_h">Electrónica y prototipos</h4>
-      <p data-i18n="serv7_p">Prototipos con Arduino, circuitos y sensores para medir y automatizar.</p>
-    </div>
+  <div class="serv-grid">
+    <article class="serv-card">
+      <div class="serv-top"><span class="serv-ico" style="--c:#E0457B" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><span class="serv-num">01</span></div>
+      <h3 data-i18n="serv1_h">Análisis de datos y dashboards</h3>
+      <p data-i18n="serv1_p">Convierto tus datos en reportes claros para que tomes decisiones con información real.</p>
+      <ul><li data-i18n="serv1_li1">Dashboards en Power BI y Looker Studio</li><li data-i18n="serv1_li2">KPIs y métricas a tu medida</li><li data-i18n="serv1_li3">Limpieza y modelado de datos</li></ul>
+    </article>
+    <article class="serv-card">
+      <div class="serv-top"><span class="serv-ico" style="--c:#7B61FF" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></span><span class="serv-num">02</span></div>
+      <h3 data-i18n="serv2_h">Bases de datos</h3>
+      <p data-i18n="serv2_p">Diseño y cuido la base de tu información para que esté ordenada, segura y rápida.</p>
+      <ul><li data-i18n="serv2_li1">Diseño y modelado de bases de datos</li><li data-i18n="serv2_li2">Consultas y optimización SQL</li><li data-i18n="serv2_li3">PostgreSQL, SQL Server y BigQuery</li></ul>
+    </article>
+    <article class="serv-card">
+      <div class="serv-top"><span class="serv-ico" style="--c:#2BB673" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></span><span class="serv-num">03</span></div>
+      <h3 data-i18n="serv3_h">Automatización de procesos</h3>
+      <p data-i18n="serv3_p">Quito el trabajo repetitivo para que tus reportes y procesos se hagan solos.</p>
+      <ul><li data-i18n="serv3_li1">Reportes que se actualizan solos</li><li data-i18n="serv3_li2">Procesos ETL entre plataformas</li><li data-i18n="serv3_li3">Google Apps Script</li></ul>
+    </article>
+    <article class="serv-card">
+      <div class="serv-top"><span class="serv-ico" style="--c:#2D9CDB" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2.5"/><path d="M8 21h8M12 18v3M2.5 8.5h19"/></svg></span><span class="serv-num">04</span></div>
+      <h3 data-i18n="serv4_h">Páginas web y web apps</h3>
+      <p data-i18n="serv4_p">Llevo tu negocio a internet con un sitio o una aplicación hecha a tu medida.</p>
+      <ul><li data-i18n="serv4_li1">Sitios para negocios y marcas</li><li data-i18n="serv4_li2">Aplicaciones web a la medida</li><li data-i18n="serv4_li3">Diseño adaptable a celular</li></ul>
+    </article>
   </div>
-  <div class="kg-cta">
+  <div class="serv-process">
+    <h3 data-i18n="proc_title">Cómo trabajo</h3>
+    <ol class="steps">
+      <li><span class="step-n">1</span><div><h4 data-i18n="step1_h">Conversamos</h4><p data-i18n="step1_p">Me cuentas qué necesitas y reviso tus datos o tu idea.</p></div></li>
+      <li><span class="step-n">2</span><div><h4 data-i18n="step2_h">Propuesta</h4><p data-i18n="step2_p">Te propongo una solución con alcance y tiempos claros.</p></div></li>
+      <li><span class="step-n">3</span><div><h4 data-i18n="step3_h">Desarrollo</h4><p data-i18n="step3_p">Construyo la solución y te muestro avances.</p></div></li>
+      <li><span class="step-n">4</span><div><h4 data-i18n="step4_h">Entrega</h4><p data-i18n="step4_p">Te la entrego lista y te enseño a usarla.</p></div></li>
+    </ol>
+  </div>
+  <div class="serv-cta">
+    <div>
+      <h3 data-i18n="serv_cta_h">¿Tienes un proyecto en mente?</h3>
+      <p data-i18n="serv_cta_p">Cuéntame tu idea y vemos juntos cómo hacerla realidad.</p>
+    </div>
     <a class="btn btn-primary" href="#contacto" data-i18n="serv_cta">Hablemos de tu proyecto →</a>
   </div>
 </section>
 
 <section id="contacto">
-  <span class="eyebrow" data-i18n="contact_eyebrow">contacto</span>
-  <h2 data-i18n="contact_title">¿Listo para convertir tus datos en decisiones?</h2>
-  <div class="contact-row">
-    <a class="contact-pill" href="https://wa.me/50576935552" target="_blank" rel="noopener">📞 +505 76935552 · WhatsApp</a>
+  <div class="contact-info">
+    <span class="eyebrow" data-i18n="contact_eyebrow">contacto</span>
+    <h2 data-i18n="contact_title">¿Listo para convertir tus datos en decisiones?</h2>
+    <p data-i18n="contact_desc">Estoy disponible para pasantías y proyectos freelance de análisis de datos y BI. Escríbeme, esta conejita responde rápido 🐇.</p>
+    <ul class="contact-list">
+      <li><a class="contact-item" href="https://wa.me/50576935552" target="_blank" rel="noopener">
+        <span class="contact-ico wa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg></span>
+        <span><small>WhatsApp</small><strong>+505 7693 5552</strong></span></a></li>
+      <li><a class="contact-item" href="https://github.com/KrisGerald02" target="_blank" rel="noopener noreferrer">
+        <span class="contact-ico gh" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span>
+        <span><small>GitHub</small><strong>@KrisGerald02</strong></span></a></li>
+      <li><div class="contact-item">
+        <span class="contact-ico loc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <span><small data-i18n="contact_loc">Ubicación</small><strong>Managua, Nicaragua</strong></span></div></li>
+    </ul>
   </div>
+  <form class="contact-form" id="contactForm" novalidate>
+    <h3 data-i18n="form_title">Escríbeme</h3>
+    <label><span data-i18n="form_name">Tu nombre</span><input name="name" type="text" autocomplete="name" required data-i18n-placeholder="form_name_ph" placeholder="Ej. Ana López"></label>
+    <label><span data-i18n="form_topic">¿En qué te ayudo?</span>
+      <select name="topic">
+        <option data-i18n="serv1_h">Análisis de datos y dashboards</option>
+        <option data-i18n="serv2_h">Bases de datos</option>
+        <option data-i18n="serv3_h">Automatización de procesos</option>
+        <option data-i18n="serv4_h">Páginas web y web apps</option>
+        <option data-i18n="form_other">Otro</option>
+      </select></label>
+    <label><span data-i18n="form_msg">Mensaje</span><textarea name="message" rows="4" required data-i18n-placeholder="form_msg_ph" placeholder="Cuéntame un poco de tu proyecto"></textarea></label>
+    <button class="btn btn-primary" type="submit" data-i18n="form_send">Enviar por WhatsApp →</button>
+    <p class="form-note" data-i18n="form_note">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+  </form>
 </section>
 
 <footer data-i18n="footer_text">Geraldine.io © 2026</footer>
 
-<script src="assets/script.js?v=17"></script>
+<script src="assets/script.js?v=18"></script>
 
-<script src="assets/navigation.js?v=13"></script>
+<script src="assets/navigation.js?v=14"></script>
 <script src="assets/photo-peek.js?v=2"></script></body>
 </html>

@@ -13,7 +13,7 @@
 
   let savedTheme = 'light';
   try { savedTheme = localStorage.getItem('portfolio-theme') || 'light'; } catch(error) {}
-  applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+  applyTheme('light');
 
   themeBtn.addEventListener('click', () => {
     const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -43,6 +43,24 @@
       projectsToggle.focus();
     }
   });
+
+  // ---------- contact form → WhatsApp ----------
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = contactForm.elements.name.value.trim();
+      const topic = contactForm.elements.topic.value.trim();
+      const message = contactForm.elements.message.value.trim();
+      if(!name){ contactForm.elements.name.focus(); return; }
+      if(!message){ contactForm.elements.message.focus(); return; }
+      const es = document.documentElement.lang === 'es';
+      const text = es
+        ? `Hola Geraldine, soy ${name}. Me interesa: ${topic}.\n\n${message}`
+        : `Hi Geraldine, I'm ${name}. I'm interested in: ${topic}.\n\n${message}`;
+      window.open(`https://wa.me/50576935552?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    });
+  }
 
   // ---------- hero typewriter (bilingual) ----------
   const typedEl = document.getElementById('typed');
@@ -151,15 +169,25 @@ Ready for the next challenge 🐇`
     tg_analytics:"Data Analytics", tg_other:"Other skills",
     tg_data:"Data &amp; BI", tg_dev:"Development", tg_design:"Design &amp; collaboration", tg_os:"Operating systems",
     skill_data:"📈 Data Analytics", chip_clean:"Data cleaning &amp; modeling", chip_kpi:"KPI design",
-    serv_eyebrow:"services", serv_title:"What I can do", serv_desc:"Here's how I can help you or your business.",
-    serv1_h:"Data analysis &amp; dashboards", serv1_p:"I clean, model and visualize your data in Power BI or Looker Studio with clear KPIs for decision-making.",
-    serv2_h:"Databases", serv2_p:"Design, modeling and SQL queries in PostgreSQL, SQL Server and BigQuery.",
-    serv3_h:"Automations", serv3_p:"ETL processes and reports that update themselves with Google Apps Script and other tools.",
-    serv4_h:"Websites &amp; web apps", serv4_p:"Sites for businesses and brands, and custom web applications.",
-    serv5_h:"Mobile apps", serv5_p:"iOS and Android apps built with Swift and Kotlin.",
-    serv6_h:"Brand design", serv6_p:"Visual identity and graphics with Figma, Photoshop, Illustrator and Canva.",
-    serv7_h:"Electronics &amp; prototypes", serv7_p:"Arduino prototypes, circuits and sensors to measure and automate.",
+    serv_eyebrow:"services", serv_title:"My services", serv_desc:"I help you organize your data, get rid of repetitive work and get online, with solutions made to fit you.",
+    serv1_h:"Data analysis &amp; dashboards", serv1_p:"I turn your data into clear reports so you can make decisions with real information.",
+    serv1_li1:"Dashboards in Power BI and Looker Studio", serv1_li2:"KPIs and metrics tailored to you", serv1_li3:"Data cleaning and modeling",
+    serv2_h:"Databases", serv2_p:"I design and look after the foundation of your information so it stays organized, secure and fast.",
+    serv2_li1:"Database design and modeling", serv2_li2:"SQL queries and optimization", serv2_li3:"PostgreSQL, SQL Server and BigQuery",
+    serv3_h:"Process automation", serv3_p:"I remove repetitive work so your reports and processes run on their own.",
+    serv3_li1:"Reports that update themselves", serv3_li2:"ETL processes across platforms", serv3_li3:"Google Apps Script",
+    serv4_h:"Websites &amp; web apps", serv4_p:"I take your business online with a site or an app built for you.",
+    serv4_li1:"Sites for businesses and brands", serv4_li2:"Custom web applications", serv4_li3:"Mobile-friendly design",
+    proc_title:"How I work",
+    step1_h:"We talk", step1_p:"You tell me what you need and I look at your data or idea.",
+    step2_h:"Proposal", step2_p:"I propose a solution with a clear scope and timeline.",
+    step3_h:"Build", step3_p:"I build the solution and show you progress along the way.",
+    step4_h:"Delivery", step4_p:"I hand it over ready to use and show you how it works.",
+    serv_cta_h:"Have a project in mind?", serv_cta_p:"Tell me your idea and let's figure out together how to make it happen.",
     serv_cta:"Let's talk about your project →",
+    contact_loc:"Location", form_title:"Write to me", form_name:"Your name", form_name_ph:"e.g. Ana López",
+    form_topic:"How can I help?", form_other:"Other", form_msg:"Message", form_msg_ph:"Tell me a bit about your project",
+    form_send:"Send via WhatsApp →", form_note:"WhatsApp will open with your message ready to send.",
     contact_eyebrow:"contact", contact_title:"Let's build your next dashboard?",
     contact_desc:"I'm available for internships and freelance data analysis / BI projects. Write to me, this bunny replies fast 🐇.",
     footer_text:"Geraldine.io © 2026"
