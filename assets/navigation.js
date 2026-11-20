@@ -91,7 +91,23 @@
       if (on) item.el.setAttribute('aria-current', 'page'); else item.el.removeAttribute('aria-current');
     });
 
-    if (!onIndex) { setActive('proyectos'); return; }
+  // Entrance animation each time a view (or a category page) is opened.
+  const animItems = '.sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .kg-service, .kgtech-head, .tl-item';
+  function animateIn(list) {
+    if (reduced.matches) return;
+    list.forEach(section => {
+      section.classList.remove('view-anim');
+      section.querySelectorAll(animItems).forEach((el, i) => el.style.setProperty('--i', Math.min(i, 12)));
+      void section.offsetWidth;
+      section.classList.add('view-anim');
+    });
+  }
+  const whenReady = fn => {
+    if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', fn, {once: true});
+    else fn();
+  };
+
+    if (!onIndex) { setActive('proyectos'); whenReady(() => animateIn(document.querySelectorAll('main > section'))); return; }
 
     // Home page: show one view at a time, chosen by the URL hash.
     const sections = Object.keys(sectionView).map(id => document.getElementById(id)).filter(Boolean);
@@ -106,6 +122,7 @@
       const first = sections.find(section => section.dataset.view === view);
       if (first) first.classList.add('view-first');
       setActive(view);
+      if (scroll) animateIn(sections.filter(section => section.dataset.view === view));
       if (!scroll) return;
       const target = document.getElementById(id);
       // A pill opens its view from the top; links to a section inside a view (e.g. #skills) go to that section.
@@ -114,6 +131,7 @@
     }
     window.addEventListener('hashchange', () => show(true));
     show(false);
+    whenReady(() => animateIn(sections.filter(section => section.classList.contains('view-active'))));
     if (brand) {
       brand.style.cursor = 'pointer';
       brand.addEventListener('click', () => { location.hash = 'sobre'; });
