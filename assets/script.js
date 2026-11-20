@@ -109,7 +109,7 @@ Ready for the next challenge 🐇`
     tbl_enfoque_k:"focus", tbl_enfoque_v:"Databases &amp; BI", tbl_ubi_k:"location",
     tbl_footer:"1 row affected · 0.02s",
     sobre_eyebrow:"about me",
-    sobre_p1:"I'm a 3rd-year <strong>Systems Information Engineering</strong> student at UAM. I specialize in <strong>database administration</strong> (PostgreSQL, SQL Server, BigQuery) and turning that data into <strong>reports and dashboards</strong> with Power BI and Looker Studio that support decision-making.",
+    sobre_p1:"I study <strong>Systems Information Engineering</strong> at UAM. I specialize in <strong>database administration</strong> (PostgreSQL, SQL Server, BigQuery) and turning that data into <strong>reports and dashboards</strong> with Power BI and Looker Studio that support decision-making.",
     sobre_p2:"I've worked cleaning and modeling data, writing SQL queries, designing KPIs with DAX, and automating ETL processes from platforms like Google Ads, ADP and various CRMs. I love finding the insight hiding among thousands of rows.",
     sobre_p3:"Outside of data analysis, I also explore mobile development (Swift, Kotlin) and enjoy innovation challenges: two first places in my university's research and innovation events prove it 🐇.",
     skills_eyebrow:"tech stack", skills_title:"Technological tools",
