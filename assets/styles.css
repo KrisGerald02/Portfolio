@@ -739,3 +739,29 @@ a.contact-item:hover,a.contact-item:focus-visible{background:#fff;}
 .contact-item{background:#fff;border-color:#fff;}
 a.contact-item:hover,a.contact-item:focus-visible{background:#fff;box-shadow:0 10px 24px -14px rgba(201,98,143,.6);}
 .contact-form{background:#fff;box-shadow:0 24px 50px -28px rgba(201,98,143,.55);}
+/* Contact without a background box: white cards and form on the page. */
+#contacto{background:none;box-shadow:none;}
+.contact-item{border:1px solid var(--line);}
+.contact-form{border:1px solid var(--line);box-shadow:0 24px 50px -30px rgba(201,98,143,.45);}
+/* Project cards: richer hover. */
+.proj-card{position:relative;overflow:hidden;transition:transform 380ms cubic-bezier(.16,1,.3,1),box-shadow 380ms,border-color 300ms;}
+.proj-card::before{content:'';position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(90deg,var(--pink-deeper),var(--pink-primary),var(--lavender));transform:scaleX(0);transform-origin:left;transition:transform 450ms cubic-bezier(.16,1,.3,1);}
+.proj-card:hover,.proj-card:focus-within{transform:translateY(-8px);border-color:var(--pink-deep);box-shadow:0 26px 44px -22px rgba(201,98,143,.55);}
+.proj-card:hover::before,.proj-card:focus-within::before{transform:scaleX(1);}
+.proj-card .client-icon{transition:background 300ms;}
+.proj-card .client-icon img{transition:transform 500ms cubic-bezier(.16,1,.3,1);}
+.proj-card:hover .client-icon img{transform:scale(1.08) rotate(-1.5deg);}
+.proj-card:hover h3{color:var(--pink-deeper);}
+.proj-card h3{transition:color 250ms;}
+.proj-card .proj-btn{transition:transform 250ms,background 250ms,box-shadow 250ms;}
+.proj-card:hover .proj-btn{background:var(--pink-deeper);box-shadow:0 10px 20px -10px var(--pink-deeper);transform:translateY(-2px);}
+/* Services: tile lifts, icon bounces and the description slides in on hover. */
+.serv-tile{position:relative;overflow:hidden;cursor:default;transition:transform 380ms cubic-bezier(.16,1,.3,1),box-shadow 380ms,border-color 300ms,background 300ms;}
+.serv-tile::after{content:'';position:absolute;inset:auto 0 0 0;height:0;background:linear-gradient(0deg,color-mix(in srgb,var(--c,#E087AE) 14%,transparent),transparent);transition:height 400ms cubic-bezier(.16,1,.3,1);pointer-events:none;}
+.serv-tile .serv-ico{transition:transform 450ms cubic-bezier(.34,1.56,.64,1);}
+.serv-tile p{margin:-14px 0 0;max-height:0;opacity:0;overflow:hidden;font-size:.84rem;line-height:1.5;color:var(--ink-soft);transform:translateY(8px);transition:max-height 420ms cubic-bezier(.16,1,.3,1),margin 420ms cubic-bezier(.16,1,.3,1),opacity 300ms,transform 400ms cubic-bezier(.16,1,.3,1);}
+.serv-tile:hover,.serv-tile:focus-visible{transform:translateY(-6px);border-color:var(--pink-deep);box-shadow:0 22px 40px -22px rgba(201,98,143,.55);outline:none;}
+.serv-tile:hover::after,.serv-tile:focus-visible::after{height:100%;}
+.serv-tile:hover .serv-ico,.serv-tile:focus-visible .serv-ico{transform:translateY(-4px) scale(1.12) rotate(-6deg);}
+.serv-tile:hover p,.serv-tile:focus-visible p,.serv-tile:focus p{margin-top:0;max-height:120px;opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.serv-tile p{transition:none;}}

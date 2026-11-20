@@ -111,7 +111,7 @@ Ready for the next challenge 🐇`
     sobre_eyebrow:"about me",
     sobre_p1:"I study <strong>Systems Information Engineering</strong> at UAM. I specialize in <strong>database administration</strong> (PostgreSQL, SQL Server, BigQuery) and turning that data into <strong>reports and dashboards</strong> with Power BI and Looker Studio that support decision-making.",
     sobre_p2:"I've worked cleaning and modeling data, writing SQL queries, designing KPIs with DAX, and automating ETL processes from platforms like Google Ads, ADP and various CRMs. I love finding the insight hiding among thousands of rows.",
-    sobre_p3:"Outside of data analysis, I also explore mobile development (Swift, Kotlin) and enjoy innovation challenges: two first places in my university's research and innovation events prove it 🐇. I'm also <strong>bilingual: I speak Spanish and English</strong>.",
+    sobre_p3:"I'm <strong>bilingual: I speak Spanish and English</strong>.",
     skills_eyebrow:"tech stack", skills_title:"Technological tools",
     skill_h1:"🗄️ Databases", skill_h2:"📊 BI &amp; Visualization", skill_h3:"💻 Programming", skill_h4:"🧠 Other skills", skill_h5:"⚙️ Automations", skill_h6:"🎨 Design",
     skill_tools:"🛠️ Collaboration tools", skill_methods:"📋 Methodologies", chip_agile:"Agile", skill_web:"🌐 Web development", skill_containers:"📦 Containers", skill_os:"🖥️ Operating systems",
