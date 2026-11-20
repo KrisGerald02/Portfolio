@@ -733,3 +733,9 @@ a.contact-item:hover,a.contact-item:focus-visible{background:#fff;}
 #contacto{background:linear-gradient(135deg,#F0FAF6,#DDF3EA);}
 #contacto .eyebrow{color:#2F8F6B;border-color:rgba(47,143,107,.25);}
 .contact-form{box-shadow:0 24px 50px -28px rgba(47,143,107,.35);}
+/* Contact: pink background, white cards and form. */
+#contacto{background:linear-gradient(135deg,#FBDCE8,#F6C4D7);}
+#contacto .eyebrow{background:#fff;color:var(--pink-deeper);border-color:rgba(201,98,143,.25);}
+.contact-item{background:#fff;border-color:#fff;}
+a.contact-item:hover,a.contact-item:focus-visible{background:#fff;box-shadow:0 10px 24px -14px rgba(201,98,143,.6);}
+.contact-form{background:#fff;box-shadow:0 24px 50px -28px rgba(201,98,143,.55);}
