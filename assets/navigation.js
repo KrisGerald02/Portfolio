@@ -4,6 +4,28 @@
   const source = document.getElementById('navMenu');
   if (source) buildDock(source);
 
+  // Social links in the top-right corner of every page. Leave a URL empty to hide that icon.
+  function buildSocials() {
+    const links = [
+      {name: 'GitHub', url: 'https://github.com/KrisGerald02', icon: '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>'},
+      {name: 'LinkedIn', url: '', icon: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>'},
+      {name: 'WhatsApp', url: 'https://wa.me/50576935552', icon: '<path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>'}
+    ];
+    const bar = document.createElement('div');
+    bar.className = 'socials';
+    links.filter(link => link.url).forEach(link => {
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.title = link.name;
+      a.setAttribute('aria-label', link.name);
+      a.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${link.icon}</svg>`;
+      bar.append(a);
+    });
+    document.body.prepend(bar);
+  }
+
   // Bottom bar with four views (About me, Projects, Services, Contact) plus the language switch.
   // On the home page each pill shows only its view; on the category pages the pills link back to home.
   function buildDock(oldNav) {
@@ -31,6 +53,12 @@
     });
     const langBtn = document.getElementById('langBtn');
     if (langBtn) nav.append(langBtn);
+    // The light/dark switch also moves into the bar; the top header is hidden.
+    const themeBtn = document.getElementById('themeBtn');
+    if (themeBtn) nav.append(themeBtn);
+    const header = document.querySelector('body > header');
+    if (header) header.hidden = true;
+    buildSocials();
     // The old header menu and hamburger are replaced by the bar (their listeners are already attached, so removing is safe).
     oldNav.remove();
     const oldToggle = document.getElementById('navToggle');
@@ -146,7 +174,7 @@
   }, {passive: true});
   button.addEventListener('click', () => {
     window.scrollTo({top: 0, behavior: reduced.matches ? 'auto' : 'smooth'});
-    const target = Array.from(document.querySelectorAll('header a, header button')).find(el => el.offsetParent !== null);
+    const target = Array.from(document.querySelectorAll('.dock a, .dock button')).find(el => el.offsetParent !== null);
     if (target) target.focus({preventScroll: true});
   });
   update();
