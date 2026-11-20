@@ -97,7 +97,7 @@
   .theme-btn span{ transform:translateY(-1px); }
   .nav-toggle{ display:none; background:none; border:none; font-size:1.4rem; color:var(--ink); cursor:pointer; }
 
-  section{ position:relative; z-index:1; padding:100px 5vw; max-width:1180px; margin:0 auto; }
+  section{ position:relative; z-index:1; padding:48px 5vw; max-width:1180px; margin:0 auto; }
   .eyebrow{
     font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:.06em;
     color:var(--pink-deeper); background:var(--pink-bg-2); border:1px solid var(--line);
@@ -666,7 +666,6 @@ a.contact-item:hover,a.contact-item:focus-visible{background:rgba(255,255,255,.1
 .contact-ico.wa{background:#25D366;}
 .contact-ico.gh{background:#181717;border:1px solid rgba(255,255,255,.2);}
 .contact-ico.li{background:#0A66C2;}
-.contact-ico.loc{background:var(--pink-deeper);}
 .contact-form{display:grid;gap:14px;padding:28px;border-radius:22px;background:var(--cream);color:var(--ink);box-shadow:0 24px 50px -24px rgba(0,0,0,.6);}
 .contact-form h3{font-size:1.3rem;}
 .contact-form label{display:grid;gap:6px;font-size:.82rem;font-weight:600;color:var(--ink-soft);}
@@ -680,3 +679,16 @@ body.has-views #contacto.view-first{margin-top:84px;padding-top:56px;}
   body.has-views #contacto.view-first{margin-top:72px;padding-top:40px;}
   .serv-cta{padding:24px;}
 }
+
+/* ---------- Project categories, same card style as services ---------- */
+.proj-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px;}
+a.proj-cat{color:var(--ink);text-decoration:none;}
+a.proj-cat:focus-visible{outline:3px solid var(--pink-deeper);outline-offset:3px;}
+.proj-cat p{flex:1;}
+.proj-cat-more{margin-top:6px;padding-top:12px;border-top:1px dashed var(--line);font-size:.86rem;font-weight:700;color:var(--pink-deeper);}
+.proj-cat-more span[aria-hidden]{display:inline-block;transition:transform .2s;}
+.proj-cat:hover .proj-cat-more span[aria-hidden]{transform:translateX(4px);}
+/* Tighter spacing between sections and headings. */
+.sec-head{margin-bottom:28px;}
+.serv-process{margin-top:40px;}
+.serv-cta{margin-top:36px;}
