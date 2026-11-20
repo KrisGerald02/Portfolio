@@ -148,6 +148,7 @@ Ready for the next challenge 🐇`
     kg_s4_h:"Data Consulting", kg_s4_p:"Support for small businesses looking to start using their data to their advantage.",
     kg_website:"Visit KG Tech →", kg_cta1:"Request a quote", kg_cta2:"Request a quote",
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
+    tg_analytics:"Data Analytics", tg_other:"Other skills",
     tg_data:"Data &amp; BI", tg_dev:"Development", tg_design:"Design &amp; collaboration", tg_os:"Operating systems",
     skill_data:"📈 Data Analytics", chip_clean:"Data cleaning &amp; modeling", chip_kpi:"KPI design",
     serv_eyebrow:"services", serv_title:"What I can do", serv_desc:"Here's how I can help you or your business.",
