@@ -91,16 +91,28 @@
       if (on) item.el.setAttribute('aria-current', 'page'); else item.el.removeAttribute('aria-current');
     });
 
-  // Entrance animation each time a view (or a category page) is opened.
-  const animItems = '.sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .kg-service, .kgtech-head, .tl-item';
+  // Entrance animation: when a view (or a category page) opens, each item waits hidden
+  // and animates in only once it scrolls into the screen.
+  const animItems = '#hero > div, .sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .kg-service, .kgtech-head, .tl-item';
+  const animObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    let n = 0;
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.style.setProperty('--i', Math.min(n++, 12));
+      el.classList.remove('anim-wait');
+      el.classList.add('anim-in');
+      animObserver.unobserve(el);
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -30px 0px'}) : null;
   function animateIn(list) {
-    if (reduced.matches) return;
+    if (reduced.matches || !animObserver) return;
     list.forEach(section => {
-      section.classList.remove('view-anim');
-      section.querySelectorAll(animItems).forEach((el, i) => el.style.setProperty('--i', Math.min(i, 12)));
-      section.querySelectorAll('.tool').forEach((el, i) => el.style.setProperty('--i', Math.min(i, 40)));
-      void section.offsetWidth;
-      section.classList.add('view-anim');
+      section.querySelectorAll(animItems).forEach(el => {
+        el.classList.remove('anim-in', 'reveal-ready');
+        el.classList.add('anim-wait');
+        animObserver.observe(el);
+      });
     });
   }
   const whenReady = fn => {
