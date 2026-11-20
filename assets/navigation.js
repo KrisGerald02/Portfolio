@@ -74,6 +74,9 @@
       const id = decodeURIComponent(location.hash.slice(1));
       const view = sectionView[id] || 'sobre';
       sections.forEach(section => section.classList.toggle('view-active', section.dataset.view === view));
+      sections.forEach(section => section.classList.remove('view-first'));
+      const first = sections.find(section => section.dataset.view === view);
+      if (first) first.classList.add('view-first');
       setActive(view);
       if (!scroll) return;
       const target = document.getElementById(id);
