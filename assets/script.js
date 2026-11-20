@@ -185,11 +185,12 @@ Ready for the next challenge 🐇`
     step4_h:"Delivery", step4_p:"I hand it over ready to use and show you how it works.",
     serv_cta_h:"Have a project in mind?", serv_cta_p:"Tell me your idea and let's figure out together how to make it happen.",
     serv_cta:"Let's talk about your project →",
-    contact_loc:"Location", form_title:"Write to me", form_name:"Your name", form_name_ph:"e.g. Ana López",
+    form_title:"Write to me", form_name:"Your name", form_name_ph:"e.g. Ana López",
     form_topic:"How can I help?", form_other:"Other", form_msg:"Message", form_msg_ph:"Tell me a bit about your project",
     form_send:"Send via WhatsApp →", form_note:"WhatsApp will open with your message ready to send.",
+    see_projects:"See projects",
     contact_eyebrow:"contact", contact_title:"Let's build your next dashboard?",
-    contact_desc:"I'm available for internships and freelance data analysis / BI projects. Write to me, this bunny replies fast 🐇.",
+    contact_desc:"I'm available for internships and freelance data analysis / BI projects.",
     footer_text:"Geraldine.io © 2026"
   };
 
