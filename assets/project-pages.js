@@ -18,7 +18,7 @@ function applyTheme(theme){
 
 let savedTheme = 'light';
 try { savedTheme = localStorage.getItem('portfolio-theme') || 'light'; } catch(error) {}
-applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+applyTheme('light');
 
 themeBtn.addEventListener('click', () => {
   const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';

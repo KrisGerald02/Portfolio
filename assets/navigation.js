@@ -53,9 +53,9 @@
     });
     const langBtn = document.getElementById('langBtn');
     if (langBtn) nav.append(langBtn);
-    // The light/dark switch also moves into the bar; the top header is hidden.
+    // The light/dark switch was removed; the site stays light. The top header is hidden.
     const themeBtn = document.getElementById('themeBtn');
-    if (themeBtn) nav.append(themeBtn);
+    if (themeBtn) themeBtn.remove();
     const header = document.querySelector('body > header');
     if (header) header.hidden = true;
     buildSocials();
