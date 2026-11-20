@@ -4,120 +4,89 @@
   const source = document.getElementById('navMenu');
   if (source) buildDock(source);
 
-  function buildDock(nav) {
+  // Bottom bar with four views (About me, Projects, Services, Contact) plus the language switch.
+  // On the home page each pill shows only its view; on the category pages the pills link back to home.
+  function buildDock(oldNav) {
     const isEs = () => document.documentElement.lang === 'es';
-    const t = (es, en) => (isEs() ? es : en);
     const svg = path => `<span class="dock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;
-    const icons = {
-      home: svg('<path d="M4 10.5 12 4l8 6.5"/><path d="M6 9v10.5h4.5V15h3v4.5H18V9"/>'),
-      about: svg('<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>'),
-      skills: svg('<path d="m8.5 8-4 4 4 4"/><path d="m15.5 8 4 4-4 4"/><path d="m13.5 5-3 14"/>'),
-      projects: svg('<rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/><path d="M3.5 12.5h17"/>'),
-      kgtech: svg('<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>'),
-      contact: svg('<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7 7.5 6 7.5-6"/>')
-    };
-    const iconFor = href => {
-      const hash = (href.split('#')[1] || '').toLowerCase();
-      if (hash === 'sobre') return icons.about;
-      if (hash === 'skills') return icons.skills;
-      if (hash === 'kgtech') return icons.kgtech;
-      if (hash === 'contacto') return icons.contact;
-      return icons.home;
-    };
-    // Put the icon next to the text, and move data-i18n onto the text so translations don't erase the icon.
-    const decorate = (el, icon) => {
-      let label = el.querySelector('[data-i18n]');
-      if (!label) {
-        label = document.createElement('span');
-        if (el.dataset.i18n) { label.dataset.i18n = el.dataset.i18n; el.removeAttribute('data-i18n'); }
-        label.textContent = el.textContent.trim();
-        el.textContent = '';
-        el.append(label);
-      }
-      label.classList.add('dock-label');
-      el.insertAdjacentHTML('afterbegin', icon);
-    };
-
+    const items = [
+      {view: 'sobre', es: 'Sobre mí', en: 'About me', icon: svg('<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>')},
+      {view: 'proyectos', es: 'Proyectos', en: 'Projects', icon: svg('<rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/><path d="M3.5 12.5h17"/>')},
+      {view: 'servicios', es: 'Servicios', en: 'Services', icon: svg('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5s1.1-6.1 3.4-8.5Z"/>')},
+      {view: 'contacto', es: 'Contacto', en: 'Contact', icon: svg('<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7 7.5 6 7.5-6"/>')}
+    ];
+    // Which view each home-page section belongs to.
+    const sectionView = {hero: 'sobre', sobre: 'sobre', skills: 'sobre', kgtech: 'sobre', proyectos: 'proyectos', servicios: 'servicios', contacto: 'contacto'};
     const onIndex = !!document.getElementById('hero');
-    const home = document.createElement('a');
-    home.href = onIndex ? '#hero' : 'index.html';
-    home.dataset.dockHome = '';
-    home.innerHTML = '<span class="dock-label"></span>';
-    nav.prepend(home);
-    Array.from(nav.children).forEach(child => {
-      if (child === home) return home.insertAdjacentHTML('afterbegin', icons.home);
-      if (child.matches('a')) decorate(child, iconFor(child.getAttribute('href')));
-      if (child.matches('.nav-dropdown')) decorate(child.querySelector('.nav-dropdown-toggle'), icons.projects);
-    });
 
-    // The language switch becomes the last pill of the bar, like the reference; the old hamburger is no longer needed.
+    const nav = document.createElement('nav');
+    nav.className = 'dock';
+    items.forEach(item => {
+      const a = document.createElement('a');
+      a.href = (onIndex ? '' : 'index.html') + '#' + item.view;
+      a.dataset.view = item.view;
+      a.innerHTML = item.icon + '<span class="dock-label"></span>';
+      item.el = a;
+      nav.append(a);
+    });
     const langBtn = document.getElementById('langBtn');
     if (langBtn) nav.append(langBtn);
+    // The old header menu and hamburger are replaced by the bar (their listeners are already attached, so removing is safe).
+    oldNav.remove();
     const oldToggle = document.getElementById('navToggle');
     if (oldToggle) oldToggle.remove();
-
-    nav.classList.remove('category-nav');
-    nav.classList.add('dock');
     const wrap = document.createElement('div');
     wrap.className = 'dock-wrap';
     wrap.append(nav);
     document.body.append(wrap);
 
-    const pills = () => Array.from(nav.querySelectorAll(':scope > a, :scope > .nav-dropdown > .nav-dropdown-toggle'));
     function syncLabels() {
-      home.querySelector('.dock-label').textContent = t('Inicio', 'Home');
-      nav.setAttribute('aria-label', t('Navegación principal', 'Main navigation'));
-      pills().forEach(el => {
-        const text = el.querySelector('.dock-label').textContent.trim();
-        el.title = text;
-        el.setAttribute('aria-label', text);
+      nav.setAttribute('aria-label', isEs() ? 'Navegación principal' : 'Main navigation');
+      items.forEach(item => {
+        const text = isEs() ? item.es : item.en;
+        item.el.querySelector('.dock-label').textContent = text;
+        item.el.title = text;
+        item.el.setAttribute('aria-label', text);
       });
       if (langBtn) {
         langBtn.dataset.short = isEs() ? 'EN' : 'ES';
-        langBtn.title = t('Cambiar idioma a inglés', 'Switch language to Spanish');
+        langBtn.title = isEs() ? 'Cambiar idioma a inglés' : 'Switch language to Spanish';
         langBtn.setAttribute('aria-label', langBtn.title);
       }
     }
-    // Translations run after this script on some pages, so wait one frame before reading labels.
-    requestAnimationFrame(syncLabels);
-    new MutationObserver(() => requestAnimationFrame(syncLabels)).observe(document.documentElement, {attributes: true, attributeFilter: ['lang']});
+    syncLabels();
+    new MutationObserver(syncLabels).observe(document.documentElement, {attributes: true, attributeFilter: ['lang']});
 
-    // Active pill.
-    const dropdown = nav.querySelector('.nav-dropdown');
-    const setActive = el => {
-      nav.querySelectorAll(':scope > a').forEach(a => {
-        a.classList.toggle('is-active', a === el);
-        if (a === el) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-      });
-      if (dropdown) dropdown.classList.toggle('is-active', el === dropdown);
-    };
-    if (!onIndex) {
-      // Category pages live under "Proyectos".
-      setActive(dropdown && dropdown.querySelector('[aria-current="page"]') ? dropdown : null);
-      return;
-    }
-    const targets = [['hero', home]];
-    nav.querySelectorAll(':scope > a[href^="#"]').forEach(a => targets.push([a.getAttribute('href').slice(1), a]));
-    if (dropdown) targets.push(['proyectos', dropdown]);
-    const sections = targets.map(([id, el]) => [document.getElementById(id), el]).filter(([section]) => section)
-      .sort((a, b) => (a[0].compareDocumentPosition(b[0]) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const line = window.innerHeight * 0.35;
-      let current = sections[0];
-      sections.forEach(entry => { if (entry[0].getBoundingClientRect().top <= line) current = entry; });
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections.find(([s]) => s.id === 'contacto') || current;
-      setActive(current ? current[1] : null);
-    };
-    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive: true});
-    window.addEventListener('resize', update);
-    update();
-    home.addEventListener('click', event => {
-      event.preventDefault();
-      history.pushState(null, '', location.pathname);
-      window.scrollTo({top: 0, behavior: reduced.matches ? 'auto' : 'smooth'});
+    const setActive = view => items.forEach(item => {
+      const on = item.view === view;
+      item.el.classList.toggle('is-active', on);
+      if (on) item.el.setAttribute('aria-current', 'page'); else item.el.removeAttribute('aria-current');
     });
+
+    if (!onIndex) { setActive('proyectos'); return; }
+
+    // Home page: show one view at a time, chosen by the URL hash.
+    const sections = Object.keys(sectionView).map(id => document.getElementById(id)).filter(Boolean);
+    sections.forEach(section => { section.dataset.view = sectionView[section.id]; });
+    document.body.classList.add('has-views');
+    const brand = document.querySelector('header .brand');
+    function show(scroll) {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const view = sectionView[id] || 'sobre';
+      sections.forEach(section => section.classList.toggle('view-active', section.dataset.view === view));
+      setActive(view);
+      if (!scroll) return;
+      const target = document.getElementById(id);
+      // A pill opens its view from the top; links to a section inside a view (e.g. #skills) go to that section.
+      if (target && id !== view) target.scrollIntoView({block: 'start'});
+      else window.scrollTo({top: 0});
+    }
+    window.addEventListener('hashchange', () => show(true));
+    show(false);
+    if (brand) {
+      brand.style.cursor = 'pointer';
+      brand.addEventListener('click', () => { location.hash = 'sobre'; });
+    }
   }
 
   // Reveal once on entry, using only opacity and translation (no blur or timers).
@@ -185,7 +154,10 @@
 (() => {
   if (!location.hash) return;
   const jump = () => {
-    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const id = decodeURIComponent(location.hash.slice(1));
+    // On the home page a view name (#proyectos, #servicios…) opens that view from the top instead.
+    if (document.body.classList.contains('has-views') && ['sobre', 'proyectos', 'servicios', 'contacto'].includes(id)) return;
+    const target = document.getElementById(id);
     if (target) target.scrollIntoView({block: 'start'});
   };
   if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', jump, {once: true});
