@@ -167,7 +167,7 @@ Ready for the next challenge 🐇`
     kg_website:"Visit KG Tech →", kg_cta1:"Request a quote", kg_cta2:"Request a quote",
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
     tg_methods:"Methodologies", tg_other:"Other skills",
-    tg_data:"Data &amp; BI", tg_dev:"Development", tg_design:"Design &amp; collaboration", tg_os:"Operating systems",
+    tg_data:"Data &amp; BI", tg_dev:"Development", tg_design:"Design &amp; collaboration", tg_os:"Operating systems", tg_ai:"Artificial intelligence",
     skill_data:"📈 Data Analytics", chip_clean:"Data cleaning &amp; modeling", chip_kpi:"KPI design",
     serv_eyebrow:"services", serv_title:"My services", serv_desc:"I help you organize your data, get rid of repetitive work and get online, with solutions made to fit you.",
     serv1_h:"Data analysis &amp; dashboards", serv1_p:"I turn your data into clear reports so you can make decisions with real information.",

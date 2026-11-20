@@ -98,6 +98,7 @@
     list.forEach(section => {
       section.classList.remove('view-anim');
       section.querySelectorAll(animItems).forEach((el, i) => el.style.setProperty('--i', Math.min(i, 12)));
+      section.querySelectorAll('.tool').forEach((el, i) => el.style.setProperty('--i', Math.min(i, 40)));
       void section.offsetWidth;
       section.classList.add('view-anim');
     });

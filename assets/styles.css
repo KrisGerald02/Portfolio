@@ -718,3 +718,19 @@ a.contact-item:hover,a.contact-item:focus-visible{background:#fff;}
   section.view-anim{animation:view-enter 520ms cubic-bezier(.16,1,.3,1) backwards;}
   section.view-anim :is(.sec-head,.serv-tile,.serv-cta,.proj-cat,.tool,.skill-card,.contact-item,.contact-form,.about-text,.query-card,.proj-card,.kg-service,.kgtech-head,.tl-item){animation:view-enter 560ms cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0) * 60ms + 80ms);}
 }
+/* Contact: pastel lavender instead of peach. */
+#contacto{background:linear-gradient(135deg,#F1ECFF,#DDD3F8);}
+#contacto .eyebrow{color:#6E55B8;border-color:rgba(110,85,184,.25);}
+.contact-form{box-shadow:0 24px 50px -28px rgba(110,85,184,.45);}
+/* Tools: pop in one by one, float gently, wiggle on hover. */
+@keyframes tool-pop{0%{opacity:0;transform:translateY(14px) scale(.6);}70%{opacity:1;transform:translateY(-3px) scale(1.06);}100%{opacity:1;transform:none;}}
+@keyframes tool-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+@keyframes tool-wiggle{0%,100%{transform:rotate(0) scale(1.12);}25%{transform:rotate(-10deg) scale(1.12);}75%{transform:rotate(10deg) scale(1.12);}}
+@media (prefers-reduced-motion:no-preference){
+  section.view-anim .tool{animation:tool-pop 600ms cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0) * 45ms + 120ms);}
+  .tool-ico{animation:tool-float 3.2s ease-in-out infinite;}
+  .tool:nth-child(2n) .tool-ico{animation-delay:-.8s;}
+  .tool:nth-child(3n) .tool-ico{animation-delay:-1.6s;}
+  .tool:nth-child(5n) .tool-ico{animation-delay:-2.4s;}
+  .tool:hover .tool-ico,.tool:focus-visible .tool-ico{animation:tool-wiggle 420ms ease-in-out;}
+}
