@@ -101,7 +101,7 @@ function setLang(lang, persist = true){
     const key = element.dataset.i18n;
     if(translations[lang][key]) element.textContent = translations[lang][key];
   });
-  if(activeProjectIndex !== null) openProject(activeProjectIndex);
+  if(activeProjectIndex !== null && !document.getElementById('projectDetail')) openProject(activeProjectIndex);
   if(document.getElementById('projectDetail')) renderProjectDetail();
   if(persist){
     try { localStorage.setItem('portfolio-lang', lang); } catch(error) {}
@@ -240,7 +240,7 @@ const projects = [
   },
   {
     title:{en:'Junk Rescue Monthly Marketing Performance', es:'Rendimiento Mensual de Marketing de Junk Rescue'},
-    images:[{src:'assets/img/Junk Rescue/view1.webp', alt:'Junk Rescue monthly marketing performance dashboard'}],
+    images:[{src:'assets/img/Junk Rescue/view1.webp', alt:'Dashboard mensual de rendimiento de marketing de Junk Rescue'}],
     desc:{en:'Monthly marketing data dashboard for Junk Rescue. It centralizes Excel and Vonigo CRM data to evaluate spend, leads, cost per lead and conversions by source.', es:'Dashboard mensual de datos de marketing para Junk Rescue. Centraliza información de Excel y del CRM Vonigo para evaluar inversión, leads, costo por lead y conversiones por fuente.'},
     technologies:['Excel','Vonigo CRM','Power BI','Marketing Analytics'],
     bullets:{en:['Monthly marketing performance update','Excel and Vonigo CRM data sources','Spend and leads analysis by source','Cost-per-lead and call conversion monitoring'],es:['Actualización mensual del rendimiento de marketing','Fuentes de datos Excel y CRM Vonigo','Análisis de inversión y leads por fuente','Monitoreo de costo por lead y conversión de llamadas']}
