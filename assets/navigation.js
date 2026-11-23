@@ -38,7 +38,7 @@
       {view: 'contacto', es: 'Contacto', en: 'Contact', icon: svg('<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7 7.5 6 7.5-6"/>')}
     ];
     // Which view each home-page section belongs to.
-    const sectionView = {hero: 'sobre', sobre: 'sobre', skills: 'sobre', kgtech: 'sobre', proyectos: 'proyectos', servicios: 'servicios', contacto: 'contacto'};
+    const sectionView = {hero: 'sobre', sobre: 'sobre', cv: 'sobre', skills: 'sobre', kgtech: 'sobre', proyectos: 'proyectos', servicios: 'servicios', contacto: 'contacto'};
     const onIndex = !!document.getElementById('hero');
 
     const nav = document.createElement('nav');
@@ -93,7 +93,7 @@
 
   // Entrance animation: when a view (or a category page) opens, each item waits hidden
   // and animates in only once it scrolls into the screen.
-  const animItems = '#hero > div, .sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .kg-service, .kgtech-head, .tl-item';
+  const animItems = '#hero > div, .cv-card, .sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .kg-service, .kgtech-head, .tl-item';
   const animObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     let n = 0;
     entries.forEach(entry => {
@@ -224,4 +224,18 @@
   };
   if (document.getElementById('siteLauncher')) document.addEventListener('portfolio-ready', jump, {once: true});
   if (document.readyState === 'complete') jump(); else window.addEventListener('load', jump, {once: true});
+})();
+
+// CV buttons: if a PDF has not been uploaded yet, the button shows "Soon" instead of a broken download.
+(() => {
+  document.querySelectorAll('a[data-cv]').forEach(link => {
+    fetch(link.getAttribute('href'), {method: 'HEAD', cache: 'no-store'})
+      .then(res => { if (!res.ok) throw new Error(res.status); })
+      .catch(() => {
+        link.classList.add('cv-missing');
+        link.setAttribute('aria-disabled', 'true');
+        link.removeAttribute('download');
+        link.addEventListener('click', event => event.preventDefault());
+      });
+  });
 })();

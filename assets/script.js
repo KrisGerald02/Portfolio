@@ -168,6 +168,7 @@ Ready for the next challenge 🐇`
     kg_note:"*Sample services — tell me more about your venture and I'll tailor them.",
     tg_methods:"Methodologies", tg_other:"Other skills",
     tg_data:"Data &amp; BI", tg_dev:"Development", tg_design:"Design &amp; collaboration", tg_os:"Operating systems", tg_ai:"Artificial intelligence",
+    cv_title:"Download my CV", cv_desc:"Pick the language you want to read it in.", cv_es:"CV in Spanish", cv_en:"CV in English",
     skill_data:"📈 Data Analytics", chip_clean:"Data cleaning &amp; modeling", chip_kpi:"KPI design",
     serv_eyebrow:"services", serv_title:"My services", serv_desc:"I help you organize your data, get rid of repetitive work and get online, with solutions made to fit you.",
     serv1_h:"Data analysis &amp; dashboards", serv1_p:"I turn your data into clear reports so you can make decisions with real information.",
@@ -226,7 +227,8 @@ Ready for the next challenge 🐇`
   }
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
   let savedLang = 'en';
-  try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch(error) {}
+  savedLang = window.portfolioDefaultLang || 'en';
+  try { savedLang = localStorage.getItem('portfolio-lang') || savedLang; } catch(error) {}
   setLang(savedLang === 'es' ? 'es' : 'en', false);
 
   window.addEventListener('storage', event => {
