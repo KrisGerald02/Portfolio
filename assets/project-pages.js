@@ -475,6 +475,58 @@ document.querySelectorAll('.category-projects .proj-card').forEach(card => {
   card.appendChild(link);
 });
 
+// Text for the project page: a one-line summary under the title, the second overview paragraph,
+// and the problems the project solved (icon key + text). Written from each project's description.
+const projectStory = {
+  0:{tagline:{es:'Diseñé la base de datos y construí un panel en Power BI para monitorear los ríos de Nicaragua y sus estaciones de lectura.', en:'I designed the database and built a Power BI dashboard to monitor Nicaragua\'s rivers and their reading stations.'},
+     more:{es:'Organicé los registros de las estaciones en PostgreSQL y los conecté a Power BI, donde con medidas DAX construí la geovisualización nacional, el tablero de control y el seguimiento de los niveles de alerta. Así es posible revisar cada estación a lo largo del tiempo y detectar tendencias de desbordamiento.', en:'I organized the station records in PostgreSQL and connected them to Power BI, where I used DAX measures to build the national geovisualization, the control dashboard and alert level tracking. This makes it possible to review each station over time and spot overflow trends.'},
+     problems:[['files',{es:'Registros de lectura dispersos',en:'Scattered reading records'}],['eye',{es:'Sin vista nacional de las estaciones',en:'No national view of the stations'}],['alert',{es:'Niveles de alerta difíciles de seguir',en:'Alert levels hard to track'}],['chart',{es:'Patrones de desbordamiento ocultos',en:'Hidden overflow patterns'}]]},
+  1:{tagline:{es:'Construí un dashboard en Power BI para analizar las ventas, clientes e inventario de VetPlus.', en:'I built a Power BI dashboard to analyze VetPlus\'s sales, customers and inventory.'},
+     more:{es:'Partí de las hojas de cálculo de ventas y las modelé en Power BI con KPIs de rendimiento, un mapa de clientes y un análisis multidimensional de productos. El equipo comercial puede ver en un solo lugar cómo rinde cada vendedor y qué productos se mueven más.', en:'I started from the sales spreadsheets and modeled them in Power BI with performance KPIs, a customer map and multidimensional product analysis. The sales team can see in one place how each salesperson performs and which products move the most.'},
+     problems:[['files',{es:'Ventas en hojas de cálculo separadas',en:'Sales split across spreadsheets'}],['map',{es:'Sin ubicación de los clientes',en:'No view of customer locations'}],['users',{es:'Desempeño comercial difícil de medir',en:'Sales performance hard to measure'}],['box',{es:'Inventario sin seguimiento claro',en:'Inventory without clear tracking'}]]},
+  2:{tagline:{es:'Construí un dashboard para dar seguimiento a las propuestas de negocio y los ingresos de Elite Marry Me.', en:'I built a dashboard to track Elite Marry Me\'s business proposals and revenue.'},
+     more:{es:'Integré los datos en BigQuery y hojas de cálculo y los visualicé en Power BI y Looker Studio. El dashboard muestra el rendimiento comercial, el estado de cada propuesta y qué canales de venta generan más ingresos.', en:'I integrated the data in BigQuery and spreadsheets and visualized it in Power BI and Looker Studio. The dashboard shows commercial performance, the status of each proposal and which sales channels bring in the most revenue.'},
+     problems:[['files',{es:'Propuestas sin seguimiento centralizado',en:'Proposals without central tracking'}],['chart',{es:'Ingresos difíciles de analizar',en:'Revenue hard to analyze'}],['eye',{es:'Canales de venta sin atribución',en:'Sales channels without attribution'}]]},
+  3:{tagline:{es:'Programé en MicroPython un robot para competir en la Olimpiada Nacional de Robótica de Nicaragua 2024.', en:'I programmed a robot in MicroPython to compete in Nicaragua\'s 2024 National Robotics Olympiad.'},
+     more:{es:'Dividí el control en módulos independientes de aceleración, giros, lectura del giroscopio y respuestas de los sensores, para probar y ajustar cada parte por separado. Esto permitió que el robot se orientara con precisión y reaccionara a lo que detectaban sus sensores durante el desafío.', en:'I split the control into independent modules for acceleration, turning, gyroscope readings and sensor responses, so each part could be tested and tuned on its own. This let the robot orient itself accurately and react to what its sensors detected during the challenge.'},
+     problems:[['target',{es:'Movimientos que necesitaban precisión',en:'Movements that needed precision'}],['compass',{es:'Orientación en la pista',en:'Orientation on the track'}],['alert',{es:'Reaccionar a varios sensores a la vez',en:'Reacting to several sensors at once'}]]},
+  4:{tagline:{es:'Desarrollé una app nativa para iOS que reúne el catálogo de cursos de la Universidad Americana.', en:'I developed a native iOS app that brings together Universidad Americana\'s course catalog.'},
+     more:{es:'La construí en Swift con UIKit y arquitectura MVVM. Se comunica con una API REST mediante URLSession y guarda datos localmente con UserDefaults. Incluye inicio de sesión y registro, búsqueda y favoritos para estudiantes, y herramientas para que los administradores creen y editen cursos.', en:'I built it in Swift with UIKit and an MVVM architecture. It talks to a REST API through URLSession and stores data locally with UserDefaults. It includes login and registration, search and favorites for students, and tools for administrators to create and edit courses.'},
+     problems:[['search',{es:'Cursos difíciles de encontrar',en:'Courses hard to find'}],['clock',{es:'Horarios y requisitos dispersos',en:'Scattered schedules and requirements'}],['edit',{es:'Actualizar la información era lento',en:'Updating information was slow'}]]},
+  6:{tagline:{es:'Creé la identidad de marca completa de Gerald Shop, una agencia de envíos de Estados Unidos a Nicaragua.', en:'I created the full brand identity for Gerald Shop, a shipping agency from the United States to Nicaragua.'},
+     more:{es:'Diseñé el logo y sus variantes, la paleta de colores y la tipografía, y con ese sistema visual preparé piezas para redes sociales y mockups de envíos, empaques y prendas. Todo quedó reunido en una propuesta de marca lista para presentar.', en:'I designed the logo and its variants, the color palette and typography, and used that visual system to prepare social media pieces and mockups for shipping, packaging and apparel. Everything came together in a brand proposal ready to present.'},
+     problems:[['eye',{es:'Sin identidad visual',en:'No visual identity'}],['shuffle',{es:'Comunicación inconsistente en redes',en:'Inconsistent social media presence'}],['box',{es:'Empaques sin marca',en:'Unbranded packaging'}]]},
+  7:{tagline:{es:'Automaticé con Google Apps Script el reporte semanal de ventas, desde los datos hasta el correo.', en:'I automated the weekly sales report with Google Apps Script, from the data to the email.'},
+     more:{es:'El script extrae y procesa los datos de BigQuery y HubSpot, compara los KPIs con la semana anterior y envía el reporte actualizado por Gmail. El equipo recibe cada semana la misma información sin tener que armarla a mano.', en:'The script extracts and processes data from BigQuery and HubSpot, compares KPIs with the previous week and sends the updated report through Gmail. The team gets the same information every week without building it by hand.'},
+     problems:[['hand',{es:'Reporte armado a mano cada semana',en:'Report built by hand every week'}],['files',{es:'Datos en BigQuery y HubSpot por separado',en:'Data split between BigQuery and HubSpot'}],['clock',{es:'Tiempo perdido en tareas repetitivas',en:'Time lost on repetitive tasks'}]]},
+  8:{tagline:{es:'Construí un dashboard mensual de marketing para Junk Rescue con datos de Excel y su CRM.', en:'I built a monthly marketing dashboard for Junk Rescue with data from Excel and its CRM.'},
+     more:{es:'Centralicé la información de Excel y del CRM Vonigo en Power BI para analizar la inversión y los leads por fuente, el costo por lead y la conversión de llamadas. Cada mes el reporte se actualiza y muestra qué canales funcionan mejor.', en:'I centralized the Excel and Vonigo CRM data in Power BI to analyze spend and leads by source, cost per lead and call conversion. Each month the report is updated and shows which channels perform best.'},
+     problems:[['files',{es:'Datos de marketing dispersos',en:'Scattered marketing data'}],['money',{es:'Costo por lead desconocido',en:'Unknown cost per lead'}],['chart',{es:'Fuentes de leads sin comparar',en:'Lead sources not compared'}]]},
+  9:{tagline:{es:'Construí un dashboard en Power BI para analizar la operación del autolavado WashBunny.', en:'I built a Power BI dashboard to analyze the WashBunny car wash operation.'},
+     more:{es:'Consolidé los datos operativos de archivos Excel y CSV en reportes interactivos de Power BI, y organicé los archivos en SharePoint para que el equipo colaborara sobre la misma información. El resultado es una vista clara del rendimiento del autolavado.', en:'I consolidated operational data from Excel and CSV files into interactive Power BI reports, and organized the files in SharePoint so the team could collaborate on the same information. The result is a clear view of the car wash\'s performance.'},
+     problems:[['files',{es:'Datos en muchos archivos Excel y CSV',en:'Data in many Excel and CSV files'}],['users',{es:'Equipo sin archivos compartidos',en:'Team without shared files'}],['eye',{es:'Rendimiento operativo poco visible',en:'Operational performance hard to see'}]]},
+  10:{tagline:{es:'Reuní mis prácticas y prototipos con Arduino en un repositorio documentado.', en:'I gathered my Arduino practices and prototypes in a documented repository.'},
+     more:{es:'Incluye proyectos con sensores de temperatura, humedad, infrarrojos y ultrasónicos, motores DC y circuitos controlados por Bluetooth, semáforos y LEDs RGB, en placas Arduino UNO, Mega, UNO R4 Minima y WiFi. Cada práctica está documentada para poder repetirla.', en:'It includes projects with temperature, humidity, infrared and ultrasonic sensors, Bluetooth-controlled DC motors and circuits, traffic lights and RGB LEDs, on Arduino UNO, Mega, UNO R4 Minima and WiFi boards. Each practice is documented so it can be repeated.'},
+     problems:[['target',{es:'Aprender electrónica con práctica',en:'Learning electronics hands-on'}],['files',{es:'Experimentos sin documentar',en:'Undocumented experiments'}],['compass',{es:'Probar distintos sensores y placas',en:'Testing different sensors and boards'}]]}
+};
+const problemIcons = {
+  files:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
+  eye:'<path d="M3 3l18 18"/><path d="M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a16 16 0 0 1-2.6 3.2M6.5 7.6C4.3 9.1 3 12 3 12s4 6 9 6a8.6 8.6 0 0 0 4-1"/><path d="M9.9 10a3 3 0 0 0 4.1 4.1"/>',
+  alert:'<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17v.01"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M8 16v-3M12 16V9M16 16v-6"/>',
+  map:'<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',
+  box:'<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  edit:'<path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m14 6 4 4"/>',
+  shuffle:'<path d="M3 7h3c4 0 6 10 10 10h5M3 17h3c1.6 0 2.8-1.6 4-3.6M14 9.6C15 8 16 7 17.5 7H21M18 4l3 3-3 3M18 14l3 3-3 3"/>',
+  hand:'<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4.5a1.5 1.5 0 0 1 3 0V12M14 11V6.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-5-2.7L3 15.5a1.5 1.5 0 0 1 2.5-1.7L8 16"/>',
+  money:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>'
+};
+
 const detailRoot = document.getElementById('projectDetail');
 // Logos for the "Technologies used" tiles (files in assets/img/tools). Others show as a text tile.
 const techIcons = {
@@ -495,7 +547,10 @@ const svg = (paths, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke=
 function pdShow(index){
   if(!activeImages.length) return;
   const n = activeImages.length;
+  const dir = index < activeImageIndex ? 'back' : 'fwd';
   activeImageIndex = (index + n) % n;
+  const flow = detailRoot.querySelector('.pd-flow');
+  if(flow){ flow.classList.remove('slide-fwd', 'slide-back'); void flow.offsetWidth; flow.classList.add(`slide-${dir}`); }
   const at = offset => activeImages[(activeImageIndex + offset + n) % n];
   const main = document.getElementById('carouselImage');
   main.src = at(0).src; main.alt = at(0).alt;
@@ -531,9 +586,8 @@ function renderProjectDetail(){
   const pos = siblings.indexOf(index);
   const next = siblings.length > 1 ? siblings[(pos + 1) % siblings.length] : null;
   const desc = project.desc[currentLang];
+  const story = projectStory[index];
   const lead = (desc.match(/^.*?[.!?](\s|$)/) || [desc])[0].trim();
-  const pageUrl = encodeURIComponent(location.href);
-  const shareText = encodeURIComponent(`${title} · Kristel Villalta`);
   const n = images.length;
   const at = offset => images[(activeImageIndex + offset + n) % n];
   const cover = n ? images[0].src : meta.logo;
@@ -546,16 +600,7 @@ function renderProjectDetail(){
           <div class="pd-hero-text">
             <span class="pd-logo${meta.wide ? ' wide' : ''}">${meta.logo ? `<img src="${meta.logo}" alt="">` : `<b>${initials(project.title.en)}</b>`}</span>
             <h1>${title}</h1>
-            <p>${lead !== desc ? lead : `${cat} · ${project.technologies.slice(0, 3).join(' · ')}`}</p>
-          </div>
-          <div class="pd-share">
-            <strong>${es ? '¡Compartí este proyecto!' : 'Share this project!'}</strong>
-            <div>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">${svg('<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/>')}</a>
-              <a href="https://wa.me/?text=${shareText}%20${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">${svg('<path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2L9 9.5Z"/>')}</a>
-              <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="X">${svg('<path d="M4 4l16 16M20 4 4 20"/>')}</a>
-              <button type="button" class="pd-copy" aria-label="${es ? 'Copiar enlace' : 'Copy link'}">${svg('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>')}</button>
-            </div>
+            <p>${story ? story.tagline[currentLang] : lead}</p>
           </div>
         </div>
       </div>
@@ -565,6 +610,7 @@ function renderProjectDetail(){
       <h2 class="pd-vlabel">${es ? 'Resumen' : 'Overview'}</h2>
       <div class="pd-block-body">
         <p>${desc}</p>
+        ${story ? `<p>${story.more[currentLang]}</p>` : ''}
         <div class="pd-links">
           ${project.repo ? `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noopener noreferrer">${translations[currentLang].view_repo} ↗</a>` : ''}
           ${project.file ? `<a class="btn btn-ghost" href="${project.file}" download>${project.fileLabel?.[currentLang] || translations[currentLang].view_presentation} ↓</a>` : ''}
@@ -572,9 +618,14 @@ function renderProjectDetail(){
       </div>
     </section>
 
+    ${story ? `<section class="pd-wrap pd-block pd-problem">
+      <h2 class="pd-vlabel">${es ? 'El problema' : 'The Problem'}</h2>
+      <ul class="pd-block-body">${story.problems.map(([icon, text]) => `<li><span class="pd-ico">${svg(problemIcons[icon])}</span><span>${text[currentLang]}</span></li>`).join('')}</ul>
+    </section>` : ''}
+
     <section class="pd-wrap pd-block pd-solution">
-      <h2 class="pd-vlabel">${es ? 'La solución' : 'The Solution'}</h2>
       <ul class="pd-block-body">${project.bullets[currentLang].map((item, i) => `<li><span class="pd-ico">${svg(pdIcons[i % pdIcons.length])}</span><span>${item}</span></li>`).join('')}</ul>
+      <h2 class="pd-vlabel">${es ? 'La solución' : 'The Solution'}</h2>
     </section>
 
     ${n ? `
@@ -601,18 +652,7 @@ function renderProjectDetail(){
 
     <section class="pd-wrap pd-end">
       ${next !== null ? `<a class="pd-next" href="proyecto.html?p=${next}"><span>${es ? 'Siguiente proyecto' : 'Next project'}</span><strong>${projects[next].title[currentLang]} →</strong></a>` : ''}
-      <div class="pd-cta">
-        <h2>${es ? '¿Tenés un proyecto en mente?' : 'Have a project in mind?'}</h2>
-        <p>${es ? 'Contame qué necesitás y vemos juntos cómo convertir tus datos en decisiones.' : "Tell me what you need and let's see together how to turn your data into decisions."}</p>
-        <a class="btn btn-primary" href="index.html#contacto">${es ? 'Hablemos' : "Let's talk"} →</a>
-      </div>
     </section>`;
-  const copy = detailRoot.querySelector('.pd-copy');
-  copy.addEventListener('click', () => {
-    try { navigator.clipboard.writeText(location.href); } catch(error) {}
-    copy.classList.add('done');
-    setTimeout(() => copy.classList.remove('done'), 1400);
-  });
   if(n){
     const main = detailRoot.querySelector('.carousel-image');
     main.addEventListener('error', () => {
