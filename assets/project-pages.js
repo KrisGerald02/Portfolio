@@ -320,9 +320,35 @@ function moveLightbox(step){
   openLightbox();
 }
 
-function openProject(index){
+// Project photos in Spanish or English. The English version of a photo sits next to it with "-en"
+// before the extension (view1.webp -> view1-en.webp). The switch only shows when that file exists.
+let photoLang = null;
+const photoEnAvailable = {};
+const enPhotoSrc = src => src.replace(/(\.[a-z0-9]+)$/i, '-en$1');
+function projectPhotos(index){
+  const images = projects[index].images;
+  const lang = photoLang || currentLang;
+  return lang === 'en' && photoEnAvailable[index] ? images.map(image => ({...image, src: enPhotoSrc(image.src)})) : images;
+}
+function checkEnglishPhotos(index){
+  const images = projects[index].images;
+  if(!images.length || index in photoEnAvailable) return;
+  photoEnAvailable[index] = false;
+  fetch(enPhotoSrc(images[0].src), {method: 'HEAD', cache: 'no-store'})
+    .then(res => {
+      if(!res.ok) return;
+      photoEnAvailable[index] = true;
+      if(activeProjectIndex === index) openProject(index, activeImageIndex);
+    })
+    .catch(() => {});
+}
+
+function openProject(index, keepImage){
+  if(activeProjectIndex !== index) photoLang = null;
   activeProjectIndex = index;
-  const project = projects[index];
+  const project = {...projects[index], images: projectPhotos(index)};
+  checkEnglishPhotos(index);
+  const shownPhotoLang = photoLang || currentLang;
   document.getElementById('modalTitle').textContent = project.title[currentLang];
   document.getElementById('modalDesc').textContent = project.desc[currentLang];
   document.getElementById('modalTechnical').textContent = translations[currentLang].technical;
@@ -338,8 +364,9 @@ function openProject(index){
       <span class="carousel-counter" id="carouselCounter">1 / ${project.images.length}</span>
       <button class="carousel-zoom" type="button">🔍 ${currentLang === 'en' ? 'Zoom' : 'Ampliar'}</button>
     </div>
+    ${photoEnAvailable[index] ? `<div class="photo-lang" role="group" aria-label="${currentLang === 'en' ? 'Photo language' : 'Idioma de las fotos'}"><span>${currentLang === 'en' ? 'Photos in:' : 'Fotos en:'}</span><button type="button" data-photo-lang="es" aria-pressed="${shownPhotoLang === 'es'}">Español</button><button type="button" data-photo-lang="en" aria-pressed="${shownPhotoLang === 'en'}">English</button></div>` : ''}
     <div class="carousel-thumbs">
-      ${project.images.map((image, i) => `<button class="carousel-thumb${i === 0 ? ' active' : ''}" type="button" data-index="${i}" aria-label="Image ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" alt=""></button>`).join('')}
+      ${project.images.map((image, i) => `<button class="carousel-thumb${i === 0 ? ' active' : ''}" type="button" data-index="${i}" aria-label="Image ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" data-fallback="${projects[index].images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt=""></button>`).join('')}
     </div>` : '';
   document.getElementById('modalKpis').innerHTML = project.technologies.map(technology => `<span class="modal-tech-pill">${technology}</span>`).join('');
   const fileLink = document.getElementById('modalFileLink');
@@ -357,6 +384,16 @@ function openProject(index){
     modal.querySelector('.carousel-image').addEventListener('click', openLightbox);
     modal.querySelector('.carousel-zoom').addEventListener('click', openLightbox);
     modal.querySelectorAll('.carousel-thumb').forEach(thumb => thumb.addEventListener('click', () => showCarouselImage(Number(thumb.dataset.index))));
+    // A photo without its English copy falls back to the Spanish one.
+    modal.querySelector('.carousel-image').addEventListener('error', event => {
+      const original = projects[index].images[activeImageIndex].src;
+      if(!event.target.src.endsWith(original)) event.target.src = original;
+    });
+    modal.querySelectorAll('[data-photo-lang]').forEach(button => button.addEventListener('click', () => {
+      photoLang = button.dataset.photoLang;
+      openProject(index, activeImageIndex);
+    }));
+    if(keepImage) showCarouselImage(keepImage);
   }
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -385,5 +422,6 @@ if(modal && lightbox){
 }
 
 let savedLang = 'en';
-try { savedLang = localStorage.getItem('portfolio-lang') || 'en'; } catch(error) {}
+savedLang = window.portfolioDefaultLang || 'en';
+try { savedLang = localStorage.getItem('portfolio-lang') || savedLang; } catch(error) {}
 setLang(savedLang === 'es' ? 'es' : 'en', false);
