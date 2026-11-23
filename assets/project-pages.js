@@ -631,7 +631,7 @@ function renderProjectDetail(){
 
     ${n ? `
     <section class="pd-wrap pd-gallery">
-      <h2>${es ? 'Galería' : 'Gallery'}</h2>
+      <h2>${es ? 'Un vistazo al proyecto' : 'A look inside'}</h2>
       <div class="pd-flow">
         <div class="pd-track" style="transform:${pdOffset(activeImageIndex)}">
           ${images.map((image, i) => `<button class="pd-slide${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"><img decoding="async" src="${image.src}" data-fallback="${project.images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt="${image.alt}"></button>`).join('')}

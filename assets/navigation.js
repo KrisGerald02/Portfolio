@@ -93,7 +93,7 @@
 
   // Entrance animation: when a view (or a category page) opens, each item waits hidden
   // and animates in only once it scrolls into the screen.
-  const animItems = '#hero > div, .cv-card, .sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .pcard, .kg-service, .kgtech-head, .tl-item';
+  const animItems = '#hero > div, .cv-card, .sec-head, .serv-tile, .serv-cta, .proj-cat, .tool, .skill-card, .contact-item, .contact-form, .about-text, .query-card, .proj-card, .pcard, .kg-service, .kgtech-head, .tl-item, .pd-vlabel, .pd-problem li, .pd-solution li';
   const animObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     let n = 0;
     entries.forEach(entry => {
