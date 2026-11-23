@@ -838,10 +838,6 @@ html[lang="en"] .cv-btn.cv-missing::after{content:'Soon';}
 @keyframes mark-in{to{background-size:100% 100%;}}
 
 /* Photo language switch inside a project. */
-.photo-lang{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:.85rem;color:var(--ink-soft);}
-.photo-lang button{padding:6px 14px;border:1.5px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:600 .82rem 'Inter',sans-serif;cursor:pointer;transition:background 200ms,border-color 200ms,color 200ms;}
-.photo-lang button[aria-pressed="true"]{background:var(--pink-deeper);border-color:var(--pink-deeper);color:#fff;}
-.photo-lang button:hover{border-color:var(--pink-deeper);}
 
 /* ---------- Project cards: cover image, logo tile, title and short description ---------- */
 .proj-grid:has(.pcard){display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:22px;}
@@ -917,7 +913,6 @@ html[lang="en"] .cv-btn.cv-missing::after{content:'Soon';}
 .pd-dots{display:flex;justify-content:center;gap:8px;margin-top:18px;}
 .pd-dot{width:9px;height:9px;padding:0;border:0;border-radius:999px;background:var(--line);cursor:pointer;transition:width 300ms,background 300ms;}
 .pd-dot.active{width:26px;background:var(--pink-deeper);}
-.pd-gallery .photo-lang{justify-content:center;margin-top:14px;}
 /* Technologies: square tiles */
 .pd-tech{margin-top:64px;}
 .pd-tech ul{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;}
