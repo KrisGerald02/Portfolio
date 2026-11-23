@@ -102,6 +102,7 @@ function setLang(lang, persist = true){
     if(translations[lang][key]) element.textContent = translations[lang][key];
   });
   if(activeProjectIndex !== null) openProject(activeProjectIndex);
+  if(document.getElementById('projectDetail')) renderProjectDetail();
   if(persist){
     try { localStorage.setItem('portfolio-lang', lang); } catch(error) {}
   }
@@ -338,7 +339,7 @@ function checkEnglishPhotos(index){
     .then(res => {
       if(!res.ok) return;
       photoEnAvailable[index] = true;
-      if(activeProjectIndex === index) openProject(index, activeImageIndex);
+      if(activeProjectIndex === index) document.getElementById('projectDetail') ? renderProjectDetail() : openProject(index, activeImageIndex);
     })
     .catch(() => {});
 }
@@ -419,6 +420,135 @@ if(modal && lightbox){
     if(lightbox.classList.contains('open') && event.key === 'ArrowLeft') moveLightbox(-1);
     if(lightbox.classList.contains('open') && event.key === 'ArrowRight') moveLightbox(1);
   });
+}
+
+
+// ---------- Project cards and project detail page ----------
+// Which category page each project belongs to, its logo, and the translation key of the category title.
+const projectMeta = {
+  0:{page:'analisis-datos.html', cat:'data_title', logo:'assets/img/INETER/INETER ICON.webp'},
+  1:{page:'analisis-datos.html', cat:'data_title', logo:'assets/img/VetPlus/VETPLUS ICONN.webp', wide:true},
+  2:{page:'analisis-datos.html', cat:'data_title', logo:'assets/img/Marry Me/ICON MARRY ME.webp'},
+  8:{page:'analisis-datos.html', cat:'data_title', logo:'assets/img/Junk Rescue/jr logo.webp', wide:true},
+  9:{page:'analisis-datos.html', cat:'data_title', logo:'assets/img/WashBunny/bunnywash_logo.webp', wide:true},
+  7:{page:'automatizaciones.html', cat:'automation_title'},
+  3:{page:'electronica-robotica.html', cat:'robotics_title'},
+  10:{page:'electronica-robotica.html', cat:'robotics_title'},
+  4:{page:'mobile-apps.html', cat:'mobile_title'},
+  6:{page:'disenos.html', cat:'design_title', logo:'assets/img/GeraldShop/geraldshop_icon.webp', wide:true}
+};
+const catTitles = {
+  data_title:{es:'Análisis de Datos', en:'Data Analysis'}, automation_title:{es:'Automatizaciones', en:'Automations'},
+  robotics_title:{es:'Electrónica y Robótica', en:'Electronics & Robotics'}, mobile_title:{es:'Mobile Apps', en:'Mobile Apps'},
+  design_title:{es:'Diseños', en:'Designs'}
+};
+const cssUrl = src => `url("${encodeURI(decodeURI(src))}")`;
+const initials = text => text.split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase();
+
+// Category pages: each card becomes a cover image with a logo tile, title and short description,
+// and the whole card links to the project's own page.
+document.querySelectorAll('.category-projects .proj-card').forEach(card => {
+  const button = card.querySelector('[data-project-index]');
+  const external = card.querySelector('a.proj-btn[href]');
+  const index = button ? Number(button.dataset.projectIndex) : null;
+  const project = index !== null ? projects[index] : null;
+  const meta = (index !== null && projectMeta[index]) || {};
+  const title = card.querySelector('h3');
+  const desc = card.querySelector('p');
+  const logoImg = card.querySelector('.client-logo, .website-logo');
+  const logoSrc = meta.logo || (logoImg && logoImg.getAttribute('src'));
+  const coverSrc = project && project.images.length ? project.images[0].src : logoSrc;
+  const href = index !== null ? `proyecto.html?p=${index}` : external.getAttribute('href');
+  card.className = 'pcard';
+  card.innerHTML = '';
+  const link = document.createElement('a');
+  link.className = 'pcard-link';
+  link.href = href;
+  if(index === null){ link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+  link.innerHTML = `<span class="pcard-cover${coverSrc ? '' : ' empty'}"${coverSrc ? ` style='background-image:${cssUrl(coverSrc)}'` : ''}></span>
+    <span class="pcard-body">
+      <span class="pcard-logo${meta.wide || (logoImg && logoImg.classList.contains('wide')) ? ' wide' : ''}">${logoSrc ? `<img src="${logoSrc}" alt="" loading="lazy">` : `<b>${initials(title.textContent)}</b>`}</span>
+    </span>`;
+  const body = link.querySelector('.pcard-body');
+  body.appendChild(title);
+  body.appendChild(desc);
+  card.appendChild(link);
+});
+
+const detailRoot = document.getElementById('projectDetail');
+function renderProjectDetail(){
+  const index = Number(new URLSearchParams(location.search).get('p'));
+  const project = projects[index];
+  const es = currentLang === 'es';
+  if(!project || !projectMeta[index]){
+    detailRoot.innerHTML = `<section class="pd-hero"><a class="back-link" href="index.html#proyectos">← ${es ? 'Volver a proyectos' : 'Back to projects'}</a><h1>${es ? 'Proyecto no encontrado' : 'Project not found'}</h1></section>`;
+    return;
+  }
+  const meta = projectMeta[index];
+  const cat = catTitles[meta.cat][currentLang];
+  if(detailRoot.dataset.shown) detailRoot.classList.add('pd-quiet');
+  detailRoot.dataset.shown = '1';
+  document.title = `${project.title[currentLang]} · Kristel Villalta`;
+  if(activeProjectIndex !== index) photoLang = null;
+  activeProjectIndex = index;
+  checkEnglishPhotos(index);
+  const images = projectPhotos(index);
+  activeImages = images;
+  if(activeImageIndex >= images.length) activeImageIndex = 0;
+  const shownPhotoLang = photoLang || currentLang;
+  const siblings = Object.keys(projectMeta).map(Number).filter(i => projectMeta[i].page === meta.page);
+  const pos = siblings.indexOf(index);
+  const next = siblings.length > 1 ? siblings[(pos + 1) % siblings.length] : null;
+  const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  detailRoot.innerHTML = `
+    <section class="pd-hero">
+      <a class="back-link" href="${meta.page}">← ${cat}</a>
+      <div class="pd-head">
+        <span class="pd-logo${meta.wide ? ' wide' : ''}">${meta.logo ? `<img src="${meta.logo}" alt="">` : `<b>${initials(project.title.en)}</b>`}</span>
+        <div>
+          <span class="eyebrow">${cat}</span>
+          <h1>${project.title[currentLang]}</h1>
+        </div>
+      </div>
+      <p class="pd-desc">${project.desc[currentLang]}</p>
+      <div class="pd-tags">${project.technologies.map(t => `<span>${t}</span>`).join('')}</div>
+      <div class="pd-links">
+        ${project.repo ? `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noopener noreferrer">${translations[currentLang].view_repo} ↗</a>` : ''}
+        ${project.file ? `<a class="btn btn-ghost" href="${project.file}" download>${project.fileLabel?.[currentLang] || translations[currentLang].view_presentation} ↓</a>` : ''}
+      </div>
+    </section>
+    ${images.length ? `
+    <section class="pd-gallery">
+      <div class="carousel-stage">
+        <img decoding="async" class="carousel-image" id="carouselImage" src="${images[activeImageIndex].src}" alt="${images[activeImageIndex].alt}">
+        ${images.length > 1 ? `<button class="carousel-nav prev" type="button" aria-label="${es ? 'Imagen anterior' : 'Previous image'}">‹</button><button class="carousel-nav next" type="button" aria-label="${es ? 'Imagen siguiente' : 'Next image'}">›</button>` : ''}
+        <span class="carousel-counter" id="carouselCounter">${activeImageIndex + 1} / ${images.length}</span>
+        <button class="carousel-zoom" type="button">🔍 ${es ? 'Ampliar' : 'Zoom'}</button>
+      </div>
+      ${photoEnAvailable[index] ? `<div class="photo-lang" role="group" aria-label="${es ? 'Idioma de las fotos' : 'Photo language'}"><span>${es ? 'Fotos en:' : 'Photos in:'}</span><button type="button" data-photo-lang="es" aria-pressed="${shownPhotoLang === 'es'}">Español</button><button type="button" data-photo-lang="en" aria-pressed="${shownPhotoLang === 'en'}">English</button></div>` : ''}
+      ${images.length > 1 ? `<div class="carousel-thumbs">${images.map((image, i) => `<button class="carousel-thumb${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" data-fallback="${project.images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt=""></button>`).join('')}</div>` : ''}
+    </section>` : ''}
+    <section class="pd-highlights">
+      <h2>${translations[currentLang].technical}</h2>
+      <ul>${project.bullets[currentLang].map(item => `<li><span class="pd-check">${check}</span>${item}</li>`).join('')}</ul>
+    </section>
+    ${next !== null ? `<a class="pd-next" href="proyecto.html?p=${next}"><span>${es ? 'Siguiente proyecto' : 'Next project'}</span><strong>${projects[next].title[currentLang]} →</strong></a>` : ''}`;
+  if(images.length){
+    const main = detailRoot.querySelector('.carousel-image');
+    main.addEventListener('error', () => {
+      const original = project.images[activeImageIndex].src;
+      if(!main.src.endsWith(original)) main.src = original;
+    });
+    main.addEventListener('click', openLightbox);
+    detailRoot.querySelector('.carousel-zoom').addEventListener('click', openLightbox);
+    detailRoot.querySelector('.carousel-nav.prev')?.addEventListener('click', () => showCarouselImage(activeImageIndex - 1));
+    detailRoot.querySelector('.carousel-nav.next')?.addEventListener('click', () => showCarouselImage(activeImageIndex + 1));
+    detailRoot.querySelectorAll('.carousel-thumb').forEach(thumb => thumb.addEventListener('click', () => showCarouselImage(Number(thumb.dataset.index))));
+    detailRoot.querySelectorAll('[data-photo-lang]').forEach(button => button.addEventListener('click', () => {
+      photoLang = button.dataset.photoLang;
+      renderProjectDetail();
+    }));
+  }
 }
 
 let savedLang = 'en';
