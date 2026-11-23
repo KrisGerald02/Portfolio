@@ -317,7 +317,7 @@ function openLightbox(){
 }
 
 function moveLightbox(step){
-  showCarouselImage(activeImageIndex + step);
+  document.getElementById('projectDetail') ? pdShow(activeImageIndex + step) : showCarouselImage(activeImageIndex + step);
   openLightbox();
 }
 
@@ -476,19 +476,50 @@ document.querySelectorAll('.category-projects .proj-card').forEach(card => {
 });
 
 const detailRoot = document.getElementById('projectDetail');
+// Logos for the "Technologies used" tiles (files in assets/img/tools). Others show as a text tile.
+const techIcons = {
+  'PostgreSQL':'postgresql','Power BI':'powerbi','Spreadsheets':'excel','Excel':'excel','Looker Studio':'lookerstudio',
+  'BigQuery':'bigquery','Swift':'swift','Canva':'canva','Illustrator':'illustrator','Photoshop':'photoshop',
+  'Google Apps Script':'appsscript','Arduino':'arduino','PowerPoint':'office365','SharePoint':'office365','Gmail':'office365'
+};
+const pdIcons = [
+  '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/>',
+  '<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>',
+  '<path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7L12 3Z"/>',
+  '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/>',
+  '<path d="M4 7h16M4 12h10M4 17h7"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>'
+];
+const svg = (paths, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${paths}</svg>`;
+
+function pdShow(index){
+  if(!activeImages.length) return;
+  const n = activeImages.length;
+  activeImageIndex = (index + n) % n;
+  const at = offset => activeImages[(activeImageIndex + offset + n) % n];
+  const main = document.getElementById('carouselImage');
+  main.src = at(0).src; main.alt = at(0).alt;
+  const prev = detailRoot.querySelector('.pd-side.left'), next = detailRoot.querySelector('.pd-side.right');
+  if(prev) prev.src = at(-1).src;
+  if(next) next.src = at(1).src;
+  document.getElementById('carouselCounter').textContent = `${activeImageIndex + 1} / ${n}`;
+  detailRoot.querySelectorAll('.pd-dot').forEach((dot, i) => dot.classList.toggle('active', i === activeImageIndex));
+}
+
 function renderProjectDetail(){
   const index = Number(new URLSearchParams(location.search).get('p'));
   const project = projects[index];
   const es = currentLang === 'es';
   if(!project || !projectMeta[index]){
-    detailRoot.innerHTML = `<section class="pd-hero"><a class="back-link" href="index.html#proyectos">← ${es ? 'Volver a proyectos' : 'Back to projects'}</a><h1>${es ? 'Proyecto no encontrado' : 'Project not found'}</h1></section>`;
+    detailRoot.innerHTML = `<section class="pd-wrap pd-missing"><a class="back-link" href="index.html#proyectos">← ${es ? 'Volver a proyectos' : 'Back to projects'}</a><h1>${es ? 'Proyecto no encontrado' : 'Project not found'}</h1></section>`;
     return;
   }
   const meta = projectMeta[index];
   const cat = catTitles[meta.cat][currentLang];
   if(detailRoot.dataset.shown) detailRoot.classList.add('pd-quiet');
   detailRoot.dataset.shown = '1';
-  document.title = `${project.title[currentLang]} · Kristel Villalta`;
+  const title = project.title[currentLang];
+  document.title = `${title} · Kristel Villalta`;
   if(activeProjectIndex !== index) photoLang = null;
   activeProjectIndex = index;
   checkEnglishPhotos(index);
@@ -499,51 +530,106 @@ function renderProjectDetail(){
   const siblings = Object.keys(projectMeta).map(Number).filter(i => projectMeta[i].page === meta.page);
   const pos = siblings.indexOf(index);
   const next = siblings.length > 1 ? siblings[(pos + 1) % siblings.length] : null;
-  const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  const desc = project.desc[currentLang];
+  const lead = (desc.match(/^.*?[.!?](\s|$)/) || [desc])[0].trim();
+  const pageUrl = encodeURIComponent(location.href);
+  const shareText = encodeURIComponent(`${title} · Kristel Villalta`);
+  const n = images.length;
+  const at = offset => images[(activeImageIndex + offset + n) % n];
+  const cover = n ? images[0].src : meta.logo;
   detailRoot.innerHTML = `
     <section class="pd-hero">
-      <a class="back-link" href="${meta.page}">← ${cat}</a>
-      <div class="pd-head">
-        <span class="pd-logo${meta.wide ? ' wide' : ''}">${meta.logo ? `<img src="${meta.logo}" alt="">` : `<b>${initials(project.title.en)}</b>`}</span>
-        <div>
-          <span class="eyebrow">${cat}</span>
-          <h1>${project.title[currentLang]}</h1>
+      ${cover ? `<span class="pd-hero-bg" style='background-image:${cssUrl(cover)}'></span>` : ''}
+      <div class="pd-wrap pd-hero-in">
+        <a class="back-link" href="${meta.page}">← ${cat}</a>
+        <div class="pd-hero-row">
+          <div class="pd-hero-text">
+            <span class="pd-logo${meta.wide ? ' wide' : ''}">${meta.logo ? `<img src="${meta.logo}" alt="">` : `<b>${initials(project.title.en)}</b>`}</span>
+            <h1>${title}</h1>
+            <p>${lead !== desc ? lead : `${cat} · ${project.technologies.slice(0, 3).join(' · ')}`}</p>
+          </div>
+          <div class="pd-share">
+            <strong>${es ? '¡Compartí este proyecto!' : 'Share this project!'}</strong>
+            <div>
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">${svg('<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/>')}</a>
+              <a href="https://wa.me/?text=${shareText}%20${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">${svg('<path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2L9 9.5Z"/>')}</a>
+              <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${pageUrl}" target="_blank" rel="noopener noreferrer" aria-label="X">${svg('<path d="M4 4l16 16M20 4 4 20"/>')}</a>
+              <button type="button" class="pd-copy" aria-label="${es ? 'Copiar enlace' : 'Copy link'}">${svg('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>')}</button>
+            </div>
+          </div>
         </div>
       </div>
-      <p class="pd-desc">${project.desc[currentLang]}</p>
-      <div class="pd-tags">${project.technologies.map(t => `<span>${t}</span>`).join('')}</div>
-      <div class="pd-links">
-        ${project.repo ? `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noopener noreferrer">${translations[currentLang].view_repo} ↗</a>` : ''}
-        ${project.file ? `<a class="btn btn-ghost" href="${project.file}" download>${project.fileLabel?.[currentLang] || translations[currentLang].view_presentation} ↓</a>` : ''}
+    </section>
+
+    <section class="pd-wrap pd-block pd-overview">
+      <h2 class="pd-vlabel">${es ? 'Resumen' : 'Overview'}</h2>
+      <div class="pd-block-body">
+        <p>${desc}</p>
+        <div class="pd-links">
+          ${project.repo ? `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noopener noreferrer">${translations[currentLang].view_repo} ↗</a>` : ''}
+          ${project.file ? `<a class="btn btn-ghost" href="${project.file}" download>${project.fileLabel?.[currentLang] || translations[currentLang].view_presentation} ↓</a>` : ''}
+        </div>
       </div>
     </section>
-    ${images.length ? `
-    <section class="pd-gallery">
-      <div class="carousel-stage">
-        <img decoding="async" class="carousel-image" id="carouselImage" src="${images[activeImageIndex].src}" alt="${images[activeImageIndex].alt}">
-        ${images.length > 1 ? `<button class="carousel-nav prev" type="button" aria-label="${es ? 'Imagen anterior' : 'Previous image'}">‹</button><button class="carousel-nav next" type="button" aria-label="${es ? 'Imagen siguiente' : 'Next image'}">›</button>` : ''}
-        <span class="carousel-counter" id="carouselCounter">${activeImageIndex + 1} / ${images.length}</span>
-        <button class="carousel-zoom" type="button">🔍 ${es ? 'Ampliar' : 'Zoom'}</button>
+
+    <section class="pd-wrap pd-block pd-solution">
+      <h2 class="pd-vlabel">${es ? 'La solución' : 'The Solution'}</h2>
+      <ul class="pd-block-body">${project.bullets[currentLang].map((item, i) => `<li><span class="pd-ico">${svg(pdIcons[i % pdIcons.length])}</span><span>${item}</span></li>`).join('')}</ul>
+    </section>
+
+    ${n ? `
+    <section class="pd-wrap pd-gallery">
+      <h2>${es ? 'Galería' : 'Gallery'}</h2>
+      <div class="pd-flow">
+        ${n > 1 ? `<img class="pd-side left" src="${at(-1).src}" alt="" aria-hidden="true">` : ''}
+        <div class="pd-main">
+          <img decoding="async" class="carousel-image" id="carouselImage" src="${at(0).src}" alt="${at(0).alt}">
+          <span class="carousel-counter" id="carouselCounter">${activeImageIndex + 1} / ${n}</span>
+          <button class="carousel-zoom" type="button">🔍 ${es ? 'Ampliar' : 'Zoom'}</button>
+        </div>
+        ${n > 1 ? `<img class="pd-side right" src="${at(1).src}" alt="" aria-hidden="true">` : ''}
+        ${n > 1 ? `<button class="pd-arrow prev" type="button" aria-label="${es ? 'Imagen anterior' : 'Previous image'}">‹</button><button class="pd-arrow next" type="button" aria-label="${es ? 'Imagen siguiente' : 'Next image'}">›</button>` : ''}
       </div>
+      ${n > 1 ? `<div class="pd-dots">${images.map((_, i) => `<button class="pd-dot${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"></button>`).join('')}</div>` : ''}
       ${photoEnAvailable[index] ? `<div class="photo-lang" role="group" aria-label="${es ? 'Idioma de las fotos' : 'Photo language'}"><span>${es ? 'Fotos en:' : 'Photos in:'}</span><button type="button" data-photo-lang="es" aria-pressed="${shownPhotoLang === 'es'}">Español</button><button type="button" data-photo-lang="en" aria-pressed="${shownPhotoLang === 'en'}">English</button></div>` : ''}
-      ${images.length > 1 ? `<div class="carousel-thumbs">${images.map((image, i) => `<button class="carousel-thumb${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" data-fallback="${project.images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt=""></button>`).join('')}</div>` : ''}
     </section>` : ''}
-    <section class="pd-highlights">
-      <h2>${translations[currentLang].technical}</h2>
-      <ul>${project.bullets[currentLang].map(item => `<li><span class="pd-check">${check}</span>${item}</li>`).join('')}</ul>
+
+    <section class="pd-wrap pd-tech">
+      <h2>${es ? 'Tecnologías usadas' : 'Technologies used'}</h2>
+      <ul>${project.technologies.map(t => `<li title="${t}">${techIcons[t] ? `<span class="pd-tech-ico" style="background-image:url('assets/img/tools/${techIcons[t]}.svg')"></span>` : ''}<span class="pd-tech-name">${t}</span></li>`).join('')}</ul>
     </section>
-    ${next !== null ? `<a class="pd-next" href="proyecto.html?p=${next}"><span>${es ? 'Siguiente proyecto' : 'Next project'}</span><strong>${projects[next].title[currentLang]} →</strong></a>` : ''}`;
-  if(images.length){
+
+    <section class="pd-wrap pd-end">
+      ${next !== null ? `<a class="pd-next" href="proyecto.html?p=${next}"><span>${es ? 'Siguiente proyecto' : 'Next project'}</span><strong>${projects[next].title[currentLang]} →</strong></a>` : ''}
+      <div class="pd-cta">
+        <h2>${es ? '¿Tenés un proyecto en mente?' : 'Have a project in mind?'}</h2>
+        <p>${es ? 'Contame qué necesitás y vemos juntos cómo convertir tus datos en decisiones.' : "Tell me what you need and let's see together how to turn your data into decisions."}</p>
+        <a class="btn btn-primary" href="index.html#contacto">${es ? 'Hablemos' : "Let's talk"} →</a>
+      </div>
+    </section>`;
+  const copy = detailRoot.querySelector('.pd-copy');
+  copy.addEventListener('click', () => {
+    try { navigator.clipboard.writeText(location.href); } catch(error) {}
+    copy.classList.add('done');
+    setTimeout(() => copy.classList.remove('done'), 1400);
+  });
+  if(n){
     const main = detailRoot.querySelector('.carousel-image');
     main.addEventListener('error', () => {
       const original = project.images[activeImageIndex].src;
-      if(!main.src.endsWith(original)) main.src = original;
+      if(!main.src.endsWith(encodeURI(original)) && !main.src.endsWith(original)) main.src = original;
     });
     main.addEventListener('click', openLightbox);
     detailRoot.querySelector('.carousel-zoom').addEventListener('click', openLightbox);
-    detailRoot.querySelector('.carousel-nav.prev')?.addEventListener('click', () => showCarouselImage(activeImageIndex - 1));
-    detailRoot.querySelector('.carousel-nav.next')?.addEventListener('click', () => showCarouselImage(activeImageIndex + 1));
-    detailRoot.querySelectorAll('.carousel-thumb').forEach(thumb => thumb.addEventListener('click', () => showCarouselImage(Number(thumb.dataset.index))));
+    detailRoot.querySelector('.pd-arrow.prev')?.addEventListener('click', () => pdShow(activeImageIndex - 1));
+    detailRoot.querySelector('.pd-arrow.next')?.addEventListener('click', () => pdShow(activeImageIndex + 1));
+    detailRoot.querySelector('.pd-side.left')?.addEventListener('click', () => pdShow(activeImageIndex - 1));
+    detailRoot.querySelector('.pd-side.right')?.addEventListener('click', () => pdShow(activeImageIndex + 1));
+    detailRoot.querySelectorAll('.pd-dot').forEach(dot => dot.addEventListener('click', () => pdShow(Number(dot.dataset.index))));
+    let touchX = null;
+    const flow = detailRoot.querySelector('.pd-flow');
+    flow.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
+    flow.addEventListener('touchend', e => { if(touchX === null) return; const dx = e.changedTouches[0].clientX - touchX; if(Math.abs(dx) > 40) pdShow(activeImageIndex + (dx < 0 ? 1 : -1)); touchX = null; });
     detailRoot.querySelectorAll('[data-photo-lang]').forEach(button => button.addEventListener('click', () => {
       photoLang = button.dataset.photoLang;
       renderProjectDetail();
