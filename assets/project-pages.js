@@ -101,7 +101,7 @@ function setLang(lang, persist = true){
     const key = element.dataset.i18n;
     if(translations[lang][key]) element.textContent = translations[lang][key];
   });
-  if(activeProjectIndex !== null) openProject(activeProjectIndex);
+  if(activeProjectIndex !== null && !document.getElementById('projectDetail')) openProject(activeProjectIndex);
   if(document.getElementById('projectDetail')) renderProjectDetail();
   if(persist){
     try { localStorage.setItem('portfolio-lang', lang); } catch(error) {}
