@@ -233,7 +233,7 @@ const projects = [
   },
   {
     title:{en:'Weekly Sales Performance Automation', es:'Automatización de Rendimiento Semanal de Ventas'},
-    images:[{src:'assets/img/Marry Me/gmail data weekly.webp', alt:'Automated weekly sales performance report'}],
+    images:[{src:'assets/img/Marry Me/gmail data weekly.webp', alt:'Reporte semanal automatizado de rendimiento de ventas'}],
     desc:{en:'Weekly sales performance report automated with Google Apps Script. It consolidates data from BigQuery and HubSpot and distributes the updated report through Gmail.', es:'Reporte semanal de rendimiento de ventas automatizado con Google Apps Script. Consolida datos de BigQuery y HubSpot y distribuye el reporte actualizado por Gmail.'},
     technologies:['Google Apps Script','BigQuery','HubSpot','Gmail'],
     bullets:{en:['Automated extraction and processing with Google Apps Script','BigQuery and HubSpot data integration','Weekly report delivery through Gmail','Week-over-week KPI comparison'],es:['Extracción y procesamiento automatizados con Google Apps Script','Integración de datos de BigQuery y HubSpot','Envío semanal del reporte mediante Gmail','Comparación de KPIs contra la semana anterior']}
