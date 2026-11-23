@@ -478,9 +478,9 @@ document.querySelectorAll('.category-projects .proj-card').forEach(card => {
 // Text for the project page: a one-line summary under the title, the second overview paragraph,
 // and the problems the project solved (icon key + text). Written from each project's description.
 const projectStory = {
-  0:{tagline:{es:'Diseñé la base de datos y construí un panel en Power BI para monitorear los ríos de Nicaragua y sus estaciones de lectura.', en:'I designed the database and built a Power BI dashboard to monitor Nicaragua\'s rivers and their reading stations.'},
-     more:{es:'Organicé los registros de las estaciones en PostgreSQL y los conecté a Power BI, donde con medidas DAX construí la geovisualización nacional, el tablero de control y el seguimiento de los niveles de alerta. Así es posible revisar cada estación a lo largo del tiempo y detectar tendencias de desbordamiento.', en:'I organized the station records in PostgreSQL and connected them to Power BI, where I used DAX measures to build the national geovisualization, the control dashboard and alert level tracking. This makes it possible to review each station over time and spot overflow trends.'},
-     problems:[['files',{es:'Registros de lectura dispersos',en:'Scattered reading records'}],['eye',{es:'Sin vista nacional de las estaciones',en:'No national view of the stations'}],['alert',{es:'Niveles de alerta difíciles de seguir',en:'Alert levels hard to track'}],['chart',{es:'Patrones de desbordamiento ocultos',en:'Hidden overflow patterns'}]]},
+  0:{tagline:{es:'Diseñé el dashboard para monitorear los ríos de Nicaragua y sus estaciones de lectura.', en:'I designed the dashboard to monitor Nicaragua\'s rivers and their reading stations.'},
+     more:{es:'El dashboard reúne una geovisualización nacional de las estaciones, un tablero de control y el seguimiento de los niveles de alerta, para revisar cada estación a lo largo del tiempo y detectar tendencias de desbordamiento.', en:'The dashboard brings together a national geovisualization of the stations, a control panel and alert level tracking, to review each station over time and spot overflow trends.'},
+     problems:[['files',{es:'Registros de lectura dispersos',en:'Scattered reading records'}],['eye',{es:'Sin vista nacional de las estaciones',en:'No national view of the stations'}],['alert',{es:'Niveles de alerta difíciles de seguir',en:'Alert levels hard to track'}],['chart',{es:'Patrones de desbordamiento ocultos',en:'Hidden overflow patterns'}],['clock',{es:'Historial de cada estación difícil de revisar',en:'Each station\'s history hard to review'}],['search',{es:'Errores de lectura difíciles de auditar',en:'Reading errors hard to audit'}]]},
   1:{tagline:{es:'Construí un dashboard en Power BI para analizar las ventas, clientes e inventario de VetPlus.', en:'I built a Power BI dashboard to analyze VetPlus\'s sales, customers and inventory.'},
      more:{es:'Partí de las hojas de cálculo de ventas y las modelé en Power BI con KPIs de rendimiento, un mapa de clientes y un análisis multidimensional de productos. El equipo comercial puede ver en un solo lugar cómo rinde cada vendedor y qué productos se mueven más.', en:'I started from the sales spreadsheets and modeled them in Power BI with performance KPIs, a customer map and multidimensional product analysis. The sales team can see in one place how each salesperson performs and which products move the most.'},
      problems:[['files',{es:'Ventas en hojas de cálculo separadas',en:'Sales split across spreadsheets'}],['map',{es:'Sin ubicación de los clientes',en:'No view of customer locations'}],['users',{es:'Desempeño comercial difícil de medir',en:'Sales performance hard to measure'}],['box',{es:'Inventario sin seguimiento claro',en:'Inventory without clear tracking'}]]},
@@ -544,19 +544,20 @@ const pdIcons = [
 ];
 const svg = (paths, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${paths}</svg>`;
 
+// Slide width is 64% of the gallery (86% on phones) with a 3% gap; the active slide sits in the centre.
+function pdOffset(i){
+  const w = window.matchMedia('(max-width:700px)').matches ? 86 : 64;
+  return `translateX(${(100 - w) / 2 - i * (w + 3)}%)`;
+}
+window.addEventListener('resize', () => { const t = detailRoot && detailRoot.querySelector('.pd-track'); if(t) t.style.transform = pdOffset(activeImageIndex); });
+
 function pdShow(index){
   if(!activeImages.length) return;
   const n = activeImages.length;
-  const dir = index < activeImageIndex ? 'back' : 'fwd';
   activeImageIndex = (index + n) % n;
-  const flow = detailRoot.querySelector('.pd-flow');
-  if(flow){ flow.classList.remove('slide-fwd', 'slide-back'); void flow.offsetWidth; flow.classList.add(`slide-${dir}`); }
-  const at = offset => activeImages[(activeImageIndex + offset + n) % n];
-  const main = document.getElementById('carouselImage');
-  main.src = at(0).src; main.alt = at(0).alt;
-  const prev = detailRoot.querySelector('.pd-side.left'), next = detailRoot.querySelector('.pd-side.right');
-  if(prev) prev.src = at(-1).src;
-  if(next) next.src = at(1).src;
+  const track = detailRoot.querySelector('.pd-track');
+  if(track) track.style.transform = pdOffset(activeImageIndex);
+  detailRoot.querySelectorAll('.pd-slide').forEach((slide, i) => slide.classList.toggle('active', i === activeImageIndex));
   document.getElementById('carouselCounter').textContent = `${activeImageIndex + 1} / ${n}`;
   detailRoot.querySelectorAll('.pd-dot').forEach((dot, i) => dot.classList.toggle('active', i === activeImageIndex));
 }
@@ -619,26 +620,24 @@ function renderProjectDetail(){
     </section>
 
     ${story ? `<section class="pd-wrap pd-block pd-problem">
-      <h2 class="pd-vlabel">${es ? 'El problema' : 'The Problem'}</h2>
       <ul class="pd-block-body">${story.problems.map(([icon, text]) => `<li><span class="pd-ico">${svg(problemIcons[icon])}</span><span>${text[currentLang]}</span></li>`).join('')}</ul>
+      <h2 class="pd-vlabel">${es ? 'El problema' : 'The Problem'}</h2>
     </section>` : ''}
 
     <section class="pd-wrap pd-block pd-solution">
-      <ul class="pd-block-body">${project.bullets[currentLang].map((item, i) => `<li><span class="pd-ico">${svg(pdIcons[i % pdIcons.length])}</span><span>${item}</span></li>`).join('')}</ul>
       <h2 class="pd-vlabel">${es ? 'La solución' : 'The Solution'}</h2>
+      <ul class="pd-block-body">${project.bullets[currentLang].map((item, i) => `<li><span class="pd-ico">${svg(pdIcons[i % pdIcons.length])}</span><span>${item}</span></li>`).join('')}</ul>
     </section>
 
     ${n ? `
     <section class="pd-wrap pd-gallery">
       <h2>${es ? 'Galería' : 'Gallery'}</h2>
       <div class="pd-flow">
-        ${n > 1 ? `<img class="pd-side left" src="${at(-1).src}" alt="" aria-hidden="true">` : ''}
-        <div class="pd-main">
-          <img decoding="async" class="carousel-image" id="carouselImage" src="${at(0).src}" alt="${at(0).alt}">
-          <span class="carousel-counter" id="carouselCounter">${activeImageIndex + 1} / ${n}</span>
-          <button class="carousel-zoom" type="button">🔍 ${es ? 'Ampliar' : 'Zoom'}</button>
+        <div class="pd-track" style="transform:${pdOffset(activeImageIndex)}">
+          ${images.map((image, i) => `<button class="pd-slide${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"><img decoding="async" src="${image.src}" data-fallback="${project.images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt="${image.alt}"></button>`).join('')}
         </div>
-        ${n > 1 ? `<img class="pd-side right" src="${at(1).src}" alt="" aria-hidden="true">` : ''}
+        <span class="carousel-counter" id="carouselCounter">${activeImageIndex + 1} / ${n}</span>
+        <button class="carousel-zoom" type="button">🔍 ${es ? 'Ampliar' : 'Zoom'}</button>
         ${n > 1 ? `<button class="pd-arrow prev" type="button" aria-label="${es ? 'Imagen anterior' : 'Previous image'}">‹</button><button class="pd-arrow next" type="button" aria-label="${es ? 'Imagen siguiente' : 'Next image'}">›</button>` : ''}
       </div>
       ${n > 1 ? `<div class="pd-dots">${images.map((_, i) => `<button class="pd-dot${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"></button>`).join('')}</div>` : ''}
@@ -654,17 +653,10 @@ function renderProjectDetail(){
       ${next !== null ? `<a class="pd-next" href="proyecto.html?p=${next}"><span>${es ? 'Siguiente proyecto' : 'Next project'}</span><strong>${projects[next].title[currentLang]} →</strong></a>` : ''}
     </section>`;
   if(n){
-    const main = detailRoot.querySelector('.carousel-image');
-    main.addEventListener('error', () => {
-      const original = project.images[activeImageIndex].src;
-      if(!main.src.endsWith(encodeURI(original)) && !main.src.endsWith(original)) main.src = original;
-    });
-    main.addEventListener('click', openLightbox);
+    detailRoot.querySelectorAll('.pd-slide').forEach(slide => slide.addEventListener('click', () => { const i = Number(slide.dataset.index); i === activeImageIndex ? openLightbox() : pdShow(i); }));
     detailRoot.querySelector('.carousel-zoom').addEventListener('click', openLightbox);
     detailRoot.querySelector('.pd-arrow.prev')?.addEventListener('click', () => pdShow(activeImageIndex - 1));
     detailRoot.querySelector('.pd-arrow.next')?.addEventListener('click', () => pdShow(activeImageIndex + 1));
-    detailRoot.querySelector('.pd-side.left')?.addEventListener('click', () => pdShow(activeImageIndex - 1));
-    detailRoot.querySelector('.pd-side.right')?.addEventListener('click', () => pdShow(activeImageIndex + 1));
     detailRoot.querySelectorAll('.pd-dot').forEach(dot => dot.addEventListener('click', () => pdShow(Number(dot.dataset.index))));
     let touchX = null;
     const flow = detailRoot.querySelector('.pd-flow');
