@@ -357,7 +357,6 @@ function openProject(index, keepImage){
   activeProjectIndex = index;
   const project = {...projects[index], images: projectPhotos(index)};
   checkEnglishPhotos(index);
-  const shownPhotoLang = photoLang || currentLang;
   document.getElementById('modalTitle').textContent = project.title[currentLang];
   document.getElementById('modalDesc').textContent = project.desc[currentLang];
   document.getElementById('modalTechnical').textContent = translations[currentLang].technical;
@@ -373,7 +372,6 @@ function openProject(index, keepImage){
       <span class="carousel-counter" id="carouselCounter">1 / ${project.images.length}</span>
       <button class="carousel-zoom" type="button">🔍 ${currentLang === 'en' ? 'Zoom' : 'Ampliar'}</button>
     </div>
-    ${photoEnAvailable[index] ? `<div class="photo-lang" role="group" aria-label="${currentLang === 'en' ? 'Photo language' : 'Idioma de las fotos'}"><span>${currentLang === 'en' ? 'Photos in:' : 'Fotos en:'}</span><button type="button" data-photo-lang="es" aria-pressed="${shownPhotoLang === 'es'}">Español</button><button type="button" data-photo-lang="en" aria-pressed="${shownPhotoLang === 'en'}">English</button></div>` : ''}
     <div class="carousel-thumbs">
       ${project.images.map((image, i) => `<button class="carousel-thumb${i === 0 ? ' active' : ''}" type="button" data-index="${i}" aria-label="Image ${i + 1}"><img loading="lazy" decoding="async" src="${image.src}" data-fallback="${projects[index].images[i].src}" onerror="if(this.src.indexOf(this.dataset.fallback)<0)this.src=this.dataset.fallback" alt=""></button>`).join('')}
     </div>` : '';
@@ -398,10 +396,6 @@ function openProject(index, keepImage){
       const original = projects[index].images[activeImageIndex].src;
       if(!event.target.src.endsWith(original)) event.target.src = original;
     });
-    modal.querySelectorAll('[data-photo-lang]').forEach(button => button.addEventListener('click', () => {
-      photoLang = button.dataset.photoLang;
-      openProject(index, activeImageIndex);
-    }));
     if(keepImage) showCarouselImage(keepImage);
   }
   modal.classList.add('open');
@@ -594,7 +588,6 @@ function renderProjectDetail(){
   const images = projectPhotos(index);
   activeImages = images;
   if(activeImageIndex >= images.length) activeImageIndex = 0;
-  const shownPhotoLang = photoLang || currentLang;
   const siblings = Object.keys(projectMeta).map(Number).filter(i => projectMeta[i].page === meta.page);
   const pos = siblings.indexOf(index);
   const next = siblings.length > 1 ? siblings[(pos + 1) % siblings.length] : null;
@@ -654,7 +647,6 @@ function renderProjectDetail(){
         ${n > 1 ? `<button class="pd-arrow prev" type="button" aria-label="${es ? 'Imagen anterior' : 'Previous image'}">‹</button><button class="pd-arrow next" type="button" aria-label="${es ? 'Imagen siguiente' : 'Next image'}">›</button>` : ''}
       </div>
       ${n > 1 ? `<div class="pd-dots">${images.map((_, i) => `<button class="pd-dot${i === activeImageIndex ? ' active' : ''}" type="button" data-index="${i}" aria-label="${es ? 'Imagen' : 'Image'} ${i + 1}"></button>`).join('')}</div>` : ''}
-      ${photoEnAvailable[index] ? `<div class="photo-lang" role="group" aria-label="${es ? 'Idioma de las fotos' : 'Photo language'}"><span>${es ? 'Fotos en:' : 'Photos in:'}</span><button type="button" data-photo-lang="es" aria-pressed="${shownPhotoLang === 'es'}">Español</button><button type="button" data-photo-lang="en" aria-pressed="${shownPhotoLang === 'en'}">English</button></div>` : ''}
     </section>` : ''}
 
     <section class="pd-wrap pd-tech">
@@ -675,10 +667,6 @@ function renderProjectDetail(){
     const flow = detailRoot.querySelector('.pd-flow');
     flow.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
     flow.addEventListener('touchend', e => { if(touchX === null) return; const dx = e.changedTouches[0].clientX - touchX; if(Math.abs(dx) > 40) pdShow(activeImageIndex + (dx < 0 ? 1 : -1)); touchX = null; });
-    detailRoot.querySelectorAll('[data-photo-lang]').forEach(button => button.addEventListener('click', () => {
-      photoLang = button.dataset.photoLang;
-      renderProjectDetail();
-    }));
   }
 }
 
