@@ -170,7 +170,7 @@ const projects = [
   {
     title:{en:'WRO Nicaragua 2024', es:'WRO Nicaragua 2024'}, images:[],
     desc:{en:'Robot developed for participation in Nicaragua\'s 2024 National Robotics Olympiad. The MicroPython control system was organized into modules for acceleration, turning, gyroscope readings and conditional sensor responses to meet the competition challenge.', es:'Robot desarrollado para participar en la Olimpiada Nacional de Robótica de Nicaragua 2024. El sistema de control en MicroPython se organizó en módulos de aceleración, giros, lectura del giroscopio y respuestas condicionales de sensores para cumplir el desafío de la competencia.'},
-    technologies:['MicroPython','Robotics','Sensors','Gyroscope'],
+    technologies:['Python','Visual Studio Code','MicroPython','Robotics','Sensors','Gyroscope'],
     repo:'https://github.com/KrisGerald02/Olimpiada-Nacional-de-Robotica-Nicaragua-2024',
     bullets:{en:['Participation in the 2024 national robotics competition','Modular movement and acceleration control','Gyroscope-assisted orientation','Conditional responses using multiple sensors'],es:['Participación en la competencia nacional de robótica 2024','Control modular de movimiento y aceleración','Orientación asistida por giroscopio','Respuestas condicionales mediante múltiples sensores']}
   },
@@ -262,6 +262,14 @@ const projects = [
     technologies:['Arduino','C++','Bluetooth','Sensors'],
     repo:'https://github.com/KrisGerald02/Projects_ARDUINO',
     bullets:{en:['Multiple documented Arduino experiments','Sensor integration and environmental monitoring','Bluetooth-controlled motors and circuits','Projects for Arduino UNO, Mega, UNO R4 Minima and WiFi boards'],es:['Múltiples experimentos Arduino documentados','Integración de sensores y monitoreo ambiental','Motores y circuitos controlados por Bluetooth','Proyectos para placas Arduino UNO, Mega, UNO R4 Minima y WiFi']}
+  },
+  {
+    title:{en:'Lo Nuestro', es:'Lo Nuestro'},
+    images:[],
+    desc:{en:'Lo Nuestro is a digital platform and cultural magazine dedicated to documenting, showcasing and sharing the work of Nicaraguan artisans. Through stories, photographs and profiles, we share their crafts, materials, territories and the knowledge they have passed down from generation to generation.', es:'Lo Nuestro es una plataforma digital y revista cultural dedicada a documentar, visibilizar y difundir el trabajo de los artesanos nicaragüenses. A través de historias, fotografías y perfiles, damos a conocer sus oficios, sus materiales, sus territorios y los saberes que han transmitido de generación en generación.'},
+    technologies:['WordPress'],
+    site:'https://lonuestronic.com/',
+    bullets:{en:['Cultural magazine built on WordPress','Artisan profiles with stories and photographs','Sections by craft, material and territory','Responsive design for phones and computers'],es:['Revista cultural construida en WordPress','Perfiles de artesanos con historias y fotografías','Secciones por oficio, material y territorio','Diseño adaptable a celulares y computadoras']}
   }
 ];
 
@@ -435,12 +443,13 @@ const projectMeta = {
   3:{page:'electronica-robotica.html', cat:'robotics_title'},
   10:{page:'electronica-robotica.html', cat:'robotics_title'},
   4:{page:'mobile-apps.html', cat:'mobile_title'},
+  11:{page:'paginas-web.html', cat:'sites_title', logo:'assets/img/lo-nuestro.webp', wide:true},
   6:{page:'disenos.html', cat:'design_title', logo:'assets/img/GeraldShop/geraldshop_icon.webp', wide:true}
 };
 const catTitles = {
   data_title:{es:'Análisis de Datos', en:'Data Analysis'}, automation_title:{es:'Automatizaciones', en:'Automations'},
   robotics_title:{es:'Electrónica y Robótica', en:'Electronics & Robotics'}, mobile_title:{es:'Mobile Apps', en:'Mobile Apps'},
-  design_title:{es:'Diseños', en:'Designs'}
+  design_title:{es:'Diseños', en:'Designs'}, sites_title:{es:'Páginas web', en:'Websites'}
 };
 const cssUrl = src => `url("${encodeURI(decodeURI(src))}")`;
 const initials = text => text.split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase();
@@ -509,6 +518,9 @@ const projectStory = {
      more:{es:'Incluye proyectos con sensores de temperatura, humedad, infrarrojos y ultrasónicos, motores DC y circuitos controlados por Bluetooth, semáforos y LEDs RGB, en placas Arduino UNO, Mega, UNO R4 Minima y WiFi. Cada práctica está documentada para poder repetirla.', en:'It includes projects with temperature, humidity, infrared and ultrasonic sensors, Bluetooth-controlled DC motors and circuits, traffic lights and RGB LEDs, on Arduino UNO, Mega, UNO R4 Minima and WiFi boards. Each practice is documented so it can be repeated.'},
      problems:[['target',{es:'Aprender electrónica con práctica',en:'Learning electronics hands-on'}],['files',{es:'Experimentos sin documentar',en:'Undocumented experiments'}],['compass',{es:'Probar distintos sensores y placas',en:'Testing different sensors and boards'}]]}
 };
+projectStory[11] = {tagline:{es:'Desarrollé en WordPress el sitio de Lo Nuestro, una revista cultural sobre los artesanos nicaragüenses.', en:'I developed Lo Nuestro\'s WordPress site, a cultural magazine about Nicaraguan artisans.'},
+  more:{es:'Organicé el sitio para que cada artesano tenga su perfil con historia, fotografías, oficio, materiales y territorio, y para que el equipo pueda publicar nuevas historias desde WordPress sin tocar código. El diseño se adapta a celulares y computadoras.', en:'I organized the site so each artisan has a profile with their story, photographs, craft, materials and territory, and so the team can publish new stories from WordPress without touching code. The design adapts to phones and computers.'},
+  problems:[['eye',{es:'Artesanos con poca visibilidad',en:'Artisans with little visibility'}],['files',{es:'Historias y fotos sin un lugar propio',en:'Stories and photos without a home'}],['edit',{es:'Publicar contenido debía ser fácil',en:'Publishing had to be easy'}]]};
 const problemIcons = {
   files:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
   eye:'<path d="M3 3l18 18"/><path d="M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a16 16 0 0 1-2.6 3.2M6.5 7.6C4.3 9.1 3 12 3 12s4 6 9 6a8.6 8.6 0 0 0 4-1"/><path d="M9.9 10a3 3 0 0 0 4.1 4.1"/>',
@@ -532,7 +544,7 @@ const detailRoot = document.getElementById('projectDetail');
 const techIcons = {
   'PostgreSQL':'postgresql','Power BI':'powerbi','Spreadsheets':'excel','Excel':'excel','Looker Studio':'lookerstudio',
   'BigQuery':'bigquery','Swift':'swift','Canva':'canva','Illustrator':'illustrator','Photoshop':'photoshop',
-  'Google Apps Script':'appsscript','Arduino':'arduino','PowerPoint':'office365','SharePoint':'office365','Gmail':'office365'
+  'Google Apps Script':'appsscript','Arduino':'arduino','Python':'python','Visual Studio Code':'vscode','WordPress':'wordpress','PowerPoint':'office365','SharePoint':'office365','Gmail':'office365'
 };
 const pdIcons = [
   '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/>',
@@ -613,6 +625,7 @@ function renderProjectDetail(){
         <p>${desc}</p>
         ${story ? `<p>${story.more[currentLang]}</p>` : ''}
         <div class="pd-links">
+          ${project.site ? `<a class="btn btn-primary" href="${project.site}" target="_blank" rel="noopener noreferrer">${es ? 'Visitar sitio web' : 'Visit website'} ↗</a>` : ''}
           ${project.repo ? `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noopener noreferrer">${translations[currentLang].view_repo} ↗</a>` : ''}
           ${project.file ? `<a class="btn btn-ghost" href="${project.file}" download>${project.fileLabel?.[currentLang] || translations[currentLang].view_presentation} ↓</a>` : ''}
         </div>
