@@ -154,7 +154,7 @@ const projects = [
       {src:'assets/img/VetPlus/view4.webp', alt:'VetPlus - vista 4'}
     ],
     desc:{en:'Sales dashboard covering customer geolocation, sales force performance and product inventory.', es:'Dashboard de ventas con geolocalización de clientes, desempeño de la fuerza comercial e inventario de productos.'},
-    technologies:['Power BI','Spreadsheets'],
+    technologies:['Power BI','BigQuery','Spreadsheets'],
     bullets:{en:['Performance KPIs','Geovisualization','Multidimensional product analysis'], es:['KPIs de rendimiento','Geovisualización','Análisis multidimensional de producto']}
   },
   {
@@ -482,7 +482,7 @@ const projectStory = {
      more:{es:'El dashboard reúne una geovisualización nacional de las estaciones, un tablero de control y el seguimiento de los niveles de alerta, para revisar cada estación a lo largo del tiempo y detectar tendencias de desbordamiento.', en:'The dashboard brings together a national geovisualization of the stations, a control panel and alert level tracking, to review each station over time and spot overflow trends.'},
      problems:[['files',{es:'Registros de lectura dispersos',en:'Scattered reading records'}],['eye',{es:'Sin vista nacional de las estaciones',en:'No national view of the stations'}],['alert',{es:'Niveles de alerta difíciles de seguir',en:'Alert levels hard to track'}],['chart',{es:'Patrones de desbordamiento ocultos',en:'Hidden overflow patterns'}],['clock',{es:'Historial de cada estación difícil de revisar',en:'Each station\'s history hard to review'}],['search',{es:'Errores de lectura difíciles de auditar',en:'Reading errors hard to audit'}]]},
   1:{tagline:{es:'Construí un dashboard en Power BI para analizar las ventas, clientes e inventario de VetPlus.', en:'I built a Power BI dashboard to analyze VetPlus\'s sales, customers and inventory.'},
-     more:{es:'Partí de las hojas de cálculo de ventas y las modelé en Power BI con KPIs de rendimiento, un mapa de clientes y un análisis multidimensional de productos. El equipo comercial puede ver en un solo lugar cómo rinde cada vendedor y qué productos se mueven más.', en:'I started from the sales spreadsheets and modeled them in Power BI with performance KPIs, a customer map and multidimensional product analysis. The sales team can see in one place how each salesperson performs and which products move the most.'},
+     more:{es:'Integré los datos de ventas de hojas de cálculo y Google BigQuery y los modelé en Power BI con KPIs de rendimiento, un mapa de clientes y un análisis multidimensional de productos. El equipo comercial puede ver en un solo lugar cómo rinde cada vendedor y qué productos se mueven más.', en:'I integrated the sales data from spreadsheets and Google BigQuery and modeled it in Power BI with performance KPIs, a customer map and multidimensional product analysis. The sales team can see in one place how each salesperson performs and which products move the most.'},
      problems:[['files',{es:'Ventas en hojas de cálculo separadas',en:'Sales split across spreadsheets'}],['map',{es:'Sin ubicación de los clientes',en:'No view of customer locations'}],['users',{es:'Desempeño comercial difícil de medir',en:'Sales performance hard to measure'}],['box',{es:'Inventario sin seguimiento claro',en:'Inventory without clear tracking'}]]},
   2:{tagline:{es:'Construí un dashboard para dar seguimiento a las propuestas de negocio y los ingresos de Elite Marry Me.', en:'I built a dashboard to track Elite Marry Me\'s business proposals and revenue.'},
      more:{es:'Integré los datos en BigQuery y hojas de cálculo y los visualicé en Power BI y Looker Studio. El dashboard muestra el rendimiento comercial, el estado de cada propuesta y qué canales de venta generan más ingresos.', en:'I integrated the data in BigQuery and spreadsheets and visualized it in Power BI and Looker Studio. The dashboard shows commercial performance, the status of each proposal and which sales channels bring in the most revenue.'},
@@ -646,7 +646,7 @@ function renderProjectDetail(){
 
     <section class="pd-wrap pd-tech">
       <h2>${es ? 'Tecnologías usadas' : 'Technologies used'}</h2>
-      <ul>${project.technologies.map(t => `<li title="${t}">${techIcons[t] ? `<span class="pd-tech-ico" style="background-image:url('assets/img/tools/${techIcons[t]}.svg')"></span>` : ''}<span class="pd-tech-name">${t}</span></li>`).join('')}</ul>
+      <ul>${[...project.technologies].sort((a, b) => !techIcons[a] - !techIcons[b]).map(t => `<li title="${t}">${techIcons[t] ? `<span class="pd-tech-ico" style="background-image:url('assets/img/tools/${techIcons[t]}.svg')"></span>` : ''}<span class="pd-tech-name">${t}</span></li>`).join('')}</ul>
     </section>
 
     <section class="pd-wrap pd-end">
