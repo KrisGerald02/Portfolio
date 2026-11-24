@@ -971,3 +971,12 @@ html[lang="en"] .cv-btn.cv-missing::after{content:'Soon';}
 .back-link::before{content:"";position:absolute;left:50%;top:50%;margin:-11px 0 0 -11px;width:22px;height:22px;background:var(--pink-deeper);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat;transition:background 250ms;}
 .back-link:hover,.back-link:focus-visible{text-decoration:none;transform:translateX(-4px);background:var(--pink-deep);border-color:var(--pink-deep);outline:none;}
 .back-link:hover::before,.back-link:focus-visible::before{background:#fff;}
+
+/* Language button: globe with translation arrows icon next to the short code. */
+.dock .lang-btn::before{content:"";width:24px;height:24px;flex:0 0 24px;background:currentColor;-webkit-mask:url(img/lang-icon.svg) center/contain no-repeat;mask:url(img/lang-icon.svg) center/contain no-repeat;}
+@media (max-width:560px){.dock .lang-btn::before{width:20px;height:20px;flex-basis:20px;}}
+
+/* CV buttons use the same dark pill color as the language button. */
+.cv-actions .cv-btn,.cv-actions .cv-btn.btn-ghost{background:var(--dock-pill);color:var(--dock-text);border:0;box-shadow:0 0 0 1px var(--dock-ring) inset,0 10px 24px -12px rgba(0,0,0,.55);}
+.cv-actions .cv-btn:hover,.cv-actions .cv-btn:focus-visible{background:var(--dock-pill-hover);color:var(--dock-text);}
+.cv-actions .cv-btn .cv-flag,.cv-actions .btn-ghost .cv-flag{background:rgba(255,255,255,.14);color:var(--dock-text);}
